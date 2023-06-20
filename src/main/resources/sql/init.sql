@@ -46,6 +46,6 @@ create table post_follower_info (
     id int not null,
     post_id int not null,
     liker_id varchar(50) not null,
-    create_time datetime not null,
+    follow_time datetime not null,
     del_flag int not null default 0 comment '0:未删除,1:已删除'
 );

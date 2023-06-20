@@ -1,10 +1,14 @@
 package com.hllwz.stellartownserver.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 用户关注信息实体类
@@ -18,4 +22,7 @@ public class UserFollowerInfo implements Serializable {
     private String userId;
     private String followerId;
     private int delFlag;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @TableField(value = "follow_time", fill = FieldFill.INSERT)
+    private Date followTime;
 }
