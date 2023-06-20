@@ -3,11 +3,26 @@ server:
 spring:
   application:
     name: StellarTown-server
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/tracord?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
-#    username: root
-#    password: root
+  datasource:
+    dynamic:
+      primary: user_info
+      strict: false
+      datasource:
+        db_stellar_town_user:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://localhost:3306/db_stellar_town_user?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+          username: root
+          password: root
+        db_stellar_town_follower:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: jdbc:mysql://localhost:3306/db_stellar_town_follower?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+            username: root
+            password: root
+        db_stellar_town_post:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: jdbc:mysql://localhost:3306/db_stellar_town_post?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+            username: root
+            password: root
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
