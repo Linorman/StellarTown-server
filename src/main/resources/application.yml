@@ -12,17 +12,17 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://localhost:3306/db_stellar_town_user?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
           username: root
-          password: root
+          password: 20030816lyh
         db_stellar_town_follower:
             driver-class-name: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://localhost:3306/db_stellar_town_follower?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
             username: root
-            password: root
+            password: 20030816lyh
         db_stellar_town_post:
             driver-class-name: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://localhost:3306/db_stellar_town_post?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
             username: root
-            password: root
+            password: 20030816lyh
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true

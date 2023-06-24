@@ -17,7 +17,7 @@ import java.util.Date;
 @Data
 public class UserInfo implements Serializable {
     @TableId(value = "id")
-    private String id;
+    private int id;
     private String username;
     private String password;
     private String phoneNumber;

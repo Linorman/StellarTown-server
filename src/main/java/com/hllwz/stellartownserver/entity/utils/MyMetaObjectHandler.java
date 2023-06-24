@@ -1,4 +1,5 @@
-package com.hllwz.stellartownserver.utils;
+package com.hllwz.stellartownserver.entity.utils;
+
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
