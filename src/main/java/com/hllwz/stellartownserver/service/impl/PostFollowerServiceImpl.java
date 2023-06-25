@@ -30,7 +30,7 @@ public class PostFollowerServiceImpl extends ServiceImpl<PostFollowerInfoMapper,
         if (postFollowerInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-        int temp = postFollowerInfoMapper.selectCount(queryWrapper);
+        long temp = postFollowerInfoMapper.selectCount(queryWrapper);
 
         return ResponseResult.success(ResultCode.SUCCESS, temp);
 

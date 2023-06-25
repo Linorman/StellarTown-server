@@ -10,6 +10,12 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 帖子点赞实体类
+ * @author Linorman
+ * @version 1.0.0
+ */
+
 @Data
 public class PostFollowerInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
