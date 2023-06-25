@@ -68,3 +68,7 @@ application:
       # 定义刷新token的有效时间：七天
       refresh-token:
           expiration: 604800000 # 7 days
+  minio:
+    access-key: bCCx1vhlrGcN6TCP05iN
+    secret-key: HpNThuJgPUpD7fGpWa6eUDnYK2AdWCXNIx2ZHEPo
+    endpoint: http://localhost:9000
