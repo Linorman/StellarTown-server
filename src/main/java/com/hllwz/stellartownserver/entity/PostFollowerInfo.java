@@ -15,7 +15,7 @@ public class PostFollowerInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     private Integer postId;
-    private int followerId;
+    private Integer followerId;
     private int delFlag;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "follow_time", fill = FieldFill.INSERT)
