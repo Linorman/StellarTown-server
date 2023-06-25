@@ -28,7 +28,6 @@ public interface UserInfoService extends IService<UserInfo> {
 
     /**
      * 用户刷新token
-     * @param authenticationRequest
      * @return ResponseResult
      */
     public ResponseResult refreshToken();
