@@ -1,11 +1,8 @@
 package com.hllwz.stellartownserver.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
+import com.baomidou.mybatisplus.annotation.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,11 +13,14 @@ import java.util.Date;
  * @version 1.0.0
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
-    private Integer userId;
+    private int id;
+    private int userId;
     private Integer likeCount;
+    private String title;
     private String image;
     private String address;
     private String content;
