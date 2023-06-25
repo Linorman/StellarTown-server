@@ -59,6 +59,12 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     @DS("db_stellar_town_user")
     public ResponseResult register(RegisterRequest registerRequest) {
+        if (registerRequest.getUsername() == null && registerRequest.getPhoneNumber() != null) {
+            registerRequest.setUsername(registerRequest.getPhoneNumber());
+        } else if (registerRequest.getUsername() == null && registerRequest.getPhoneNumber() == null) {
+            return ResponseResult.error(ResultCode.PARAM_IS_BLANK, null);
+        }
+
         LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(UserInfo::getUsername, registerRequest.getUsername());
         UserInfo user = userInfoMapper.selectOne(wrapper);
@@ -71,7 +77,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfo.setRole(Role.USER);
         userInfo.setPhoneNumber(registerRequest.getPhoneNumber());
         userInfoMapper.insert(userInfo);
-        return ResponseResult.success(ResultCode.REGISTER_SUCCESS, null);
+        return ResponseResult.success(ResultCode.REGISTER_SUCCESS, userInfo);
     }
 
     @Override
@@ -136,6 +142,17 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
             SecurityContextHolder.clearContext();
             return ResponseResult.error(ResultCode.LOGOUT_ERROR, null);
         }
+    }
 
+    @Override
+    public ResponseResult getUserInfo() {
+        Integer userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getId, userId);
+        UserInfo userInfo = userInfoMapper.selectOne(wrapper);
+        if (userInfo == null) {
+            return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
+        }
+        return ResponseResult.success(ResultCode.GET_USER_INFO_SUCCESS, userInfo);
     }
 }
