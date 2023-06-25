@@ -41,8 +41,10 @@ public class ApplicationConfig {
             var user = userInfoMapper.selectOne(wrapper);
             if (user != null) {
                 return user;
+            } else {
+                return null;
             }
-            throw new UsernameNotFoundException("用户不存在");
+            // throw new UsernameNotFoundException("用户不存在");
         };
     }
 
