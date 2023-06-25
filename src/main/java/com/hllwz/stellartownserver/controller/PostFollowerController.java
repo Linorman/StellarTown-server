@@ -1,4 +1,4 @@
-package com.hllwz.stellartownserver.controller.likeNum;
+package com.hllwz.stellartownserver.controller;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.service.PostFollowerService;

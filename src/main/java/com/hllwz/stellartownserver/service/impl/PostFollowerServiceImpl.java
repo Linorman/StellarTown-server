@@ -23,14 +23,15 @@ public class PostFollowerServiceImpl extends ServiceImpl<PostFollowerInfoMapper,
     @Override
     public ResponseResult getLikes(PostFollowerInfo postFollowerInfo) {
 
-        int id = postFollowerInfo.getId();
+        int postId = postFollowerInfo.getPostId();
         LambdaQueryWrapper<PostFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(PostFollowerInfo::getId, id);
-        PostFollowerInfo postFollowerInfoTemp = postFollowerInfoMapper.selectById(id);
+        queryWrapper.eq(PostFollowerInfo::getPostId, postId);
+        PostFollowerInfo postFollowerInfoTemp = postFollowerInfoMapper.selectById(postId);
         if (postFollowerInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-        int temp = postFollowerInfoMapper.selectCount(null);
+        int temp = postFollowerInfoMapper.selectCount(queryWrapper);
+
         return ResponseResult.success(ResultCode.SUCCESS, temp);
 
     }

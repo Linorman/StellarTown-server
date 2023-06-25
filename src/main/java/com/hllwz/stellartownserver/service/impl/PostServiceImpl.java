@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostInfo;
-import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.service.PostService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,11 +34,11 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         int id = postInfo.getId();
         LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(PostInfo::getId, id);
-        PostInfo goodsInfoTemp = postInfoMapper.selectById(id);
-        if (goodsInfoTemp == null) {
+        PostInfo postInfoTemp = postInfoMapper.selectById(id);
+        if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-        return ResponseResult.success(ResultCode.SUCCESS, goodsInfoTemp);
+        return ResponseResult.success(ResultCode.SUCCESS, postInfoTemp);
     }
     @Override
     public ResponseResult post(PostInfo postInfo){
