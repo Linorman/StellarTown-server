@@ -38,4 +38,10 @@ public interface UserInfoService extends IService<UserInfo> {
      * @return ResponseResult
      */
     public ResponseResult logout();
+
+    /**
+     * 获取当前登录用户信息
+     * @return ResponseResult
+     */
+    public ResponseResult getUserInfo();
 }

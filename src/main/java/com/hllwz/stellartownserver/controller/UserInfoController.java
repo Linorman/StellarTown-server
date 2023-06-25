@@ -40,7 +40,6 @@ public class UserInfoController {
 
     /**
      * 刷新token
-     * @param loginRequest 登录请求实体
      * @return ResponseResult
      */
     @GetMapping("/refreshToken")
@@ -55,5 +54,14 @@ public class UserInfoController {
     @PostMapping("/logout")
     public ResponseResult logout() {
         return userInfoService.logout();
+    }
+
+    /**
+     * 获取当前登录用户信息
+     * @return ResponseResult
+     */
+    @GetMapping("/getUserInfo")
+    public ResponseResult getUserInfo() {
+        return userInfoService.getUserInfo();
     }
 }
