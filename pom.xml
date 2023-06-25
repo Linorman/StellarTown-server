@@ -28,29 +28,36 @@
             <version>3.0.0</version>
         </dependency>
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.0</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.3.1</version>
         </dependency>
+        <!-- JWT 相关 -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <!--redis依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!--fastjson依赖-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.33</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.aliyun.oss</groupId>
-            <artifactId>aliyun-sdk-oss</artifactId>
-            <version>3.10.2</version>
+            <version>1.2.76</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

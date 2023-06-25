@@ -32,6 +32,8 @@ public enum ResultCode {
     LOGIN_ERROR(424,"登陆失败"),
     LOGIN_ACCOUNT_OR_PASSWORD_ERROR(425,"用户名或者密码错误"),
     USER_NOT_EXIST(425,"用户不存在"),
+    TOKEN_REFRESH_SUCCESS(426,"刷新token成功"),
+    LOGOUT_ERROR(427,"登出失败,token不存在"),
 
     /**
      * redis

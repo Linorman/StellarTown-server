@@ -12,7 +12,7 @@ import java.util.Date;
  * @version 1.0.0
  */
 @Component
-public class MyMetaObjectHandler implements MetaObjectHandler {
+public class AutoInsertHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         this.setFieldValByName("createTime", new Date(), metaObject);
