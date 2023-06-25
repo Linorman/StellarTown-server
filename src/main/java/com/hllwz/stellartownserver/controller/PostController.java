@@ -1,4 +1,4 @@
-package com.hllwz.stellartownserver.controller.forum;
+package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostInfo;
