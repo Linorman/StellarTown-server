@@ -9,9 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
  * @author Linorman
  * @version 1.0.0
  */
-public class SecurityUtil
-{
-
+public class SecurityUtil {
     /**
      * 获取Authentication
      */

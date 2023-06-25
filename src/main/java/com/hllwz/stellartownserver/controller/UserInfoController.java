@@ -5,6 +5,7 @@ import com.hllwz.stellartownserver.dto.LoginRequest;
 import com.hllwz.stellartownserver.dto.RegisterRequest;
 import com.hllwz.stellartownserver.service.UserInfoService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -14,8 +15,9 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/api/v1/user")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserInfoController {
+
     private final UserInfoService userInfoService;
 
     /**

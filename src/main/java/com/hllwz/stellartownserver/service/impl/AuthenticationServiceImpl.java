@@ -1,7 +1,7 @@
 package com.hllwz.stellartownserver.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.hllwz.stellartownserver.mapper.RedisCache;
+import com.hllwz.stellartownserver.entity.RedisCache;
 import com.hllwz.stellartownserver.common.Role;
 import com.hllwz.stellartownserver.dto.RegisterRequest;
 import com.hllwz.stellartownserver.entity.UserInfo;

@@ -1,6 +1,6 @@
 package com.hllwz.stellartownserver.filter;
 
-import com.hllwz.stellartownserver.mapper.RedisCache;
+import com.hllwz.stellartownserver.entity.RedisCache;
 import com.hllwz.stellartownserver.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -29,6 +29,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
     private final RedisCache tokenRepository;

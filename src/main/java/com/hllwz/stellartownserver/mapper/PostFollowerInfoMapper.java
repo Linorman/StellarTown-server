@@ -12,6 +12,4 @@ import org.apache.ibatis.annotations.Select;
  */
 @Mapper
 public interface PostFollowerInfoMapper extends BaseMapper<PostFollowerInfo> {
-    @Select("SELECT * FROM post_follower_info WHERE id = #{id}")
-    PostFollowerInfo selectByLiker(int id);
 }

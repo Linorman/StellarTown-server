@@ -8,6 +8,7 @@ import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.service.PostService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,19 +16,21 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 @DS("db_stellar_town_post")
 public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> implements PostService {
-    @Autowired
-    private PostInfoMapper postInfoMapper;
+
+    private final PostInfoMapper postInfoMapper;
+
     @Override
     public ResponseResult getAllPosts(){
-        String tableName = "post_info";
-        if(postInfoMapper.selectPostInfo(tableName) == null){
+        LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
+        List<PostInfo> postList = postInfoMapper.selectList(queryWrapper);
+        if(postList.size() == 0){
             log.info("帖子不存在");
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-        List<PostInfo> temp = postInfoMapper.selectPostInfo(tableName);
-        return ResponseResult.success(ResultCode.POST_LIST_GET_SUCCESS, temp);
+        return ResponseResult.success(ResultCode.POST_LIST_GET_SUCCESS, postList);
     }
     @Override
     public ResponseResult getPost(PostInfo postInfo){
@@ -49,7 +52,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         if(title==null&content==null&image==null){
             return ResponseResult.error(ResultCode.POST_ADD_ERROR,null);
         }
-        PostInfo post=new PostInfo();
+        PostInfo post= new PostInfo();
         post.setImage(postInfo.getTitle());
         post.setContent(postInfo.getContent());
         post.setTitle(postInfo.getTitle());

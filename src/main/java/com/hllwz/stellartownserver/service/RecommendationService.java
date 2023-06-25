@@ -10,7 +10,6 @@ import com.hllwz.stellartownserver.entity.PostFollowerInfo;
  * @version 1.0.0
  */
 public interface RecommendationService extends IService<PostFollowerInfo> {
-
     /**
      * 推荐帖子
      * @return ResponseResult

@@ -3,6 +3,7 @@ package com.hllwz.stellartownserver.controller;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.service.PostService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @CrossOrigin
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/forum")
 public class PostController {
-    @Autowired
-    private PostService postService;
+
+    private final PostService postService;
 
     @GetMapping("/getPost")
     /**

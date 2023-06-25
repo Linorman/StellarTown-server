@@ -16,14 +16,6 @@ import java.util.List;
  */
 @Mapper
 public interface PostInfoMapper extends BaseMapper<PostInfo> {
-    @Select("SELECT * FROM ${tableName}")
-    List<PostInfo> selectPostInfo(@Param("tableName") String tableName);
-
-    @Insert("INSERT INTO post_info (user_id,image,title,content)VALUES(#{userId},#{image},#{title},#{content})")
-    int insert(PostInfo postInfo);
-
-    @Select("SELECT * FROM post_info WHERE id = #{id}")
-    PostInfo selectById(int id);
 }
 
 

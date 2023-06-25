@@ -2,7 +2,7 @@ package com.hllwz.stellartownserver.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.*;
-import lombok.Data;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,7 +13,8 @@ import java.util.Date;
  * @version 1.0.0
  */
 @Data
-@TableName("post_info")
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private int id;

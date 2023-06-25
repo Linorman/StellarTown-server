@@ -4,6 +4,7 @@ package com.hllwz.stellartownserver.config;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.mapper.UserInfoMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,9 +23,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @version 1.0.1
  */
 @Configuration
+@RequiredArgsConstructor
 public class ApplicationConfig {
-    @Autowired
-    private UserInfoMapper userInfoMapper;
+
+    private final UserInfoMapper userInfoMapper;
 
     /**
      * 用户详细信息服务

@@ -10,19 +10,17 @@ import com.hllwz.stellartownserver.dto.LoginRequest;
 import com.hllwz.stellartownserver.dto.RegisterRequest;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.vo.AuthenticationResponse;
-import com.hllwz.stellartownserver.mapper.RedisCache;
+import com.hllwz.stellartownserver.entity.RedisCache;
 import com.hllwz.stellartownserver.mapper.UserInfoMapper;
 import com.hllwz.stellartownserver.service.UserInfoService;
 import com.hllwz.stellartownserver.utils.JwtUtil;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
 import com.hllwz.stellartownserver.vo.LoginResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -35,26 +33,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 @DS("db_stellar_town_user")
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements UserInfoService {
-    @Qualifier("userInfoMapper")
-    @Autowired
-    private UserInfoMapper userInfoMapper;
 
-    @Qualifier("passwordEncoder")
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    @Qualifier("jwtUtil")
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    @Qualifier("redisCache")
-    private RedisCache redisCache;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final UserInfoMapper userInfoMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
+    private final RedisCache redisCache;
+    private final AuthenticationManager authenticationManager;
 
     @Override
     @DS("db_stellar_town_user")

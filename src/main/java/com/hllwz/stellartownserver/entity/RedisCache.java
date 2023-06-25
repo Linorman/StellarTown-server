@@ -1,4 +1,4 @@
-package com.hllwz.stellartownserver.mapper;
+package com.hllwz.stellartownserver.entity;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.BoundSetOperations;
@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 @RequiredArgsConstructor
 public class RedisCache {
+
     private final RedisTemplate redisTemplate;
 
     /**

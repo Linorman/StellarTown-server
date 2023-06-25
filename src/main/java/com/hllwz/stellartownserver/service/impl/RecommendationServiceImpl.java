@@ -8,6 +8,7 @@ import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.mapper.RecommendationMapper;
 import com.hllwz.stellartownserver.service.RecommendationService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,12 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 @DS("db_stellar_town_post")
 public class RecommendationServiceImpl extends ServiceImpl<RecommendationMapper, PostFollowerInfo> implements RecommendationService {
-    @Autowired
-    private RecommendationMapper recommendationMapper;
+
+    private final RecommendationMapper recommendationMapper;
+
     @Override
     public ResponseResult getRecommendation(PostFollowerInfo postFollowerInfo1){
         int likerId = postFollowerInfo1.getFollowerId();

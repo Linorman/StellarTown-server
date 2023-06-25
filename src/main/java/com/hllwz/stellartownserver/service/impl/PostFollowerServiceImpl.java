@@ -7,22 +7,21 @@ import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.service.PostFollowerService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 @DS("db_stellar_town_post")
 public class PostFollowerServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFollowerInfo> implements PostFollowerService {
-    @Autowired
-    private PostFollowerInfoMapper postFollowerInfoMapper;
-    public PostFollowerServiceImpl(PostFollowerInfoMapper postFollowerInfoMapper){
-        this.postFollowerInfoMapper = postFollowerInfoMapper;
-    }
+
+    private final PostFollowerInfoMapper postFollowerInfoMapper;
+
     @Override
     public ResponseResult getLikes(PostFollowerInfo postFollowerInfo) {
-
         int postId = postFollowerInfo.getPostId();
         LambdaQueryWrapper<PostFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(PostFollowerInfo::getPostId, postId);

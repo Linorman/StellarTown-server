@@ -12,7 +12,7 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://localhost:3306/db_stellar_town_user?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
           username: root
-          password: 20030816lyh
+          password: root
           hikari:
             minimum-idle: 5
             maximum-pool-size: 10
@@ -20,7 +20,7 @@ spring:
             driver-class-name: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://localhost:3306/db_stellar_town_follower?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
             username: root
-            password: 20030816lyh
+            password: root
             hikari:
               minimum-idle: 5
               maximum-pool-size: 10
@@ -28,7 +28,7 @@ spring:
             driver-class-name: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://localhost:3306/db_stellar_town_post?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
             username: root
-            password: 20030816lyh
+            password: root
             hikari:
               minimum-idle: 5
               maximum-pool-size: 10
@@ -41,22 +41,22 @@ mybatis-plus:
       logic-delete-field: delFlag
       logic-delete-value: 1
       logic-not-delete-value: 0
-# springdoc-openapi项目配置
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tags-sorter: alpha
-    operations-sorter: alpha
-  api-docs:
-    path: /v3/api-docs
-  group-configs:
-    - group: 'default'
-      paths-to-match: '/**'
-      packages-to-scan: org.pp.boot3
-  # knife4j的增强配置
-  enable: true
-  setting:
-    language: zh_cn
+## springdoc-openapi项目配置
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui.html
+#    tags-sorter: alpha
+#    operations-sorter: alpha
+#  api-docs:
+#    path: /v3/api-docs
+#  group-configs:
+#    - group: 'default'
+#      paths-to-match: '/**'
+#      packages-to-scan: org.pp.boot3
+#  # knife4j的增强配置
+#  enable: true
+#  setting:
+#    language: zh_cn
 
 # 常量定义
 application:

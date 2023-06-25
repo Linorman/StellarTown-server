@@ -17,7 +17,6 @@ public enum ResultCode {
     DATABASE_SUCCESS(210, "数据库操作成功"),
     UPDATE_FAILURE(460,"更新失败"),
 
-
     /**
      * 用户操作
      */

@@ -1,6 +1,6 @@
 package com.hllwz.stellartownserver.service.impl;
 
-import com.hllwz.stellartownserver.mapper.RedisCache;
+import com.hllwz.stellartownserver.entity.RedisCache;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

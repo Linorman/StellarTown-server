@@ -3,6 +3,7 @@ package com.hllwz.stellartownserver.controller;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.service.PostFollowerService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +17,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @CrossOrigin
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/like")
 public class PostFollowerController {
-    @Autowired
-    private PostFollowerService postFollowerService;
+
+    private final PostFollowerService postFollowerService;
 
     /**
      * 返回点赞数
