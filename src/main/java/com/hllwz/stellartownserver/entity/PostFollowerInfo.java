@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +25,7 @@ public class PostFollowerInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     private Integer postId;
-    private Integer followerId;
+    private Integer likerId;
     private int delFlag;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "follow_time", fill = FieldFill.INSERT)

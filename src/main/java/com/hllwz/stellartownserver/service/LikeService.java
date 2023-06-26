@@ -19,7 +19,7 @@ public interface LikeService extends IService<PostFollowerInfo> {
      *
      * @return ResponseResult
      */
-    ResponseResult like(UserInfo userInfo, PostInfo postInfo);
+    ResponseResult like( PostInfo postInfo);
 
-    ResponseResult unLike(UserInfo userInfo, PostInfo postInfo);
+    ResponseResult unLike( PostInfo postInfo);
 }

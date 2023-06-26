@@ -28,8 +28,8 @@ public class LikeController {
      * 点赞
      * @return ResponseResult
      */
-    public ResponseResult like(@RequestBody UserInfo userInfo, PostInfo postInfo) {
-        return likeService.like(userInfo, postInfo);
+    public ResponseResult like(@RequestBody  PostInfo postInfo) {
+        return likeService.like(postInfo);
     }
 
     @PostMapping("/unLike")
@@ -37,7 +37,7 @@ public class LikeController {
      * 取消点赞
      * @return ResponseResult
      */
-    public ResponseResult unLike(@RequestBody UserInfo userInfo, PostInfo postInfo) {
-        return likeService.unLike(userInfo, postInfo);
+    public ResponseResult unLike(@RequestBody  PostInfo postInfo) {
+        return likeService.unLike( postInfo);
     }
 }

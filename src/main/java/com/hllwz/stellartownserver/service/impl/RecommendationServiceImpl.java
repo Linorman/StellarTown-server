@@ -25,9 +25,9 @@ public class RecommendationServiceImpl extends ServiceImpl<RecommendationMapper,
 
     @Override
     public ResponseResult getRecommendation(PostFollowerInfo postFollowerInfo1){
-        int likerId = postFollowerInfo1.getFollowerId();
+        int likerId = postFollowerInfo1.getLikerId();
         LambdaQueryWrapper<PostFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(PostFollowerInfo::getFollowerId, likerId);
+        queryWrapper.eq(PostFollowerInfo::getLikerId, likerId);
         PostFollowerInfo postFollowerInfoTemp = recommendationMapper.selectById(likerId);
         if (postFollowerInfoTemp == null) {
             return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);//userliker不存在
@@ -42,7 +42,7 @@ public class RecommendationServiceImpl extends ServiceImpl<RecommendationMapper,
         Map<Integer, Set<Integer>> postLikedByUsers = new HashMap<>();
         for (PostFollowerInfo postFollowerInfo : allPostLikes) {
             Integer postId = postFollowerInfo.getPostId();
-            Integer FollowerId = postFollowerInfo.getFollowerId();
+            Integer FollowerId = postFollowerInfo.getLikerId();
             postLikedByUsers.computeIfAbsent(postId, k -> new HashSet<>()).add(FollowerId);
         }
 
@@ -68,7 +68,7 @@ public class RecommendationServiceImpl extends ServiceImpl<RecommendationMapper,
 
             // 获取选定的用户喜欢的帖子，并筛除当前用户已喜欢的帖子
         Set<Integer> likedPostIds = likedPosts.stream().map(PostFollowerInfo::getPostId).collect(Collectors.toSet());
-        queryWrapper.eq(PostFollowerInfo::getFollowerId, similarUserIds);
+        queryWrapper.eq(PostFollowerInfo::getLikerId, similarUserIds);
         List<PostFollowerInfo> similarUserLikedPosts = recommendationMapper.selectList(queryWrapper);
         List<PostFollowerInfo> recommendations = similarUserLikedPosts.stream()
                 .filter(post -> !likedPostIds.contains(postFollowerInfo1.getPostId()))
