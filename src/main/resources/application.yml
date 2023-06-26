@@ -12,7 +12,7 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://localhost:3306/db_stellar_town_user?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
           username: root
-          password: 20030816lyh
+          password: root
           hikari:
             minimum-idle: 5
             maximum-pool-size: 10
@@ -20,7 +20,7 @@ spring:
             driver-class-name: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://localhost:3306/db_stellar_town_follower?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
             username: root
-            password: 20030816lyh
+            password: root
             hikari:
               minimum-idle: 5
               maximum-pool-size: 10
@@ -28,7 +28,7 @@ spring:
             driver-class-name: com.mysql.cj.jdbc.Driver
             url: jdbc:mysql://localhost:3306/db_stellar_town_post?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
             username: root
-            password: 20030816lyh
+            password: root
             hikari:
               minimum-idle: 5
               maximum-pool-size: 10
