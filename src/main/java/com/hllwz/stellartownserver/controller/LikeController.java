@@ -4,6 +4,7 @@ import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.LikeService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +19,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @CrossOrigin
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/forum")
 public class LikeController {
-    @Autowired
-    private LikeService likeService;
+
+    private final LikeService likeService;
 
     @PostMapping("/like")
     /**

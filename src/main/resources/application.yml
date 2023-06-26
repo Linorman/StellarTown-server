@@ -68,3 +68,5 @@ application:
       # 定义刷新token的有效时间：七天
       refresh-token:
           expiration: 604800000 # 7 days
+
+open.ai:

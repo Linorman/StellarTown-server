@@ -93,7 +93,16 @@ public enum ResultCode {
     FOLLOWER_LIST_NULL(423,"关注列表为空"),
     FOLLOWER_NUM_GET_SUCCESS(224,"关注数获取成功"),
     FOLLOWER_NUM_GET_ERROR(424,"关注数获取失败"),
-    FOLLOWER_NUM_NULL(425,"关注数为空");
+    FOLLOWER_NUM_NULL(425,"关注数为空"),
+
+    /**
+     * 天气API
+     */
+    WEATHER_GET_SUCCESS(230,"天气获取成功"),
+    WEATHER_GET_ERROR(430,"天气获取失败"),
+    WEATHER_API_ERROR(431,"天气API错误"),
+    CITY_NOT_NULL(432,"城市不能为空"),
+    CITY_NOT_EXIST(433,"城市不存在");
 
     private int code;
     private String msg;

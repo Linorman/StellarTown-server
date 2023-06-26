@@ -1,4 +1,4 @@
-package com.hllwz.stellartownserver.common;
+package com.hllwz.stellartownserver.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.ParserConfig;
@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
  * @author ss_419
  * @version 1.0.0
  */
-public class FastJsonRedisSerializer<T> implements RedisSerializer<T> {
+public class FastJsonRedisUtil<T> implements RedisSerializer<T> {
     public static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
     static {
@@ -25,7 +25,7 @@ public class FastJsonRedisSerializer<T> implements RedisSerializer<T> {
 
     private final Class<T> clazz;
 
-    public FastJsonRedisSerializer(Class<T> clazz) {
+    public FastJsonRedisUtil(Class<T> clazz) {
         super();
         this.clazz = clazz;
     }
