@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 推荐信息Mapper
+ *
  * @author Lyh
  * @version 1.0.0
  */

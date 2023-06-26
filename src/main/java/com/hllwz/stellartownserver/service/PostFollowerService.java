@@ -6,12 +6,14 @@ import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 
 /**
  * 帖子点赞Service接口
+ *
  * @author Lyh
  * @version 1.0.0
  */
 public interface PostFollowerService extends IService<PostFollowerInfo> {
     /**
      * 返回点赞数
+     *
      * @return ResponseResult
      */
     ResponseResult getLikes(PostFollowerInfo postFollowerInfo);

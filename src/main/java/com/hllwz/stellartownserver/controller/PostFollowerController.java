@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/like")
+@RequestMapping("/api/va/like")
 public class PostFollowerController {
 
     private final PostFollowerService postFollowerService;
 
     /**
      * 返回点赞数
+     *
      * @return ResponseResult
      */
     @GetMapping("/getLikes")

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * 帖子控制器
+ *
  * @author Lyh
  * @version 1.0.0
  */
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/forum")
+@RequestMapping("/api/v1/forum")
 public class PostController {
 
     private final PostService postService;
@@ -33,6 +34,7 @@ public class PostController {
 
     /**
      * 获取全部帖子
+     *
      * @return ResponseResult
      */
     @GetMapping("/getAllPosts")
@@ -42,6 +44,7 @@ public class PostController {
 
     /**
      * 发帖
+     *
      * @return ResponseResult
      */
     @PostMapping("/post")

@@ -15,6 +15,7 @@ import java.util.Date;
 
 /**
  * 帖子点赞实体类
+ *
  * @author Linorman
  * @version 1.0.0
  */
