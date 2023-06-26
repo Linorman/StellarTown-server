@@ -16,6 +16,7 @@ import com.hllwz.stellartownserver.service.UserInfoService;
 import com.hllwz.stellartownserver.utils.JwtUtil;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
 import com.hllwz.stellartownserver.vo.LoginResponse;
+import com.hllwz.stellartownserver.vo.OtherUserResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -141,5 +142,40 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
             return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
         }
         return ResponseResult.success(ResultCode.GET_USER_INFO_SUCCESS, userInfo);
+    }
+
+    @Override
+    public ResponseResult updateUserInfo(UserInfo userInfo) {
+        Integer userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getId, userId);
+        UserInfo user = userInfoMapper.selectOne(wrapper);
+        if (user == null) {
+            return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
+        }
+        userInfo.setId(userId);
+        userInfoMapper.updateById(userInfo);
+        return ResponseResult.success(ResultCode.UPDATE_USER_INFO_SUCCESS, userInfo);
+    }
+
+    @Override
+    public ResponseResult getUserInfoById(Integer userId) {
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getId, userId);
+        UserInfo userInfo = userInfoMapper.selectOne(wrapper);
+        if (userInfo == null) {
+            return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
+        }
+        OtherUserResponse userInfoResponse = new OtherUserResponse();
+        userInfoResponse.setId(userInfo.getId());
+        userInfoResponse.setUsername(userInfo.getUsername());
+        userInfoResponse.setAvatar(userInfo.getAvatar());
+        userInfoResponse.setPhoneNumber(userInfo.getPhoneNumber());
+        userInfoResponse.setAge(userInfo.getAge());
+        userInfoResponse.setGender(userInfo.getGender());
+        userInfoResponse.setAddress(userInfo.getAddress());
+        userInfoResponse.setSignature(userInfo.getSignature());
+
+        return ResponseResult.success(ResultCode.GET_USER_INFO_SUCCESS, userInfoResponse);
     }
 }

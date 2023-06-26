@@ -35,6 +35,9 @@ public enum ResultCode {
     LOGOUT_ERROR(427,"登出失败,token不存在"),
     PARAM_IS_BLANK(428,"参数为空"),
     GET_USER_INFO_SUCCESS(225,"获取用户信息成功"),
+    GET_USER_INFO_ERROR(429,"获取用户信息失败"),
+    UPDATE_USER_INFO_SUCCESS(260,"更新用户信息成功"),
+    UPDATE_USER_INFO_ERROR(431,"更新用户信息失败"),
 
     /**
      * redis

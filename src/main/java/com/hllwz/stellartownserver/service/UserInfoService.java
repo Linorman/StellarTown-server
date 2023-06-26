@@ -43,4 +43,18 @@ public interface UserInfoService extends IService<UserInfo> {
      * @return ResponseResult
      */
     public ResponseResult getUserInfo();
+
+    /**
+     * 用户更新信息
+     * @param userInfo
+     * @return ResponseResult
+     */
+    public ResponseResult updateUserInfo(UserInfo userInfo);
+
+    /**
+     * 根据id获取用户信息
+     * @param id
+     * @return ResponseResult
+     */
+    public ResponseResult getUserInfoById(Integer id);
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/like")
+@RequestMapping("/api/v1/like")
 public class PostFollowerController {
 
     private final PostFollowerService postFollowerService;

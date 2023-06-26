@@ -3,7 +3,9 @@ package com.hllwz.stellartownserver.controller;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.dto.LoginRequest;
 import com.hllwz.stellartownserver.dto.RegisterRequest;
+import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.UserInfoService;
+import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -65,5 +67,25 @@ public class UserInfoController {
     @GetMapping("/getUserInfo")
     public ResponseResult getUserInfo() {
         return userInfoService.getUserInfo();
+    }
+
+    /**
+     * 更新用户信息
+     * @param userInfo 用户信息实体
+     * @return ResponseResult
+     */
+    @PutMapping("/updateUserInfo")
+    public ResponseResult updateUserInfo(@RequestBody UserInfo userInfo) {
+        return userInfoService.updateUserInfo(userInfo);
+    }
+
+    /**
+     * 根据id获取用户信息
+     * @param id 用户id
+     * @return ResponseResult
+     */
+    @GetMapping("/getUserInfoById/{id}")
+    public ResponseResult getUserInfoById(@PathVariable Integer id) {
+        return userInfoService.getUserInfoById(id);
     }
 }

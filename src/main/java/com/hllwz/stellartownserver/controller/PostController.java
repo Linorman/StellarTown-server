@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/forum")
+@RequestMapping("/api/v1/forum")
 public class PostController {
 
     private final PostService postService;
