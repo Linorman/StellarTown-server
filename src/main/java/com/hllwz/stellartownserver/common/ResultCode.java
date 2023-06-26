@@ -44,7 +44,8 @@ public enum ResultCode {
     /**
      * oss
      */
-    UPLOAD_SUCCESS(205,"上传成功"),
+    UPLOAD_SUCCESS(226,"上传成功"),
+    UPLOAD_ERROR(441,"上传失败"),
 
     /**
      * 系统错误
