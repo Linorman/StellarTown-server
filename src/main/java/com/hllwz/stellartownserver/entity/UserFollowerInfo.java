@@ -13,6 +13,7 @@ import java.util.Date;
 
 /**
  * 用户关注信息实体类
+ *
  * @author Linorman
  * @version 1.0.0
  */

@@ -1,7 +1,10 @@
 package com.hllwz.stellartownserver.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.hllwz.stellartownserver.common.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,13 +15,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 /**
  * 用户信息实体类
+ *
  * @author Linorman
  * @version 1.0.0
  */
@@ -30,7 +33,7 @@ public class UserInfo implements UserDetails {
     @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-    @TableId(value = "id", type= IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     private String username;
     private String password;
@@ -75,6 +78,7 @@ public class UserInfo implements UserDetails {
 
     /**
      * 用户没有过期
+     *
      * @return
      */
     @Override
@@ -84,6 +88,7 @@ public class UserInfo implements UserDetails {
 
     /**
      * 用户没有锁定
+     *
      * @return
      */
     @Override
@@ -93,6 +98,7 @@ public class UserInfo implements UserDetails {
 
     /**
      * 用户凭证没有过期
+     *
      * @return
      */
     @Override
@@ -102,6 +108,7 @@ public class UserInfo implements UserDetails {
 
     /**
      * 用户是否启用
+     *
      * @return
      */
     @Override

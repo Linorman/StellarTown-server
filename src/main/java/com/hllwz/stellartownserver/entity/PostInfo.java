@@ -9,6 +9,7 @@ import java.util.Date;
 
 /**
  * 帖子信息实体类
+ *
  * @author Linorman
  * @version 1.0.0
  */

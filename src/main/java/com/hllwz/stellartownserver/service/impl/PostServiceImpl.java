@@ -76,9 +76,14 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
         postInfoTemp.setDelFlag(1);
-        postInfoMapper.updateById(postInfoTemp);
-        return ResponseResult.success(ResultCode.SUCCESS, null);
+        int result = postInfoMapper.updateById(postInfoTemp);
+        if (result > 0) {
+            return ResponseResult.success(ResultCode.POST_DELETE_SUCCESS, null);
+        } else {
+            return ResponseResult.error(ResultCode.POST_DELETE_ERROR, null);
+        }
     }
+
 
 }
 

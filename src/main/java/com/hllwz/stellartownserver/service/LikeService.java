@@ -3,18 +3,23 @@ package com.hllwz.stellartownserver.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
+import com.hllwz.stellartownserver.entity.PostInfo;
+import com.hllwz.stellartownserver.entity.UserInfo;
 
 /**
- * 帖子推荐Service接口
+ * 点赞Service接口
  *
  * @author Lyh
  * @version 1.0.0
  */
-public interface RecommendationService extends IService<PostFollowerInfo> {
+public interface LikeService extends IService<PostFollowerInfo> {
+
     /**
-     * 推荐帖子
+     * 点赞
      *
      * @return ResponseResult
      */
-    ResponseResult getRecommendation(PostFollowerInfo postFollowerInfo);
+    ResponseResult like( PostInfo postInfo);
+
+    ResponseResult unLike( PostInfo postInfo);
 }
