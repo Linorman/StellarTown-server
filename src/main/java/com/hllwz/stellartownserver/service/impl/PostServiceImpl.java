@@ -43,7 +43,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-        return ResponseResult.success(ResultCode.SUCCESS, postInfoTemp);
+        return ResponseResult.success(ResultCode.POST_GET_SUCCESS, postInfoTemp);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         Integer userId = SecurityUtil.getUserId();
         post.setUserId(userId);
         postInfoMapper.insert(post);
-        return ResponseResult.success(ResultCode.SUCCESS, null);
+        return ResponseResult.success(ResultCode.POST_ADD_SUCCESS, null);
 
     }
 
@@ -75,8 +75,8 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-        postInfoTemp.setDelFlag(1);
-        int result = postInfoMapper.updateById(postInfoTemp);
+
+        int result = postInfoMapper.delete(queryWrapper);
         if (result > 0) {
             return ResponseResult.success(ResultCode.POST_DELETE_SUCCESS, null);
         } else {
