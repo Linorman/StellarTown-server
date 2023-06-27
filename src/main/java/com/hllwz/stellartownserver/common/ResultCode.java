@@ -84,13 +84,16 @@ public enum ResultCode {
     POST_FOLLOWER_NUM_GET_ERROR(411, "帖子关注数获取失败"),
     POST_NUM_GET_SUCCESS(210, "帖子数获取成功"),
     POST_NUM_GET_ERROR(412, "帖子数获取失败"),
+
     FOLLOW_USER_NOT_NULL(413,"关注用户不能为空"),
     FOLLOW_USER_NOT_SELF(414,"不能关注自己"),
     FOLLOW_USER_SUCCESS(215,"关注用户成功"),
+
     FOLLOW_USER_EXIST(416,"已关注该用户"),
     UNFOLLOW_USER_NOT_NULL(417,"取消关注用户不能为空"),
     UNFOLLOW_USER_NOT_SELF(418,"不能取消关注自己"),
     UNFOLLOW_USER_SUCCESS(219,"取消关注用户成功"),
+    UNFOLLOW_USER_ERROR(288,"取消关注用户失败"),
     UNFOLLOW_USER_NOT_EXIST(420,"未关注该用户"),
     FOLLOWER_LIST_GET_SUCCESS(221,"关注列表获取成功"),
     FOLLOWER_LIST_GET_ERROR(422,"关注列表获取失败"),

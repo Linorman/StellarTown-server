@@ -18,5 +18,14 @@ public interface PostFollowerService extends IService<PostFollowerInfo> {
      */
     ResponseResult getLikes(PostFollowerInfo postFollowerInfo);
 
+    /**
+     * 返回点赞帖子
+     *
+     * @return ResponseResult
+     */
+
+    ResponseResult getLikedPosts();
+
+
 
 }

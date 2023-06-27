@@ -60,9 +60,6 @@ application:
       # 定义刷新token的有效时间：七天
       refresh-token:
           expiration: 604800000 # 7 days
-
-  #yml配置文件增加如下配置
-
 minio:
   endpoint: http://127.0.0.1:9999
   accessKey: admin
