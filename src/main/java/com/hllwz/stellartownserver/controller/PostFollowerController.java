@@ -5,7 +5,6 @@ import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.service.PostFollowerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -30,6 +29,14 @@ public class PostFollowerController {
     @GetMapping("/getLikes")
     public ResponseResult getLikes(@RequestBody PostFollowerInfo postFollowerInfo) {
         return postFollowerService.getLikes(postFollowerInfo);
+    }
+    /**
+     * 返回点赞帖子
+     * @return ResponseResult
+     */
+    @GetMapping("/getLikedPosts")
+    public ResponseResult getLikedPosts(){
+        return postFollowerService.getLikedPosts();
     }
 
 

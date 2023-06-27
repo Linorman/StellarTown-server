@@ -1,6 +1,7 @@
 package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
+import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.service.MinioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
@@ -28,23 +29,39 @@ public class MinioController {
     private final MinioService minioService;
 
     /**
-     * 上传文件
+     * 上传用户头像
      * @param file
      * @return
      */
-    @PostMapping("/upload")
-    public ResponseResult uploadFile(@RequestParam("file") MultipartFile file) {
+    @PostMapping("/upload/avatar")
+    public ResponseResult uploadFile(@RequestParam("avatar") MultipartFile file) {
         try {
             if (!file.isEmpty()) {
-                String bucketName = "your-bucket-name";
                 String objectName = file.getOriginalFilename();
-                minioService.uploadFile(bucketName, objectName, file.getInputStream());
-                return ResponseResult.success(UPLOAD_SUCCESS, null);
+                return minioService.uploadAvatar(objectName, file.getInputStream());
             } else {
-                return ResponseResult.error(UPLOAD_ERROR, null);
+                return ResponseResult.error(ResultCode.AVATAR_UPLOAD_ERROR, null);
             }
         } catch (Exception e) {
-            return ResponseResult.error(UPLOAD_ERROR, null);
+            return ResponseResult.error(ResultCode.AVATAR_UPLOAD_ERROR, null);
+        }
+    }
+    /**
+     * 上传帖子图片
+     * @param file
+     * @return
+     */
+    @PostMapping("/upload/post")
+    public ResponseResult uploadPost(@RequestParam("post") MultipartFile file, @RequestParam("postId") Integer postId) {
+        try {
+            if (!file.isEmpty()) {
+                String objectName = file.getOriginalFilename();
+                return minioService.uploadPost(objectName, file.getInputStream(), postId);
+            } else {
+                return ResponseResult.error(ResultCode.POST_UPLOAD_ERROR, null);
+            }
+        } catch (Exception e) {
+            return ResponseResult.error(ResultCode.POST_UPLOAD_ERROR, null);
         }
     }
 

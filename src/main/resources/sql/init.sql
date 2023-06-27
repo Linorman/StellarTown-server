@@ -4,7 +4,7 @@ use db_stellar_town_user;
 create table user_info (
     id int not null primary key auto_increment,
     password varchar(1023) not null,
-    username varchar(255) not null,
+    username varchar(255) binary not null,
     phone_number varchar(20),
     avatar varchar(255),
     address varchar(255),
@@ -14,17 +14,17 @@ create table user_info (
     role varchar(10) not null default 'USER' comment 'user:普通用户,admin:管理员',
     create_time datetime not null,
     del_flag int not null default 0 comment '0:未删除,1:已删除'
-);
+) comment '用户信息表' charset=utf8;
 
-drop database if exists db_stellar_town_follower;
-create database db_stellar_town_follower;
-use db_stellar_town_follower;
 create table userId_follower (
     id int not null,
+    user_id int not null,
     follower_id int not null,
     follow_time datetime not null,
     del_flag int not null default 0 comment '0:未删除,1:已删除'
-);
+) comment '用户关注表' charset=utf8;
+create index userId_follower_index on userId_follower(user_id);
+create index followerId_follower_index on userId_follower(follower_id);
 
 drop database if exists db_stellar_town_post;
 create database db_stellar_town_post;
@@ -41,7 +41,7 @@ create table post_info (
     like_count int not null default 0,
     tag varchar(255),
     del_flag int not null default 0 comment '0:未删除,1:已删除'
-);
+) comment '帖子信息表' charset=utf8;
 
 create table post_follower_info (
     id int not null auto_increment primary key,
@@ -49,4 +49,4 @@ create table post_follower_info (
     liker_id int not null,
     follow_time datetime not null,
     del_flag int not null default 0 comment '0:未删除,1:已删除'
-);
+) comment '帖子点赞表' charset=utf8;

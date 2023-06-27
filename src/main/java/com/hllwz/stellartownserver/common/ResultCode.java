@@ -38,6 +38,8 @@ public enum ResultCode {
     GET_USER_INFO_ERROR(429,"获取用户信息失败"),
     UPDATE_USER_INFO_SUCCESS(260,"更新用户信息成功"),
     UPDATE_USER_INFO_ERROR(431,"更新用户信息失败"),
+    AVATAR_UPLOAD_SUCCESS(261,"头像上传成功"),
+    AVATAR_UPLOAD_ERROR(432,"头像上传失败"),
 
     /**
      * redis
@@ -49,6 +51,8 @@ public enum ResultCode {
      */
     UPLOAD_SUCCESS(226,"上传成功"),
     UPLOAD_ERROR(441,"上传失败"),
+    POST_UPLOAD_ERROR(442,"帖子上传失败"),
+    POST_UPLOAD_SUCCESS(227,"帖子上传成功"),
 
     /**
      * 系统错误
@@ -80,20 +84,32 @@ public enum ResultCode {
     POST_FOLLOWER_NUM_GET_ERROR(411, "帖子关注数获取失败"),
     POST_NUM_GET_SUCCESS(210, "帖子数获取成功"),
     POST_NUM_GET_ERROR(412, "帖子数获取失败"),
+
     FOLLOW_USER_NOT_NULL(413,"关注用户不能为空"),
     FOLLOW_USER_NOT_SELF(414,"不能关注自己"),
     FOLLOW_USER_SUCCESS(215,"关注用户成功"),
+
     FOLLOW_USER_EXIST(416,"已关注该用户"),
     UNFOLLOW_USER_NOT_NULL(417,"取消关注用户不能为空"),
     UNFOLLOW_USER_NOT_SELF(418,"不能取消关注自己"),
     UNFOLLOW_USER_SUCCESS(219,"取消关注用户成功"),
+    UNFOLLOW_USER_ERROR(288,"取消关注用户失败"),
     UNFOLLOW_USER_NOT_EXIST(420,"未关注该用户"),
     FOLLOWER_LIST_GET_SUCCESS(221,"关注列表获取成功"),
     FOLLOWER_LIST_GET_ERROR(422,"关注列表获取失败"),
     FOLLOWER_LIST_NULL(423,"关注列表为空"),
     FOLLOWER_NUM_GET_SUCCESS(224,"关注数获取成功"),
     FOLLOWER_NUM_GET_ERROR(424,"关注数获取失败"),
-    FOLLOWER_NUM_NULL(425,"关注数为空");
+    FOLLOWER_NUM_NULL(425,"关注数为空"),
+
+    /**
+     * 天气API
+     */
+    WEATHER_GET_SUCCESS(230,"天气获取成功"),
+    WEATHER_GET_ERROR(430,"天气获取失败"),
+    WEATHER_API_ERROR(431,"天气API错误"),
+    CITY_NOT_NULL(432,"城市不能为空"),
+    CITY_NOT_EXIST(433,"城市不存在");
 
     private int code;
     private String msg;
