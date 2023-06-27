@@ -1,9 +1,13 @@
 package com.hllwz.stellartownserver.config;
 
-import io.minio.MinioClient;
-import lombok.Value;
+import com.hllwz.stellartownserver.utils.FileUtil;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.io.File;
+
 
 /**
  * Minio配置类
@@ -13,15 +17,24 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MinioConfig {
 
-    private final String endpoint = "http://localhost:9000";
-    private final String accessKey = "bCCx1vhlrGcN6TCP05iN";
-    private final String secretKey = "HpNThuJgPUpD7fGpWa6eUDnYK2AdWCXNIx2ZHEPo";
+    @Bean
+    @ConfigurationProperties(prefix = "minio")
+    public Properties getProperties(){
+        return new Properties();
+    }
 
     @Bean
-    public MinioClient minioClient() {
-        return MinioClient.builder()
-                .endpoint(endpoint)
-                .credentials(accessKey, secretKey)
-                .build();
+    public FileUtil getFileUtil(){
+        Properties properties = getProperties();
+        FileUtil fileUtil = new FileUtil(properties.getEndpoint(), properties.getAccesskey(), properties.getSecretkey());
+
+        return fileUtil;
+    }
+
+    @Data
+    private static class Properties {
+        private String endpoint;
+        private String accesskey;
+        private String secretkey;
     }
 }

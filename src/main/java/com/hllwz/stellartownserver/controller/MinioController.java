@@ -1,6 +1,7 @@
 package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
+import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.service.MinioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
@@ -32,19 +33,17 @@ public class MinioController {
      * @param file
      * @return
      */
-    @PostMapping("/upload")
-    public ResponseResult uploadFile(@RequestParam("file") MultipartFile file) {
+    @PostMapping("/upload/avatar")
+    public ResponseResult uploadFile(@RequestParam("avatar") MultipartFile file) {
         try {
             if (!file.isEmpty()) {
-                String bucketName = "your-bucket-name";
                 String objectName = file.getOriginalFilename();
-                minioService.uploadFile(bucketName, objectName, file.getInputStream());
-                return ResponseResult.success(UPLOAD_SUCCESS, null);
+                return minioService.uploadAvatar(objectName, file.getInputStream());
             } else {
-                return ResponseResult.error(UPLOAD_ERROR, null);
+                return ResponseResult.error(ResultCode.AVATAR_UPLOAD_ERROR, null);
             }
         } catch (Exception e) {
-            return ResponseResult.error(UPLOAD_ERROR, null);
+            return ResponseResult.error(ResultCode.AVATAR_UPLOAD_ERROR, null);
         }
     }
 

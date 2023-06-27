@@ -10,23 +10,15 @@ spring:
       datasource:
         db_stellar_town_user:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://localhost:3306/db_stellar_town_user?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+          url: jdbc:mysql://localhost:3306/db_stellar_town_user?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8&collation=utf8_bin
           username: root
           password: root
           hikari:
             minimum-idle: 5
             maximum-pool-size: 10
-        db_stellar_town_follower:
-            driver-class-name: com.mysql.cj.jdbc.Driver
-            url: jdbc:mysql://localhost:3306/db_stellar_town_follower?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
-            username: root
-            password: root
-            hikari:
-              minimum-idle: 5
-              maximum-pool-size: 10
         db_stellar_town_post:
             driver-class-name: com.mysql.cj.jdbc.Driver
-            url: jdbc:mysql://localhost:3306/db_stellar_town_post?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+            url: jdbc:mysql://localhost:3306/db_stellar_town_post?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8&collation=utf8_bin
             username: root
             password: root
             hikari:
@@ -35,7 +27,7 @@ spring:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
-    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-field: delFlag
@@ -69,4 +61,10 @@ application:
       refresh-token:
           expiration: 604800000 # 7 days
 
-open.ai:
+  #yml配置文件增加如下配置
+
+minio:
+  endpoint: http://127.0.0.1:9000
+  accessKey: admin
+  secretKey: adminminio
+  bucketName: stellar-town

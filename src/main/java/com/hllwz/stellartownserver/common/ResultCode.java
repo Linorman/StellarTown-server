@@ -38,6 +38,8 @@ public enum ResultCode {
     GET_USER_INFO_ERROR(429,"获取用户信息失败"),
     UPDATE_USER_INFO_SUCCESS(260,"更新用户信息成功"),
     UPDATE_USER_INFO_ERROR(431,"更新用户信息失败"),
+    AVATAR_UPLOAD_SUCCESS(261,"头像上传成功"),
+    AVATAR_UPLOAD_ERROR(432,"头像上传失败"),
 
     /**
      * redis

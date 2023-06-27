@@ -1,5 +1,7 @@
 package com.hllwz.stellartownserver.service;
 
+import com.hllwz.stellartownserver.common.ResponseResult;
+
 import java.io.InputStream;
 
 /**
@@ -15,7 +17,7 @@ public interface MinioService {
      * @param objectName
      * @param stream
      */
-    void uploadFile(String bucketName, String objectName, InputStream stream);
+    public ResponseResult uploadAvatar(String objectName, InputStream stream);
 
     /**
      * 下载文件
@@ -23,5 +25,5 @@ public interface MinioService {
      * @param objectName
      * @return
      */
-    InputStream downloadFile(String bucketName, String objectName);
+    public InputStream downloadFile(String bucketName, String objectName);
 }

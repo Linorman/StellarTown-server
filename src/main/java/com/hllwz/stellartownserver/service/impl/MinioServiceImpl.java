@@ -1,6 +1,9 @@
 package com.hllwz.stellartownserver.service.impl;
 
+import com.hllwz.stellartownserver.common.ResponseResult;
+import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.service.MinioService;
+import com.hllwz.stellartownserver.utils.FileUtil;
 import io.minio.*;
 import io.minio.errors.MinioException;
 import lombok.RequiredArgsConstructor;
@@ -20,19 +23,14 @@ import java.security.NoSuchAlgorithmException;
 @RequiredArgsConstructor
 public class MinioServiceImpl implements MinioService {
 
-    private final MinioClient minioClient;
+    private final FileUtil minioClient;
     @Override
-    public void uploadFile(String bucketName, String objectName, InputStream inputStream) {
-        try {
-            ObjectWriteResponse response = minioClient.putObject(PutObjectArgs.builder()
-                    .bucket(bucketName)
-                    .object(objectName)
-                    .stream(inputStream, inputStream.available(), -1)
-                    .build());
-            // 文件上传成功
-        } catch (MinioException | IOException | InvalidKeyException | NoSuchAlgorithmException e) {
-            // 处理异常
-
+    public ResponseResult uploadAvatar(String objectName, InputStream inputStream) {
+        boolean flag = minioClient.upload("avatar" + objectName, inputStream);
+        if (flag) {
+            return ResponseResult.success(ResultCode.AVATAR_UPLOAD_SUCCESS, null);
+        } else {
+            return ResponseResult.error(ResultCode.AVATAR_UPLOAD_ERROR, null);
         }
     }
 
