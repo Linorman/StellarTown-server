@@ -28,8 +28,8 @@ public class RecommendationController {
      * @return ResponseResult
      */
     @GetMapping("/recommendation")
-    public ResponseResult getRecommendation(@RequestBody PostFollowerInfo postFollowerInfo) {
-        return recommendationService.getRecommendation(postFollowerInfo);
+    public ResponseResult getRecommendation() {
+        return recommendationService.getRecommendation();
 
     }
 }
