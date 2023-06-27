@@ -42,6 +42,12 @@ public enum ResultCode {
     AVATAR_UPLOAD_ERROR(432,"头像上传失败"),
 
     /**
+     * 捐赠
+     */
+    GET_DONATE_INFO_SUCCESS(262,"获取捐赠信息成功"),
+    GET_DONATE_INFO_ERROR(433,"获取捐赠信息失败"),
+
+    /**
      * redis
      */
     REGISTER_NOT_NULL(440, "账号或者密码不能为空"),
