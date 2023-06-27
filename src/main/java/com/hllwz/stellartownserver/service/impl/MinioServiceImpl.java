@@ -1,9 +1,16 @@
 package com.hllwz.stellartownserver.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
+import com.hllwz.stellartownserver.entity.PostInfo;
+import com.hllwz.stellartownserver.entity.UserInfo;
+import com.hllwz.stellartownserver.mapper.PostInfoMapper;
+import com.hllwz.stellartownserver.mapper.UserInfoMapper;
 import com.hllwz.stellartownserver.service.MinioService;
+import com.hllwz.stellartownserver.service.PostService;
 import com.hllwz.stellartownserver.utils.FileUtil;
+import com.hllwz.stellartownserver.utils.SecurityUtil;
 import io.minio.*;
 import io.minio.errors.MinioException;
 import lombok.RequiredArgsConstructor;
@@ -24,13 +31,40 @@ import java.security.NoSuchAlgorithmException;
 public class MinioServiceImpl implements MinioService {
 
     private final FileUtil minioClient;
+    private final PostInfoMapper postInfoMapper;
+    private final UserInfoMapper userInfoMapper;
     @Override
     public ResponseResult uploadAvatar(String objectName, InputStream inputStream) {
         boolean flag = minioClient.upload("avatar" + objectName, inputStream);
         if (flag) {
-            return ResponseResult.success(ResultCode.AVATAR_UPLOAD_SUCCESS, null);
+            Integer userId = SecurityUtil.getUserId();
+            LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(UserInfo::getId, userId);
+            UserInfo userInfo = userInfoMapper.selectOne(queryWrapper);
+
+            String avatarUrl = minioClient.preview("avatar" + objectName);
+            userInfo.setAvatar(avatarUrl);
+            userInfoMapper.updateById(userInfo);
+
+            return ResponseResult.success(ResultCode.AVATAR_UPLOAD_SUCCESS, avatarUrl);
         } else {
             return ResponseResult.error(ResultCode.AVATAR_UPLOAD_ERROR, null);
+        }
+
+    }
+
+    @Override
+    public ResponseResult uploadPost(String objectName, InputStream inputStream, Integer postId) {
+        boolean flag = minioClient.upload("post" + objectName, inputStream);
+        if (flag) {
+            LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
+            queryWrapper.eq(PostInfo::getId, postId);
+            PostInfo postInfo = postInfoMapper.selectOne(queryWrapper);
+            String postUrl = minioClient.preview("post" + objectName);
+            postInfo.setImage(postUrl);
+            return ResponseResult.success(ResultCode.POST_UPLOAD_SUCCESS, postUrl);
+        } else {
+            return ResponseResult.error(ResultCode.POST_UPLOAD_ERROR, null);
         }
     }
 

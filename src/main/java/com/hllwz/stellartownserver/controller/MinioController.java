@@ -29,7 +29,7 @@ public class MinioController {
     private final MinioService minioService;
 
     /**
-     * 上传文件
+     * 上传用户头像
      * @param file
      * @return
      */
@@ -44,6 +44,24 @@ public class MinioController {
             }
         } catch (Exception e) {
             return ResponseResult.error(ResultCode.AVATAR_UPLOAD_ERROR, null);
+        }
+    }
+    /**
+     * 上传帖子图片
+     * @param file
+     * @return
+     */
+    @PostMapping("/upload/post")
+    public ResponseResult uploadPost(@RequestParam("post") MultipartFile file, @RequestParam("postId") Integer postId) {
+        try {
+            if (!file.isEmpty()) {
+                String objectName = file.getOriginalFilename();
+                return minioService.uploadPost(objectName, file.getInputStream(), postId);
+            } else {
+                return ResponseResult.error(ResultCode.POST_UPLOAD_ERROR, null);
+            }
+        } catch (Exception e) {
+            return ResponseResult.error(ResultCode.POST_UPLOAD_ERROR, null);
         }
     }
 

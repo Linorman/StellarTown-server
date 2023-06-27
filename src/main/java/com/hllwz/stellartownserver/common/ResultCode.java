@@ -51,6 +51,8 @@ public enum ResultCode {
      */
     UPLOAD_SUCCESS(226,"上传成功"),
     UPLOAD_ERROR(441,"上传失败"),
+    POST_UPLOAD_ERROR(442,"帖子上传失败"),
+    POST_UPLOAD_SUCCESS(227,"帖子上传成功"),
 
     /**
      * 系统错误

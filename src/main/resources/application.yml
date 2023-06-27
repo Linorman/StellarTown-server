@@ -64,7 +64,7 @@ application:
   #yml配置文件增加如下配置
 
 minio:
-  endpoint: http://127.0.0.1:9000
+  endpoint: http://127.0.0.1:9999
   accessKey: admin
   secretKey: adminminio
   bucketName: stellar-town

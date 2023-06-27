@@ -26,4 +26,12 @@ public interface MinioService {
      * @return
      */
     public InputStream downloadFile(String bucketName, String objectName);
+
+    /**
+     * 上传帖子图片
+     * @param objectName
+     * @param inputStream
+     * @return
+     */
+    ResponseResult uploadPost(String objectName, InputStream inputStream, Integer postId);
 }

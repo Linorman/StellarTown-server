@@ -1,9 +1,7 @@
 package com.hllwz.stellartownserver.utils;
 
-import io.minio.BucketExistsArgs;
-import io.minio.MakeBucketArgs;
-import io.minio.MinioClient;
-import io.minio.PutObjectArgs;
+import io.minio.*;
+import io.minio.http.Method;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,8 +81,23 @@ public class FileUtil extends MinioClient {
     }
 
     /**
+     * 预览图片
+     * @param fileName
+     * @return
+     */
+    public String preview(String fileName){
+        new GetPresignedObjectUrlArgs();
+        GetPresignedObjectUrlArgs build = GetPresignedObjectUrlArgs.builder().bucket("stellar-town").object(fileName).method(Method.GET).build();
+        try {
+            return this.getPresignedObjectUrl(build);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
      * 初始化方法
-     *
      * @return
      */
     @PostConstruct
