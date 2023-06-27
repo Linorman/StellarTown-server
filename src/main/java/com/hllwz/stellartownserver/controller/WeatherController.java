@@ -3,10 +3,7 @@ package com.hllwz.stellartownserver.controller;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.service.WeatherService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 天气Controller
@@ -25,8 +22,8 @@ public class WeatherController {
      * @param cityName
      * @return ResponseResult
      */
-    @GetMapping("/now/{cityName}")
-    public ResponseResult getWeatherByCityName(@PathVariable("cityName") String cityName) {
+    @GetMapping("/now/cityName")
+    public ResponseResult getWeatherByCityName(@RequestParam("cityName") String cityName) {
         return weatherService.getWeatherByCityName(cityName);
     }
 
@@ -36,9 +33,9 @@ public class WeatherController {
      * @param latitude
      * @return ResponseResult
      */
-    @GetMapping("/now/{longitude}/{latitude}")
-    public ResponseResult getWeatherByLocation(@PathVariable("longitude") String longitude,
-                                               @PathVariable("latitude") String latitude) {
+    @GetMapping("/now/location")
+    public ResponseResult getWeatherByLocation(@RequestParam("longitude") String longitude,
+                                               @RequestParam("latitude") String latitude) {
         return weatherService.getWeatherByLonLat(longitude, latitude);
     }
 
@@ -47,8 +44,8 @@ public class WeatherController {
      * @param cityName
      * @return ResponseResult
      */
-    @GetMapping("/7d/{cityName}")
-    public ResponseResult getWeather7dByCityName(@PathVariable("cityName") String cityName) {
+    @GetMapping("/7d/cityName")
+    public ResponseResult getWeather7dByCityName(@RequestParam("cityName") String cityName) {
         return weatherService.getWeather7dByCityName(cityName);
     }
 
@@ -58,9 +55,9 @@ public class WeatherController {
      * @param latitude
      * @return ResponseResult
      */
-    @GetMapping("/7d/{longitude}/{latitude}")
-    public ResponseResult getWeather7dByLocation(@PathVariable("longitude") String longitude,
-                                                 @PathVariable("latitude") String latitude) {
+    @GetMapping("/7d/location")
+    public ResponseResult getWeather7dByLocation(@RequestParam("longitude") String longitude,
+                                                 @RequestParam("latitude") String latitude) {
         return weatherService.getWeather7dByLonLat(longitude, latitude);
     }
 }
