@@ -8,6 +8,8 @@ import com.hllwz.stellartownserver.service.UserInfoService;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -84,7 +86,7 @@ public class UserInfoController {
      * @param id 用户id
      * @return ResponseResult
      */
-    @GetMapping("/getUserInfoById")
+    @RequestMapping("/getUserInfoById")
     public ResponseResult getUserInfoById(@RequestBody UserInfo userInfo) {
         return userInfoService.getUserInfoById(userInfo.getId());
     }
