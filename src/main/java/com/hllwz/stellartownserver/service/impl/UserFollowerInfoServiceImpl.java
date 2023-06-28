@@ -189,16 +189,16 @@ public class UserFollowerInfoServiceImpl extends ServiceImpl<UserFollowerInfoMap
     }
 
     @Override
-    public boolean isFollowed(Integer followId) {
+    public ResponseResult isFollowed(Integer followId) {
         int userId = SecurityUtil.getUserId();
         LambdaQueryWrapper<UserFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserFollowerInfo::getUserId, userId);
         queryWrapper.eq(UserFollowerInfo::getFollowerId, followId);
         UserFollowerInfo temp = userFollowerInfoMapper.selectOne(queryWrapper);
         if (temp == null) {
-            return false;
+            return ResponseResult.success(ResultCode.UNFOLLOW_USER_NOT_EXIST, false);
         } else {
-            return true;
+            return ResponseResult.success(ResultCode.FOLLOW_USER_EXIST, true);
         }
     }
 

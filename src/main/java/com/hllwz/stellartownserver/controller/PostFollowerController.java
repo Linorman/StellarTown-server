@@ -45,5 +45,5 @@ public class PostFollowerController {
      * @return ResponseResult
      */
     @GetMapping("/isLiked")
-    public  boolean isLiked(Integer postId){return  postFollowerService.isLiked(postId);}
+    public  ResponseResult isLiked(Integer postId){return  postFollowerService.isLiked(postId);}
 }

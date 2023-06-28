@@ -36,5 +36,5 @@ public interface PostFollowerService extends IService<PostFollowerInfo> {
     ResponseResult<List<Integer>> getLikedPosts(int id);
 
 
-    boolean isLiked(Integer postId);
+    ResponseResult isLiked(Integer postId);
 }

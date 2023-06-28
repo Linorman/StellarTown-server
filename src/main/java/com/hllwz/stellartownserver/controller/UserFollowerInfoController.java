@@ -84,7 +84,7 @@ public class UserFollowerInfoController {
      * @return ResponseResult
      */
     @GetMapping("/isFollowed")
-    public  boolean isFollowed(Integer followId){return  userFollowerInfoService.isFollowed(followId);}
+    public ResponseResult isFollowed(Integer followId){return  userFollowerInfoService.isFollowed(followId);}
 
 
 }

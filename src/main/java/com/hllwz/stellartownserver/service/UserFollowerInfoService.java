@@ -55,5 +55,5 @@ public interface UserFollowerInfoService extends IService<UserFollowerInfo> {
      */
     ResponseResult getOthersFans(Integer id);
 
-    boolean isFollowed(Integer followId);
+    ResponseResult isFollowed(Integer followId);
 }
