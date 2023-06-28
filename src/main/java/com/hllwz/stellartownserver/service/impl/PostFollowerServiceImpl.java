@@ -90,4 +90,20 @@ public class PostFollowerServiceImpl extends ServiceImpl<PostFollowerInfoMapper,
         return ResponseResult.success(ResultCode.SUCCESS, postIdList);
 
     }
+
+    @Override
+    public boolean isLiked(Integer postId) {
+        int userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<PostFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(PostFollowerInfo::getLikerId, userId);
+        queryWrapper.eq(PostFollowerInfo::getPostId, postId);
+        PostFollowerInfo temp = postFollowerInfoMapper.selectOne(queryWrapper);
+        if (temp == null) {
+            return false;
+        } else {
+            return true;
+        }
+
+
+    }
 }

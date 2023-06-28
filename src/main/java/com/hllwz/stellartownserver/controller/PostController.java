@@ -2,6 +2,7 @@ package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostInfo;
+import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,6 +62,11 @@ public class PostController {
     public ResponseResult deletePost(@RequestBody PostInfo postInfo) {
         return postService.deletePost(postInfo);
     }
+
+    @GetMapping("/getUserPost")
+    public ResponseResult getUserPost(){return postService.getUserPost();}
+    @GetMapping("/getOthersPost")
+    public  ResponseResult getOthersPost(Integer id){return postService.getOthersPost(id);}
 
 
 }

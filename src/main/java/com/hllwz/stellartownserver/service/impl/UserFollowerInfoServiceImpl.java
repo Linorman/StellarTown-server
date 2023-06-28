@@ -96,6 +96,7 @@ public class UserFollowerInfoServiceImpl extends ServiceImpl<UserFollowerInfoMap
         }
         return ResponseResult.success(ResultCode.FOLLOWER_LIST_GET_SUCCESS, userInfoList);
     }
+
     @Override
     public ResponseResult getOthersFollow(Integer id) {
         LambdaQueryWrapper<UserFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
@@ -127,7 +128,7 @@ public class UserFollowerInfoServiceImpl extends ServiceImpl<UserFollowerInfoMap
     }
 
     @Override
-    public ResponseResult getFans(){
+    public ResponseResult getFans() {
         int id = SecurityUtil.getUserId();
         LambdaQueryWrapper<UserFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserFollowerInfo::getFollowerId, id);
@@ -158,7 +159,7 @@ public class UserFollowerInfoServiceImpl extends ServiceImpl<UserFollowerInfoMap
     }
 
     @Override
-    public ResponseResult getOthersFans(Integer id){
+    public ResponseResult getOthersFans(Integer id) {
         LambdaQueryWrapper<UserFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserFollowerInfo::getFollowerId, id);
         List<UserFollowerInfo> temp = userFollowerInfoMapper.selectList(queryWrapper);
@@ -187,6 +188,19 @@ public class UserFollowerInfoServiceImpl extends ServiceImpl<UserFollowerInfoMap
         return ResponseResult.success(ResultCode.FOLLOWER_LIST_GET_SUCCESS, userInfoList);
     }
 
+    @Override
+    public boolean isFollowed(Integer followId) {
+        int userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<UserFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserFollowerInfo::getUserId, userId);
+        queryWrapper.eq(UserFollowerInfo::getFollowerId, followId);
+        UserFollowerInfo temp = userFollowerInfoMapper.selectOne(queryWrapper);
+        if (temp == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 }
 

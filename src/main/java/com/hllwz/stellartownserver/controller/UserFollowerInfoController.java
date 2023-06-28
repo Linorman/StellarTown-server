@@ -1,12 +1,10 @@
 package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
-import com.hllwz.stellartownserver.entity.UserFollowerInfo;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.UserFollowerInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -79,6 +77,16 @@ public class UserFollowerInfoController {
     public ResponseResult getOthersFans( Integer id){
         return  userFollowerInfoService.getOthersFans(id);
     }
+
+    /**
+     * 返回是否关注
+     *
+     * @return ResponseResult
+     */
+    @GetMapping("/isFollowed")
+    public  boolean isFollowed(Integer followId){return  userFollowerInfoService.isFollowed(followId);}
+
+
 }
 
 
