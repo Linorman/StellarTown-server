@@ -39,4 +39,19 @@ public interface PostService extends IService<PostInfo> {
      */
     ResponseResult deletePost(PostInfo postInfo);
 
+    /**
+     * 返回用户发布的帖子
+     *
+     * @return ResponseResult
+     */
+    ResponseResult getOthersPost(Integer id);
+
+    /**
+     * 返回其他用户发布的帖子
+     *
+     * @return ResponseResult
+     */
+    ResponseResult getUserPost();
+
+
 }
