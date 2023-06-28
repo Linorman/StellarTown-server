@@ -84,8 +84,8 @@ public class UserInfoController {
      * @param id 用户id
      * @return ResponseResult
      */
-    @GetMapping("/getUserInfoById/{id}")
-    public ResponseResult getUserInfoById(@PathVariable Integer id) {
-        return userInfoService.getUserInfoById(id);
+    @GetMapping("/getUserInfoById")
+    public ResponseResult getUserInfoById(@RequestBody UserInfo userInfo) {
+        return userInfoService.getUserInfoById(userInfo.getId());
     }
 }
