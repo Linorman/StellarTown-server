@@ -26,6 +26,7 @@ public class PostInfo implements Serializable {
     private String address;
     private String content;
     private String shotTime;
+    private String tag;
 
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "post_time", fill = FieldFill.INSERT)

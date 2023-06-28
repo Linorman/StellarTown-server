@@ -9,10 +9,12 @@ import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.service.PostService;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
+import com.hllwz.stellartownserver.vo.ReturnPosts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -39,11 +41,27 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         int id = postInfo.getId();
         LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(PostInfo::getId, id);
-        PostInfo postInfoTemp = postInfoMapper.selectById(id);
-        if (postInfoTemp == null) {
+        PostInfo postInfo1 = postInfoMapper.selectById(id);
+        if (postInfo1 == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-        return ResponseResult.success(ResultCode.POST_GET_SUCCESS, postInfoTemp);
+        List<ReturnPosts> postInfoList = new ArrayList<>();
+        // 根据 postId 查询对应的 PostInfo 对象
+        ReturnPosts posts = new ReturnPosts();
+        posts.setId(postInfo1.getId());
+        posts.setPostTime(postInfo1.getPostTime());
+        posts.setImage(postInfo1.getImage());
+        posts.setAddress(postInfo1.getAddress());
+        posts.setTitle(postInfo1.getTitle());
+        posts.setContent(postInfo1.getContent());
+        posts.setLikeCount(postInfo1.getLikeCount());
+        posts.setUserId(postInfo1.getUserId());
+        posts.setShotTime(postInfo1.getShotTime());
+        if (postInfo1 != null) {
+            postInfoList.add(posts);
+        }
+
+        return ResponseResult.success(ResultCode.POST_GET_SUCCESS, postInfoList);
     }
 
     @Override
@@ -59,6 +77,8 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         post.setImage(postInfo.getImage());
         post.setContent(postInfo.getContent());
         post.setTitle(postInfo.getTitle());
+        post.setAddress(postInfo.getAddress());
+        post.setTag(post.getTag());
         Integer userId = SecurityUtil.getUserId();
         post.setUserId(userId);
         postInfoMapper.insert(post);
@@ -84,6 +104,62 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         }
     }
 
+    @Override
+    public ResponseResult getUserPost() {
+        int id = SecurityUtil.getUserId();
+        LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(PostInfo::getUserId, id);
+        List<PostInfo> postInfoTemp = postInfoMapper.selectList(queryWrapper);
+        if (postInfoTemp == null) {
+            return ResponseResult.error(ResultCode.POST_LIST_NULL, null);
+        }
+        List<ReturnPosts> postInfoList = new ArrayList<>();
+        for (PostInfo postInfo : postInfoTemp) {
+            // 根据 postId 查询对应的 PostInfo 对象
+            ReturnPosts posts = new ReturnPosts();
+            posts.setId(postInfo.getId());
+            posts.setPostTime(postInfo.getPostTime());
+            posts.setImage(postInfo.getImage());
+            posts.setAddress(postInfo.getAddress());
+            posts.setTitle(postInfo.getTitle());
+            posts.setContent(postInfo.getContent());
+            posts.setLikeCount(postInfo.getLikeCount());
+            posts.setUserId(postInfo.getUserId());
+            posts.setShotTime(postInfo.getShotTime());
+            if (postInfo != null) {
+                postInfoList.add(posts);
+            }
+        }
+        return ResponseResult.success(ResultCode.FOLLOWER_LIST_GET_SUCCESS, postInfoList);
+    }
+
+    @Override
+    public ResponseResult getOthersPost(Integer id) {
+        LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(PostInfo::getUserId, id);
+        List<PostInfo> postInfoTemp = postInfoMapper.selectList(queryWrapper);
+        if (postInfoTemp == null) {
+            return ResponseResult.error(ResultCode.POST_LIST_NULL, null);
+        }
+        List<ReturnPosts> postInfoList = new ArrayList<>();
+        for (PostInfo postInfo : postInfoTemp) {
+            // 根据 postId 查询对应的 PostInfo 对象
+            ReturnPosts posts = new ReturnPosts();
+            posts.setId(postInfo.getId());
+            posts.setPostTime(postInfo.getPostTime());
+            posts.setImage(postInfo.getImage());
+            posts.setAddress(postInfo.getAddress());
+            posts.setTitle(postInfo.getTitle());
+            posts.setContent(postInfo.getContent());
+            posts.setLikeCount(postInfo.getLikeCount());
+            posts.setUserId(postInfo.getUserId());
+            posts.setShotTime(postInfo.getShotTime());
+            if (postInfo != null) {
+                postInfoList.add(posts);
+            }
+        }
+        return ResponseResult.success(ResultCode.POST_LIST_GET_SUCCESS, postInfoList);
+    }
 
 }
 

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping("/api/va/forum")
+@RequestMapping("/api/v1/forum")
 public class RecommendationController {
     @Autowired
     private RecommendationService recommendationService;
@@ -28,8 +28,8 @@ public class RecommendationController {
      * @return ResponseResult
      */
     @GetMapping("/recommendation")
-    public ResponseResult getRecommendation(@RequestBody PostFollowerInfo postFollowerInfo) {
-        return recommendationService.getRecommendation(postFollowerInfo);
+    public ResponseResult getRecommendation() {
+        return recommendationService.getRecommendation();
 
     }
 }

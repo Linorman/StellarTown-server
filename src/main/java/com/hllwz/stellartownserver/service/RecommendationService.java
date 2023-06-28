@@ -16,5 +16,5 @@ public interface RecommendationService extends IService<PostFollowerInfo> {
      *
      * @return ResponseResult
      */
-    ResponseResult getRecommendation(PostFollowerInfo postFollowerInfo);
+    ResponseResult getRecommendation();
 }

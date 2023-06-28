@@ -42,6 +42,12 @@ public enum ResultCode {
     AVATAR_UPLOAD_ERROR(432,"头像上传失败"),
 
     /**
+     * 捐赠
+     */
+    GET_DONATE_INFO_SUCCESS(262,"获取捐赠信息成功"),
+    GET_DONATE_INFO_ERROR(433,"获取捐赠信息失败"),
+
+    /**
      * redis
      */
     REGISTER_NOT_NULL(440, "账号或者密码不能为空"),
@@ -80,6 +86,8 @@ public enum ResultCode {
     POST_UNLIKE_ERROR(409, "帖子取消点赞失败"),
     POST_CANCEL_LIKE_ERROR(410, "帖子取消点赞失败"),
     POST_CANCEL_LIKE_SUCCESS(208, "帖子取消点赞成功"),
+    POST_LIKEPOST_EXIST(209, "帖子已点赞"),
+    POST_LIKEPOST_NO(488, "帖子未点赞"),
     POST_FOLLOWER_NUM_GET_SUCCESS(209, "帖子关注数获取成功"),
     POST_FOLLOWER_NUM_GET_ERROR(411, "帖子关注数获取失败"),
     POST_NUM_GET_SUCCESS(210, "帖子数获取成功"),
@@ -101,6 +109,7 @@ public enum ResultCode {
     FOLLOWER_NUM_GET_SUCCESS(224,"关注数获取成功"),
     FOLLOWER_NUM_GET_ERROR(424,"关注数获取失败"),
     FOLLOWER_NUM_NULL(425,"关注数为空"),
+    USER_LIST_EMPTY(426,"用户列表为空"),
 
     /**
      * 天气API
@@ -109,7 +118,17 @@ public enum ResultCode {
     WEATHER_GET_ERROR(430,"天气获取失败"),
     WEATHER_API_ERROR(431,"天气API错误"),
     CITY_NOT_NULL(432,"城市不能为空"),
-    CITY_NOT_EXIST(433,"城市不存在");
+    CITY_NOT_EXIST(433,"城市不存在"),
+
+    /**
+     * Openai
+     */
+    OPENAI_GET_SUCCESS(234,"Openai获取成功"),
+    OPENAI_GET_ERROR(434,"Openai获取失败"),
+    IMAGE_NOT_PNG(435,"图片格式不是png"),
+    IMAGE_MAKE_SUCCESS(236,"图片生成成功"),
+    IMAGE_MAKE_ERROR(436,"图片生成失败");
+
 
     private int code;
     private String msg;

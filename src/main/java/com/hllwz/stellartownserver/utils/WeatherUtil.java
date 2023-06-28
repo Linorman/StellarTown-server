@@ -111,7 +111,6 @@ public class WeatherUtil {
         URL obj = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
 
-
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept-Encoding", "gzip");
 

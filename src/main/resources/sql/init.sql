@@ -16,15 +16,15 @@ create table user_info (
     del_flag int not null default 0 comment '0:未删除,1:已删除'
 ) comment '用户信息表' charset=utf8;
 
-create table userId_follower (
-    id int not null,
+create table user_follower_info (
+    id int not null auto_increment primary key,
     user_id int not null,
     follower_id int not null,
     follow_time datetime not null,
     del_flag int not null default 0 comment '0:未删除,1:已删除'
 ) comment '用户关注表' charset=utf8;
-create index userId_follower_index on userId_follower(user_id);
-create index followerId_follower_index on userId_follower(follower_id);
+create index userId_follower_index on user_follower_info(user_id);
+create index followerId_follower_index on user_follower_info(follower_id);
 
 drop database if exists db_stellar_town_post;
 create database db_stellar_town_post;
