@@ -115,7 +115,16 @@ public enum ResultCode {
     WEATHER_GET_ERROR(430,"天气获取失败"),
     WEATHER_API_ERROR(431,"天气API错误"),
     CITY_NOT_NULL(432,"城市不能为空"),
-    CITY_NOT_EXIST(433,"城市不存在");
+    CITY_NOT_EXIST(433,"城市不存在"),
+
+    /**
+     * Openai
+     */
+    OPENAI_GET_SUCCESS(234,"Openai获取成功"),
+    OPENAI_GET_ERROR(434,"Openai获取失败"),
+    IMAGE_NOT_PNG(435,"图片格式不是png"),
+    IMAGE_MAKE_SUCCESS(236,"图片生成成功"),
+    IMAGE_MAKE_ERROR(436,"图片生成失败");
 
     private int code;
     private String msg;

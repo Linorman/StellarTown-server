@@ -1,6 +1,8 @@
 package com.hllwz.stellartownserver.config;
 
+import com.hllwz.stellartownserver.utils.OpenAiUtil;
 import com.theokanning.openai.OpenAiService;
+import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,13 +15,10 @@ import java.time.Duration;
  */
 @Configuration
 public class OpenAiConfig {
-
-    private String openAiKey;
-
-    private long timeout;
-
     @Bean
-    public OpenAiService openAiService(){
-        return new OpenAiService(openAiKey, Duration.ofSeconds(timeout));
+    public OpenAiUtil openAiUtil() {
+        return new OpenAiUtil(new OkHttpClient().newBuilder()
+                .callTimeout(Duration.ofSeconds(10))
+                .build());
     }
 }
