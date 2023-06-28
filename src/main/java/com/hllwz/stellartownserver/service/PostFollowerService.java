@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 
+import java.util.List;
+
 /**
  * 帖子点赞Service接口
  *
@@ -25,6 +27,13 @@ public interface PostFollowerService extends IService<PostFollowerInfo> {
      */
 
     ResponseResult getLikedPosts();
+
+    /**
+     * 返回点赞帖子重写
+     *
+     * @return ResponseResult
+     */
+    ResponseResult<List<Integer>> getLikedPosts(int id);
 
 
 

@@ -59,6 +59,8 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         post.setImage(postInfo.getImage());
         post.setContent(postInfo.getContent());
         post.setTitle(postInfo.getTitle());
+        post.setAddress(postInfo.getAddress());
+        post.setTag(post.getTag());
         Integer userId = SecurityUtil.getUserId();
         post.setUserId(userId);
         postInfoMapper.insert(post);

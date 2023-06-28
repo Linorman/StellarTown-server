@@ -21,6 +21,8 @@ public class ReturnPosts implements Serializable {
     private String image;
     private String address;
     private String content;
+    private String tag;
     private String shotTime;
     private Date postTime;
+
 }

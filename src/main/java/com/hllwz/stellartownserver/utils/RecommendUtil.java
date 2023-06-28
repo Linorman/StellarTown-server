@@ -1,8 +1,12 @@
 package com.hllwz.stellartownserver.utils;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
+import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
+import com.hllwz.stellartownserver.service.impl.PostFollowerServiceImpl;
+import com.hllwz.stellartownserver.vo.ReturnPosts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +15,7 @@ import java.util.*;
 @Component
 @RequiredArgsConstructor
 public class RecommendUtil {
-    private final PostFollowerInfoMapper postFollowerInfoMapper;
+    private  final PostFollowerServiceImpl postFollowerService;
 
     // 计算用户相似度矩阵
     public Map<Integer, Map<Integer, Double>> calculateUserSimilarityMatrix(List<Integer> userIds) {
@@ -50,19 +54,11 @@ public class RecommendUtil {
         return similarity;
     }
 
-    @DS("db_stellar_town_post")
     public List<Integer> getLikedPostsByUserId(int userId) {
-        LambdaQueryWrapper<PostFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(PostFollowerInfo::getLikerId, userId);
-        List<PostFollowerInfo> postList = postFollowerInfoMapper.selectList(queryWrapper);
-        List<Integer>postInfoList = new ArrayList<>();
-        for (PostFollowerInfo postfollowerInfo : postList) {
-            int postId = postfollowerInfo.getPostId();
-            postInfoList.add(postId);
+        ResponseResult<List<Integer>> postList1 = postFollowerService.getLikedPosts(userId);
+        List<Integer>postList2=postList1.getData();
+        return postList2;
         }
-        return postInfoList;
-        }
-
 
     // 计算共同喜欢的帖子数量
     public static int countCommonLikedPosts(List<Integer> postIdsA, List<Integer> postIdsB) {
@@ -83,14 +79,15 @@ public class RecommendUtil {
         // 选择与目标用户兴趣最相似的K个用户
         List<Map.Entry<Integer, Double>> sortedSimilarities = new ArrayList<>(similarityRow.entrySet());
         sortedSimilarities.sort(Map.Entry.comparingByValue(Collections.reverseOrder()));
-
+        Set<Integer> recommendedPostSet = new HashSet<>();
         for (int i = 0; i < Math.min(k, sortedSimilarities.size()); i++) {
             int similarUserId = sortedSimilarities.get(i).getKey();
             // 获取这 K 个用户喜欢的帖子列表
             List<Integer> likedPosts = getLikedPostsByUserId(similarUserId);
-            recommendedPosts.addAll(likedPosts);
+            recommendedPostSet.addAll(likedPosts);
         }
-        Collections.sort(recommendedPosts);
-        return recommendedPosts;
+        List<Integer> recommendedPosts1 = new ArrayList<>(recommendedPostSet);
+        Collections.sort(recommendedPosts1);
+        return recommendedPosts1;
     }
 }

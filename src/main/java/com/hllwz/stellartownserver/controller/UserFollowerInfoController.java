@@ -1,10 +1,12 @@
 package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
+import com.hllwz.stellartownserver.entity.UserFollowerInfo;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.UserFollowerInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -50,6 +52,32 @@ public class UserFollowerInfoController {
     @GetMapping("/getUserFollow")
     public  ResponseResult getUserFollow(){
         return userFollowerInfoService.getUserFollow();
+    }
+
+    /**
+     * 返回他人关注
+     *
+     * @return ResponseResult
+     */
+    @GetMapping("/getOthersFollow")
+    public ResponseResult getOthersFollow(Integer id){
+        return  userFollowerInfoService.getOthersFollow(id);
+    }
+    /**
+     * 返回粉丝
+     *
+     * @return ResponseResult
+     */
+    @GetMapping("/getFans")
+    public ResponseResult getFans(){return  userFollowerInfoService.getFans();}
+    /**
+     * 返回他人粉丝
+     *
+     * @return ResponseResult
+     */
+    @GetMapping("/getOthersFans")
+    public ResponseResult getOthersFans( Integer id){
+        return  userFollowerInfoService.getOthersFans(id);
     }
 }
 

@@ -31,4 +31,22 @@ public interface UserFollowerInfoService extends IService<UserFollowerInfo> {
      * @return ResponseResult
      */
     ResponseResult getUserFollow();
+    /**
+     * 返回他人关注
+     *
+     * @return ResponseResult
+     */
+    ResponseResult getOthersFollow(Integer id);
+    /**
+     * 返回粉丝
+     *
+     * @return ResponseResult
+     */
+    ResponseResult getFans();
+    /**
+     * 返回他人粉丝
+     *
+     * @return ResponseResult
+     */
+    ResponseResult getOthersFans(Integer id);
 }

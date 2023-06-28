@@ -72,8 +72,22 @@ public class PostFollowerServiceImpl extends ServiceImpl<PostFollowerInfoMapper,
                 postInfoList.add(posts);
             }
         }
-
         return ResponseResult.success(ResultCode.FOLLOWER_LIST_GET_SUCCESS, postInfoList);
+    }
+
+    @Override
+    public ResponseResult<List<Integer>> getLikedPosts(int id) {
+        LambdaQueryWrapper<PostFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(PostFollowerInfo::getLikerId, id);
+        List<PostFollowerInfo> temp = postFollowerInfoMapper.selectList(queryWrapper);
+        List<Integer> postIdList = new ArrayList<>();
+        for (PostFollowerInfo postfollowerInfo : temp) {
+            PostInfo postInfo = postInfoMapper.selectById(postfollowerInfo.getPostId());
+            if (postInfo != null) {
+                postIdList.add(postInfo.getId());
+            }
+        }
+        return ResponseResult.success(ResultCode.SUCCESS, postIdList);
 
     }
 }
