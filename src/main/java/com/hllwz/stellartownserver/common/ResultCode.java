@@ -109,7 +109,12 @@ public enum ResultCode {
     WEATHER_GET_ERROR(430,"天气获取失败"),
     WEATHER_API_ERROR(431,"天气API错误"),
     CITY_NOT_NULL(432,"城市不能为空"),
-    CITY_NOT_EXIST(433,"城市不存在");
+    CITY_NOT_EXIST(433,"城市不存在"),
+
+    /**
+     * 推荐
+     */
+    USER_LIST_EMPTY(434, "用户列表为空");
 
     private int code;
     private String msg;
