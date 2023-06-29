@@ -32,6 +32,9 @@ public class UserFollowerInfoServiceImpl extends ServiceImpl<UserFollowerInfoMap
     public ResponseResult followUser(UserInfo userInfo) {
         int followerId = userInfo.getId();//关注的用户的id
         int userId = SecurityUtil.getUserId();
+        if (followerId == userId) {
+            return ResponseResult.error(ResultCode.FOLLOW_USER_NOT_SELF, null);
+        }
         LambdaQueryWrapper<UserFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(UserFollowerInfo::getFollowerId, followerId);
         queryWrapper.eq(UserFollowerInfo::getUserId, userId);
