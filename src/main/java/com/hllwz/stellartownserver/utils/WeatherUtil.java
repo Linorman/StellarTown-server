@@ -27,8 +27,8 @@ import java.util.zip.GZIPInputStream;
 public class WeatherUtil {
 
     private final static String WEATHER_API_KEY = "d418896d9b2c4f8080f6683620520ec6";
-    private final static String NOW_WEATHER_URL = "https://api.qweather.com/v7/weather/now?key=" + WEATHER_API_KEY + "&location=";
-    private final static String SEVEN_DAY_WEATHER_URL = "https://api.qweather.com/v7/weather/15d?key=" + WEATHER_API_KEY + "&location=";
+    private final static String NOW_WEATHER_URL = "https://devapi.qweather.com/v7/weather/now?key=" + WEATHER_API_KEY + "&location=";
+    private final static String SEVEN_DAY_WEATHER_URL = "https://devapi.qweather.com/v7/weather/7d?key=" + WEATHER_API_KEY + "&location=";
 
     /**
      * 获取实时天气信息

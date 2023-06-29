@@ -119,6 +119,8 @@ public enum ResultCode {
     WEATHER_API_ERROR(431,"天气API错误"),
     CITY_NOT_NULL(432,"城市不能为空"),
     CITY_NOT_EXIST(433,"城市不存在"),
+    ASTRONOMY_GET_SUCCESS(234,"天文获取成功"),
+    ASTRONOMY_GET_ERROR(434,"天文获取失败"),
 
     /**
      * Openai
