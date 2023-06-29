@@ -82,7 +82,8 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         Integer userId = SecurityUtil.getUserId();
         post.setUserId(userId);
         postInfoMapper.insert(post);
-        return ResponseResult.success(ResultCode.POST_ADD_SUCCESS, null);
+        int id =post.getId();
+        return ResponseResult.success(ResultCode.POST_ADD_SUCCESS, id);
 
     }
 
