@@ -87,7 +87,7 @@ public class PostFollowerServiceImpl extends ServiceImpl<PostFollowerInfoMapper,
                 postIdList.add(postInfo.getId());
             }
         }
-        return ResponseResult.success(ResultCode.SUCCESS, postIdList);
+        return ResponseResult.success(ResultCode.POST_LIST_GET_SUCCESS, postIdList);
 
     }
 

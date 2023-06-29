@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.entity.PostInfo;
-import com.hllwz.stellartownserver.entity.UserInfo;
 
 /**
  * 点赞Service接口
@@ -17,9 +16,16 @@ public interface LikeService extends IService<PostFollowerInfo> {
     /**
      * 点赞
      *
+     * @param postInfo
      * @return ResponseResult
      */
-    ResponseResult like( PostInfo postInfo);
+    ResponseResult like(PostInfo postInfo);
 
-    ResponseResult unLike( PostInfo postInfo);
+    /**
+     * 取消点赞
+     *
+     * @param postInfo
+     * @return ResponseResult
+     */
+    ResponseResult unLike(PostInfo postInfo);
 }

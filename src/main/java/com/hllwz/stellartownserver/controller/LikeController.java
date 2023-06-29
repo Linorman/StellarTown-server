@@ -2,11 +2,9 @@ package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostInfo;
-import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.LikeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,21 +23,25 @@ public class LikeController {
 
     private final LikeService likeService;
 
-    @PostMapping("/like")
     /**
      * 点赞
+     *
+     * @param postInfo
      * @return ResponseResult
      */
-    public ResponseResult like(@RequestBody  PostInfo postInfo) {
+    @PostMapping("/like")
+    public ResponseResult like(@RequestBody PostInfo postInfo) {
         return likeService.like(postInfo);
     }
 
-    @PostMapping("/unLike")
     /**
      * 取消点赞
+     *
+     * @param postInfo
      * @return ResponseResult
      */
-    public ResponseResult unLike(@RequestBody  PostInfo postInfo) {
-        return likeService.unLike( postInfo);
+    @PostMapping("/unLike")
+    public ResponseResult unLike(@RequestBody PostInfo postInfo) {
+        return likeService.unLike(postInfo);
     }
 }

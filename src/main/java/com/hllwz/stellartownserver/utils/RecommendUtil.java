@@ -70,6 +70,26 @@ public class RecommendUtil {
         }
         return count;
     }
+    public double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+        double earthRadius = 6371; // 地球半径，单位千米
+
+        // 将角度转换为弧度
+        double lat1Rad = Math.toRadians(lat1);
+        double lon1Rad = Math.toRadians(lon1);
+        double lat2Rad = Math.toRadians(lat2);
+        double lon2Rad = Math.toRadians(lon2);
+
+        // 应用 Haversine 公式计算距离
+        double dLon = lon2Rad - lon1Rad;
+        double dLat = lat2Rad - lat1Rad;
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1Rad) * Math.cos(lat2Rad) *
+                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = earthRadius * c;
+
+        return distance;
+    }
 
     // 根据用户相似度矩阵推荐帖子给目标用户
     public List<Integer> recommendPostsToUser(int targetUserId, int k, Map<Integer, Map<Integer, Double>> similarityMatrix) {

@@ -2,7 +2,6 @@ package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
-import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.service.PostFollowerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,25 +24,33 @@ public class PostFollowerController {
 
     /**
      * 返回点赞数
+     *
+     * @param postFollowerInfo
      * @return ResponseResult
      */
     @GetMapping("/getLikes")
     public ResponseResult getLikes(@RequestBody PostFollowerInfo postFollowerInfo) {
         return postFollowerService.getLikes(postFollowerInfo);
     }
+
     /**
      * 返回点赞帖子
+     *
      * @return ResponseResult
      */
     @GetMapping("/getLikedPosts")
-    public ResponseResult getLikedPosts(){
+    public ResponseResult getLikedPosts() {
         return postFollowerService.getLikedPosts();
     }
 
     /**
      * 返回是否点赞
+     *
+     * @param postId
      * @return ResponseResult
      */
     @GetMapping("/isLiked")
-    public  ResponseResult isLiked(Integer postId){return  postFollowerService.isLiked(postId);}
+    public ResponseResult isLiked(Integer postId) {
+        return postFollowerService.isLiked(postId);
+    }
 }

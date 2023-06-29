@@ -23,7 +23,7 @@ public class WeatherController {
      * @return ResponseResult
      */
     @GetMapping("/now/cityName")
-    public ResponseResult getWeatherByCityName(@RequestParam("cityName") String cityName) {
+    public ResponseResult getWeatherByCityName(String cityName) {
         return weatherService.getWeatherByCityName(cityName);
     }
 
@@ -34,8 +34,7 @@ public class WeatherController {
      * @return ResponseResult
      */
     @GetMapping("/now/location")
-    public ResponseResult getWeatherByLocation(@RequestParam("longitude") String longitude,
-                                               @RequestParam("latitude") String latitude) {
+    public ResponseResult getWeatherByLocation(String longitude, String latitude) {
         return weatherService.getWeatherByLonLat(longitude, latitude);
     }
 
@@ -45,7 +44,7 @@ public class WeatherController {
      * @return ResponseResult
      */
     @GetMapping("/7d/cityName")
-    public ResponseResult getWeather7dByCityName(@RequestParam("cityName") String cityName) {
+    public ResponseResult getWeather7dByCityName(String cityName) {
         return weatherService.getWeather7dByCityName(cityName);
     }
 
@@ -56,8 +55,7 @@ public class WeatherController {
      * @return ResponseResult
      */
     @GetMapping("/7d/location")
-    public ResponseResult getWeather7dByLocation(@RequestParam("longitude") String longitude,
-                                                 @RequestParam("latitude") String latitude) {
+    public ResponseResult getWeather7dByLocation(String longitude, String latitude) {
         return weatherService.getWeather7dByLonLat(longitude, latitude);
     }
 }

@@ -16,6 +16,7 @@ public interface UserFollowerInfoService extends IService<UserFollowerInfo> {
     /**
      * 关注用户
      *
+     * @param userInfo
      * @return ResponseResult
      */
     ResponseResult followUser(UserInfo userInfo);
@@ -23,6 +24,7 @@ public interface UserFollowerInfoService extends IService<UserFollowerInfo> {
     /**
      * 取消关注用户
      *
+     * @param userInfo
      * @return ResponseResult
      */
     ResponseResult unFollowUser(UserInfo userInfo);
@@ -37,6 +39,7 @@ public interface UserFollowerInfoService extends IService<UserFollowerInfo> {
     /**
      * 返回他人关注
      *
+     * @param id
      * @return ResponseResult
      */
     ResponseResult getOthersFollow(Integer id);
@@ -51,9 +54,16 @@ public interface UserFollowerInfoService extends IService<UserFollowerInfo> {
     /**
      * 返回他人粉丝
      *
+     * @param id
      * @return ResponseResult
      */
     ResponseResult getOthersFans(Integer id);
 
+    /**
+     * 返回是否点赞
+     *
+     * @param followId
+     * @return ResponseResult
+     */
     ResponseResult isFollowed(Integer followId);
 }

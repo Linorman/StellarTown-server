@@ -8,6 +8,7 @@ import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.mapper.UserInfoMapper;
+import com.hllwz.stellartownserver.service.LocalRecommendationService;
 import com.hllwz.stellartownserver.service.RecommendationService;
 import com.hllwz.stellartownserver.utils.RecommendUtil;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
@@ -19,16 +20,19 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFollowerInfo> implements RecommendationService {
+public class LocalRecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFollowerInfo> implements LocalRecommendationService {
     private final RecommendUtil recommendUtil;
     private final UserInfoMapper userInfoMapper;
+
     private final PostServiceImpl postService;
 
-    public ResponseResult getRecommendation() {
+    public ResponseResult getLocalRecommendation() {
+        String address= SecurityUtil.getLoginUser().getAddress();
         List<Integer> userIds = new ArrayList<>();
         // 遍历PostFollowerInfo表，获取所有用户的ID，并加入userIds列表
         LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
@@ -43,23 +47,13 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
         int targetUserId = SecurityUtil.getUserId(); // 目标用户ID
         int k = userIds.size(); // 推荐数量
         List<Integer> recommendedPosts = recommendUtil.recommendPostsToUser(targetUserId, k, similarityMatrix);
-        List<ReturnPosts> postList11 = new ArrayList<>();
-        for (Integer postId : recommendedPosts) {
+        List<ReturnPosts> postList11= new ArrayList<>();
+        for(Integer postId : recommendedPosts){
             ResponseResult<ReturnPosts> postList1 = postService.getPost(postId);
             ReturnPosts posts1 = postList1.getData();
-            if (postId != null) {
+            if(postId!=null && posts1.getAddress().equals(address)){
                 postList11.add(posts1);
             }
-//依据地点远近进行排序
-//        for(ReturnPosts newPost : postList11){
-//           double userLat =
-//           double userLon =
-//           double postLat =
-//           double postLon =
-//           double distance = recommendUtil.calculateDistance(userLat,userLon,postLat,postLon)
-//           newPost.setDistance(distance);
-//        }
-//        Collections.sort(postList11, Comparator.comparing(ReturnPosts::getDistance));
         }
         return ResponseResult.success(ResultCode.SUCCESS, postList11);
     }
