@@ -32,4 +32,6 @@ public class SecurityUtil {
     public static Integer getUserId() {
         return getLoginUser().getId();
     }
+
+
 }

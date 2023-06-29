@@ -54,7 +54,7 @@ mybatis-plus:
 application:
   security:
     jwt:
-      secret-key: hllwz_stellar_town
+      secret-key: hllwzstellartownhllwzstellartownhllwzstellartown
       # 定义有效时间：三天
       expiration: 259200000
       # 定义刷新token的有效时间：七天
