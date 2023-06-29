@@ -25,7 +25,6 @@ import java.util.Map;
 public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFollowerInfo> implements RecommendationService {
     private final RecommendUtil recommendUtil;
     private final UserInfoMapper userInfoMapper;
-    private  final PostFollowerServiceImpl postFollowerService;
 
     public ResponseResult getRecommendation() {
         List<Integer> userIds = new ArrayList<>();

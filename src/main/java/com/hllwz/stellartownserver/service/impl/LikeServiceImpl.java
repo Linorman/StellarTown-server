@@ -9,11 +9,10 @@ import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.mapper.PostInfoMapper;
-import com.hllwz.stellartownserver.mapper.UserInfoMapper;
 import com.hllwz.stellartownserver.service.LikeService;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,14 +23,13 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 @DS("db_stellar_town_post")
 public class LikeServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFollowerInfo> implements LikeService {
-    @Autowired
-    private PostFollowerInfoMapper postFollowerInfoMapper;
-    @Autowired
-    private UserInfoMapper userInfoMapper;
-    @Autowired
-    private PostInfoMapper postInfoMapper;
+
+    private final PostFollowerInfoMapper postFollowerInfoMapper;
+
+    private final PostInfoMapper postInfoMapper;
 
     @Override
     public ResponseResult like(PostInfo postInfo) {

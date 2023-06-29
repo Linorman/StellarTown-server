@@ -13,7 +13,7 @@ import com.hllwz.stellartownserver.entity.PostInfo;
 public interface PostService extends IService<PostInfo> {
     /**
      * 用户获取帖子
-     *
+     * @param postInfo
      * @return ResponseResult
      */
     ResponseResult getPost(PostInfo postInfo);
@@ -27,21 +27,21 @@ public interface PostService extends IService<PostInfo> {
 
     /**
      * 发帖
-     *
+     * @param  postInfo
      * @return ResponseResult
      */
     ResponseResult post(PostInfo postInfo);
 
     /**
      * 删帖
-     *
+     * @param postInfo
      * @return ResponseResult
      */
     ResponseResult deletePost(PostInfo postInfo);
 
     /**
      * 返回用户发布的帖子
-     *
+     * @param  id
      * @return ResponseResult
      */
     ResponseResult getOthersPost(Integer id);

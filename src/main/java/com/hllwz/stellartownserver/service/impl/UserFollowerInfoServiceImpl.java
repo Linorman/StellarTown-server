@@ -24,7 +24,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @DS("db_stellar_town_follower")
 public class UserFollowerInfoServiceImpl extends ServiceImpl<UserFollowerInfoMapper, UserFollowerInfo> implements UserFollowerInfoService {
-
     private final UserFollowerInfoMapper userFollowerInfoMapper;
     private final UserInfoMapper userInfoMapper;
 
