@@ -36,55 +36,66 @@ public class UserFollowerInfoController {
     /**
      * 取消关注用户
      *
+     * @param userInfo
      * @return ResponseResult
      */
     @PostMapping("/unFollowUser")
-    public ResponseResult unFollowUser(@RequestBody UserInfo userInfo){
-        return  userFollowerInfoService.unFollowUser(userInfo);
+    public ResponseResult unFollowUser(@RequestBody UserInfo userInfo) {
+        return userFollowerInfoService.unFollowUser(userInfo);
     }
+
     /**
      * 返回关注用户
      *
      * @return ResponseResult
      */
     @GetMapping("/getUserFollow")
-    public  ResponseResult getUserFollow(){
+    public ResponseResult getUserFollow() {
         return userFollowerInfoService.getUserFollow();
     }
 
     /**
      * 返回他人关注
      *
+     * @param id
      * @return ResponseResult
      */
     @GetMapping("/getOthersFollow")
-    public ResponseResult getOthersFollow(Integer id){
-        return  userFollowerInfoService.getOthersFollow(id);
+    public ResponseResult getOthersFollow(Integer id) {
+        return userFollowerInfoService.getOthersFollow(id);
     }
+
     /**
      * 返回粉丝
      *
      * @return ResponseResult
      */
     @GetMapping("/getFans")
-    public ResponseResult getFans(){return  userFollowerInfoService.getFans();}
+    public ResponseResult getFans() {
+        return userFollowerInfoService.getFans();
+    }
+
     /**
      * 返回他人粉丝
      *
+     * @param id
      * @return ResponseResult
      */
     @GetMapping("/getOthersFans")
-    public ResponseResult getOthersFans( Integer id){
-        return  userFollowerInfoService.getOthersFans(id);
+    public ResponseResult getOthersFans(Integer id) {
+        return userFollowerInfoService.getOthersFans(id);
     }
 
     /**
      * 返回是否关注
      *
+     * @param followId
      * @return ResponseResult
      */
     @GetMapping("/isFollowed")
-    public ResponseResult isFollowed(Integer followId){return  userFollowerInfoService.isFollowed(followId);}
+    public ResponseResult isFollowed(Integer followId) {
+        return userFollowerInfoService.isFollowed(followId);
+    }
 
 
 }

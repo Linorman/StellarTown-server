@@ -2,11 +2,9 @@ package com.hllwz.stellartownserver.controller;
 
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.PostInfo;
-import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -24,13 +22,16 @@ public class PostController {
 
     private final PostService postService;
 
-    @GetMapping("/getPost")
+
     /**
      * 获取帖子
+     *
+     * @param id
      * @return ResponseResult
      */
-    public ResponseResult getPost(@RequestBody PostInfo postInfo) {
-        return postService.getPost(postInfo);
+    @GetMapping("/getPost")
+    public ResponseResult getPost(Integer id) {
+        return postService.getPost(id);
     }
 
     /**
@@ -46,6 +47,7 @@ public class PostController {
     /**
      * 发帖
      *
+     * @param postInfo
      * @return ResponseResult
      */
     @PostMapping("/post")
@@ -56,6 +58,7 @@ public class PostController {
     /**
      * 删帖
      *
+     * @param postInfo
      * @return ResponseResult
      */
     @PostMapping("/deletePost")
@@ -63,10 +66,26 @@ public class PostController {
         return postService.deletePost(postInfo);
     }
 
+    /**
+     * 获取发布帖子
+     *
+     * @return ResponseResult
+     */
     @GetMapping("/getUserPost")
-    public ResponseResult getUserPost(){return postService.getUserPost();}
+    public ResponseResult getUserPost() {
+        return postService.getUserPost();
+    }
+
+    /**
+     * 获取他人发布帖子
+     *
+     * @param id
+     * @return ResponseResult
+     */
     @GetMapping("/getOthersPost")
-    public  ResponseResult getOthersPost(Integer id){return postService.getOthersPost(id);}
+    public ResponseResult getOthersPost(Integer id) {
+        return postService.getOthersPost(id);
+    }
 
 
 }

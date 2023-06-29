@@ -5,15 +5,12 @@ import com.hllwz.stellartownserver.dto.LoginRequest;
 import com.hllwz.stellartownserver.dto.RegisterRequest;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.UserInfoService;
-import jakarta.websocket.server.PathParam;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户信息控制器
+ *
  * @author Linorman
  * @version 1.0.0
  */
@@ -26,6 +23,7 @@ public class UserInfoController {
 
     /**
      * 注册
+     *
      * @param registerRequest 注册请求实体
      * @return ResponseResult
      */
@@ -36,6 +34,7 @@ public class UserInfoController {
 
     /**
      * 登录
+     *
      * @param loginRequest 登录请求实体
      * @return ResponseResult
      */
@@ -46,6 +45,7 @@ public class UserInfoController {
 
     /**
      * 刷新token
+     *
      * @return ResponseResult
      */
     @GetMapping("/refreshToken")
@@ -55,6 +55,7 @@ public class UserInfoController {
 
     /**
      * 用户登出
+     *
      * @return ResponseResult
      */
     @PostMapping("/logout")
@@ -64,6 +65,7 @@ public class UserInfoController {
 
     /**
      * 获取当前登录用户信息
+     *
      * @return ResponseResult
      */
     @GetMapping("/getUserInfo")
@@ -73,6 +75,7 @@ public class UserInfoController {
 
     /**
      * 更新用户信息
+     *
      * @param userInfo 用户信息实体
      * @return ResponseResult
      */
@@ -83,7 +86,8 @@ public class UserInfoController {
 
     /**
      * 根据id获取用户信息
-     * @param id 用户id
+     *
+     * @param userInfo 用户id
      * @return ResponseResult
      */
     @RequestMapping("/getUserInfoById")

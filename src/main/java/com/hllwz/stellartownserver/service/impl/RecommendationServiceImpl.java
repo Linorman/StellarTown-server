@@ -1,16 +1,21 @@
 package com.hllwz.stellartownserver.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
+import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
+import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.mapper.UserInfoMapper;
+import com.hllwz.stellartownserver.service.PostService;
 import com.hllwz.stellartownserver.service.RecommendationService;
 import com.hllwz.stellartownserver.utils.RecommendUtil;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
+import com.hllwz.stellartownserver.vo.ReturnPosts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +30,8 @@ import java.util.Map;
 public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFollowerInfo> implements RecommendationService {
     private final RecommendUtil recommendUtil;
     private final UserInfoMapper userInfoMapper;
-    private  final PostFollowerServiceImpl postFollowerService;
+
+    private final PostServiceImpl postService;
 
     public ResponseResult getRecommendation() {
         List<Integer> userIds = new ArrayList<>();
@@ -42,7 +48,15 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
         int targetUserId = SecurityUtil.getUserId(); // 目标用户ID
         int k = userIds.size(); // 推荐数量
         List<Integer> recommendedPosts = recommendUtil.recommendPostsToUser(targetUserId, k, similarityMatrix);
-        return ResponseResult.success(ResultCode.SUCCESS, recommendedPosts);
+        List<ReturnPosts> postList11= new ArrayList<>();
+        for(Integer postId : recommendedPosts){
+            ResponseResult<ReturnPosts> postList1 = postService.getPost(postId);
+            ReturnPosts posts1 = postList1.getData();
+            if(postId!=null){
+                postList11.add(posts1);
+            }
+        }
+        return ResponseResult.success(ResultCode.SUCCESS, postList11);
     }
 }
 

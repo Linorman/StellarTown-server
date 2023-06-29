@@ -37,15 +37,11 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
     }
 
     @Override
-    public ResponseResult getPost(PostInfo postInfo) {
-        int id = postInfo.getId();
-        LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(PostInfo::getId, id);
+    public ResponseResult getPost(Integer id) {
         PostInfo postInfo1 = postInfoMapper.selectById(id);
         if (postInfo1 == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-        List<ReturnPosts> postInfoList = new ArrayList<>();
         // 根据 postId 查询对应的 PostInfo 对象
         ReturnPosts posts = new ReturnPosts();
         posts.setId(postInfo1.getId());
@@ -57,11 +53,8 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         posts.setLikeCount(postInfo1.getLikeCount());
         posts.setUserId(postInfo1.getUserId());
         posts.setShotTime(postInfo1.getShotTime());
-        if (postInfo1 != null) {
-            postInfoList.add(posts);
-        }
 
-        return ResponseResult.success(ResultCode.POST_GET_SUCCESS, postInfoList);
+        return ResponseResult.success(ResultCode.POST_GET_SUCCESS, posts);
     }
 
     @Override
@@ -82,7 +75,8 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         Integer userId = SecurityUtil.getUserId();
         post.setUserId(userId);
         postInfoMapper.insert(post);
-        return ResponseResult.success(ResultCode.POST_ADD_SUCCESS, null);
+        int id =post.getId();
+        return ResponseResult.success(ResultCode.POST_ADD_SUCCESS, id);
 
     }
 
