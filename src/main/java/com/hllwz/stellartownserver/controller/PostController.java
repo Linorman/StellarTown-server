@@ -26,12 +26,12 @@ public class PostController {
     /**
      * 获取帖子
      *
-     * @param postInfo
+     * @param id
      * @return ResponseResult
      */
     @GetMapping("/getPost")
-    public ResponseResult getPost(@RequestBody PostInfo postInfo) {
-        return postService.getPost(postInfo);
+    public ResponseResult getPost(Integer id) {
+        return postService.getPost(id);
     }
 
     /**
