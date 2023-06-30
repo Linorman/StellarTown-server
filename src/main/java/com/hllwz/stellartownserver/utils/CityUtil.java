@@ -119,15 +119,50 @@ public class CityUtil {
         ObjectMapper objectMapper = new ObjectMapper();
         String lat = "";
         String lon = "";
+        Location location = null;
         try {
-            lat = objectMapper.writeValueAsString(map.get("lat"));
-            lon = objectMapper.writeValueAsString(map.get("lon"));
+            location = objectMapper.readValue(objectMapper.writeValueAsString(map.get("location")), new TypeReference<>() {});
+            lat = location.getLat();
+            lon = location.getLon();
         } catch (JsonProcessingException e) {
             log.error("JSON转换失败");
         }
-        Map<String, String> location = Map.of("lat", lat, "lon", lon);
+        Map<String, String> locationMap = Map.of("lat", lat, "lon", lon);
 
-        return location;
+        return locationMap;
+    }
+
+    /**
+     * 根据经纬度获取城市名
+     * @param longitude
+     * @param latitude
+     * @return String
+     */
+    public static String getCityByLocation(String longitude, String latitude) {
+        String url = CITY_API_URL + longitude + "," + latitude;
+        Map<String, Object> map = null;
+        try {
+            map = sendGetRequest(url);
+        } catch (IOException e) {
+            log.error("通过经纬度获取城市名请求失败");
+        }
+        if (map == null) {
+            return null;
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Location location = null;
+        try {
+            location = objectMapper.readValue(objectMapper.writeValueAsString(map.get("location")), new TypeReference<>() {});
+        } catch (JsonProcessingException e) {
+            log.error("JSON转换失败");
+        }
+
+        if (location != null) {
+            return location.getName();
+        }
+
+        return null;
     }
 
 

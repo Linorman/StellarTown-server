@@ -68,4 +68,9 @@ public class WeatherController {
     public ResponseResult getLocationByCityName(String cityName) {
         return weatherService.getLocationByCityName(cityName);
     }
+
+    @GetMapping("/cityName/location")
+    public ResponseResult getLocationByCityName(String longitude, String latitude) {
+        return weatherService.getCityNameByLonLat(longitude, latitude);
+    }
 }

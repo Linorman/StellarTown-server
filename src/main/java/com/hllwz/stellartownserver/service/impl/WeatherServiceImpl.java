@@ -65,8 +65,17 @@ public class WeatherServiceImpl implements WeatherService {
     public ResponseResult getLocationByCityName(String cityName) {
         Map<String, String> location = CityUtil.getLocationByCity(cityName);
         if (location == null) {
-            return ResponseResult.error(ResultCode.WEATHER_GET_ERROR, null);
+            return ResponseResult.error(ResultCode.LOCATION_GET_ERROR, null);
         }
-        return ResponseResult.success(ResultCode.WEATHER_GET_SUCCESS, location);
+        return ResponseResult.success(ResultCode.LOCATION_GET_SUCCESS, location);
+    }
+
+    @Override
+    public ResponseResult getCityNameByLonLat(String lon, String lat) {
+        String cityName = CityUtil.getCityByLocation(lon, lat);
+        if (cityName == null) {
+            return ResponseResult.error(ResultCode.CITY_NAME_GET_ERROR, null);
+        }
+        return ResponseResult.success(ResultCode.CITY_NAME_GET_SUCCESS, cityName);
     }
 }

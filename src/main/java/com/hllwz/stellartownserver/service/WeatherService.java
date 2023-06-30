@@ -45,4 +45,12 @@ public interface WeatherService {
      * @return
      */
     ResponseResult getLocationByCityName(String cityName);
+
+    /**
+     * 根据经纬度获取城市名
+     * @param lon
+     * @param lat
+     * @return
+     */
+    ResponseResult getCityNameByLonLat(String lon, String lat);
 }
