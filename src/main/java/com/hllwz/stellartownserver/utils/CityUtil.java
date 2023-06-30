@@ -100,6 +100,80 @@ public class CityUtil {
     }
 
     /**
+     * 根据城市名获取经纬度
+     * @param city
+     * @return Map<String, Object>
+     */
+    public static Map<String, String> getLocationByCity(String city) {
+        String url = CITY_API_URL + city;
+        Map<String, Object> map = null;
+        try {
+            map = sendGetRequest(url);
+        } catch (IOException e) {
+            log.error("通过城市名获取经纬度请求失败");
+        }
+        if (map == null) {
+            return null;
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String lat = "";
+        String lon = "";
+        String location = "";
+        try {
+            location = objectMapper.writeValueAsString(map.get("location"));
+        } catch (JsonProcessingException e) {
+            log.error("JSON转换失败");
+        }
+        List<Location> locationList = new ArrayList<>();
+        Gson gson = new Gson();
+        Location[] locations = gson.fromJson(location, Location[].class);
+
+        Collections.addAll(locationList, locations);
+        lat = locationList.get(0).getLat();
+        lon = locationList.get(0).getLon();
+        Map<String, String> locationMap = Map.of("lat", lat, "lon", lon);
+
+        return locationMap;
+    }
+
+    /**
+     * 根据经纬度获取城市名
+     * @param longitude
+     * @param latitude
+     * @return String
+     */
+    public static String getCityByLocation(String longitude, String latitude) {
+        String url = CITY_API_URL + longitude + "," + latitude;
+        Map<String, Object> map = null;
+        try {
+            map = sendGetRequest(url);
+        } catch (IOException e) {
+            log.error("通过经纬度获取城市名请求失败");
+        }
+        if (map == null) {
+            return null;
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String location = "";
+        try {
+            location = objectMapper.writeValueAsString(map.get("location"));
+        } catch (JsonProcessingException e) {
+            log.error("JSON转换失败");
+        }
+        List<Location> locationList = new ArrayList<>();
+
+        Gson gson = new Gson();
+        Location[] locations = gson.fromJson(location, Location[].class);
+
+        Collections.addAll(locationList, locations);
+
+        return locationList.get(0).getName();
+    }
+
+
+    /**
      * http get请求
      * @param url
      * @return

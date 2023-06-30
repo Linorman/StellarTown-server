@@ -121,6 +121,10 @@ public enum ResultCode {
     CITY_NOT_EXIST(433,"城市不存在"),
     ASTRONOMY_GET_SUCCESS(234,"天文获取成功"),
     ASTRONOMY_GET_ERROR(434,"天文获取失败"),
+    CITY_NAME_GET_SUCCESS(235,"城市名称获取成功"),
+    CITY_NAME_GET_ERROR(435,"城市名称获取失败"),
+    LOCATION_GET_SUCCESS(236,"位置获取成功"),
+    LOCATION_GET_ERROR(436,"位置获取失败"),
 
     /**
      * Openai

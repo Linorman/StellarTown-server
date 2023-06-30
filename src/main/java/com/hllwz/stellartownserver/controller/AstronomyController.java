@@ -71,4 +71,14 @@ public class AstronomyController {
     public ResponseResult getTwilightByLonLat(String lon, String lat) {
         return astronomyService.getTwilightTime(lon, lat);
     }
+
+    /**
+     * 根据城市名获取曙暮光时间
+     * @param cityName
+     * @return responseResult
+     */
+    @GetMapping("/twilight/cityName")
+    public ResponseResult getTwilightByCityName(String cityName) {
+        return astronomyService.getTwilightTimeByCityName(cityName);
+    }
 }

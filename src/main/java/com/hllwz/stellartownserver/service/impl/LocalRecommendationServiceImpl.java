@@ -22,6 +22,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * 同城帖子推荐Service实现类
+ *
+ * @author Lyh
+ * @version 1.0.0
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

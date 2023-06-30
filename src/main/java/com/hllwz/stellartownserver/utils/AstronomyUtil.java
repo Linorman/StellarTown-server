@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -104,7 +105,7 @@ public class AstronomyUtil {
     }
 
     /**
-     * 获取曙暮光时间
+     * 根据经纬度获取曙暮光时间
      * @param lon
      * @param lat
      * @return String
@@ -112,6 +113,35 @@ public class AstronomyUtil {
     public static TwilightData getTwilightTime(String lon, String lat) {
         String path = "src/main/resources/python/fetch.py";
         String[] args = new String[]{"python", path, lon, lat};
+        String result = PythonUtil.execPython(path, args);
+        ObjectMapper objectMapper = new ObjectMapper();
+        TwilightData twilightData = null;
+        try {
+            twilightData = objectMapper.readValue(result, new TypeReference<>() {
+            });
+        } catch (Exception e) {
+            log.error("JSON转换失败");
+        }
+        return twilightData;
+    }
+
+    /**
+     * 根据城市名获取曙暮光时间
+     * @param city
+     * @return String
+     */
+    public static TwilightData getTwilightTime(String city) {
+        Map<String, String> cityMap = CityUtil.getLocationByCity(city);
+        if (cityMap == null) {
+            log.error("城市名错误");
+            return null;
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("#.###");
+        double formattedLatitude = Double.parseDouble(decimalFormat.format(Double.parseDouble(cityMap.get("lat"))));
+        double formattedLongitude = Double.parseDouble(decimalFormat.format(Double.parseDouble(cityMap.get("lon"))));
+
+        String path = "src/main/resources/python/fetch.py";
+        String[] args = new String[]{"python", path, String.valueOf(formattedLongitude), String.valueOf(formattedLatitude)};
         String result = PythonUtil.execPython(path, args);
         ObjectMapper objectMapper = new ObjectMapper();
         TwilightData twilightData = null;
