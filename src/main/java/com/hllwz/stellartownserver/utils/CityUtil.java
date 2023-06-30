@@ -100,6 +100,38 @@ public class CityUtil {
     }
 
     /**
+     * 根据城市名获取经纬度
+     * @param city
+     * @return Map<String, Object>
+     */
+    public static Map<String, String> getLocationByCity(String city) {
+        String url = CITY_API_URL + city;
+        Map<String, Object> map = null;
+        try {
+            map = sendGetRequest(url);
+        } catch (IOException e) {
+            log.error("通过城市名获取经纬度请求失败");
+        }
+        if (map == null) {
+            return null;
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String lat = "";
+        String lon = "";
+        try {
+            lat = objectMapper.writeValueAsString(map.get("lat"));
+            lon = objectMapper.writeValueAsString(map.get("lon"));
+        } catch (JsonProcessingException e) {
+            log.error("JSON转换失败");
+        }
+        Map<String, String> location = Map.of("lat", lat, "lon", lon);
+
+        return location;
+    }
+
+
+    /**
      * http get请求
      * @param url
      * @return

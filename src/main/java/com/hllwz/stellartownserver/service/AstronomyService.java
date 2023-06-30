@@ -40,10 +40,17 @@ public interface AstronomyService {
     public ResponseResult getBlueAndGoldenTimeByLonLat(String lon, String lat);
 
     /**
-     * 获取曙暮光时间
+     * 根据经纬度获取曙暮光时间
      * @param lon
      * @param lat
      * @return responseResult
      */
     public ResponseResult getTwilightTime(String lon, String lat);
+
+    /**
+     * 根据城市名获取曙暮光时间
+     * @param cityName
+     * @return responseResult
+     */
+    public ResponseResult getTwilightTimeByCityName(String cityName);
 }
