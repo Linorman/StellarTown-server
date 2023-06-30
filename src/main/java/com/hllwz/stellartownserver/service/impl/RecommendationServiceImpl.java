@@ -50,19 +50,28 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
             if (postId != null) {
                 postList11.add(posts1);
             }
+        }
 //        依据地点远近进行排序
             for (ReturnPosts newPost : postList11) {
-                String cityCode1 = CityUtil.getCityCodeByCity(SecurityUtil.getLoginUser().getAddress());
-                double userLat =
-                double userLon =
-                String cityCode2 = CityUtil.getCityCodeByCity(newPost.getAddress());
-                double postLat = newPost.getAddress().
-                double postLon =
-                double distance = recommendUtil.calculateDistance(userLat, userLon, postLat, postLon)
+                Map<String,String>location1 = CityUtil.getLocationByCity(SecurityUtil.getLoginUser().getAddress());
+                if(location1==null){
+                    return  ResponseResult.error(ResultCode.WEATHER_API_ERROR,null);
+                }
+
+                double userLat = Double.parseDouble(location1.get("lat"));
+                double userLon = Double.parseDouble(location1.get("lon"));
+
+                Map<String,String>location2 = CityUtil.getLocationByCity(newPost.getAddress());
+                if(location2==null){
+                    return  ResponseResult.error(ResultCode.WEATHER_API_ERROR,null);
+                }
+                double postLat = Double.parseDouble(location2.get("lat"));
+                double postLon = Double.parseDouble(location2.get("lon"));
+                double distance = recommendUtil.calculateDistance(userLat, userLon, postLat, postLon);
                 newPost.setDistance(distance);
             }
             Collections.sort(postList11, Comparator.comparing(ReturnPosts::getDistance));
-        }
+
         return ResponseResult.success(ResultCode.SUCCESS, postList11);
     }
 }
