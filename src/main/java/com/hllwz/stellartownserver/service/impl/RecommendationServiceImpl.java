@@ -6,7 +6,6 @@ import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.entity.UserInfo;
-import com.hllwz.stellartownserver.entity.weatherApi.Location;
 import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.mapper.UserInfoMapper;
 import com.hllwz.stellartownserver.service.RecommendationService;
@@ -48,30 +47,21 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
             ResponseResult<ReturnPosts> postList1 = postService.getPost(postId);
             ReturnPosts posts1 = postList1.getData();
             if (postId != null) {
-                postList11.add(posts1);
-            }
+                postList11.add(posts1);}
         }
 //        依据地点远近进行排序
-            for (ReturnPosts newPost : postList11) {
-                Map<String,String>location1 = CityUtil.getLocationByCity(SecurityUtil.getLoginUser().getAddress());
-                if(location1==null){
-                    return  ResponseResult.error(ResultCode.WEATHER_API_ERROR,null);
-                }
-
-                double userLat = Double.parseDouble(location1.get("lat"));
-                double userLon = Double.parseDouble(location1.get("lon"));
-
-                Map<String,String>location2 = CityUtil.getLocationByCity(newPost.getAddress());
-                if(location2==null){
-                    return  ResponseResult.error(ResultCode.WEATHER_API_ERROR,null);
-                }
-                double postLat = Double.parseDouble(location2.get("lat"));
-                double postLon = Double.parseDouble(location2.get("lon"));
-                double distance = recommendUtil.calculateDistance(userLat, userLon, postLat, postLon);
-                newPost.setDistance(distance);
-            }
-            Collections.sort(postList11, Comparator.comparing(ReturnPosts::getDistance));
-
+        for (ReturnPosts newPost : postList11) {
+            String address=newPost.getAddress();
+            Map<String, String> location2 = CityUtil.getLocationByCity(address);
+            double postLat = Double.parseDouble(location2.get("lat"));
+            double postLon = Double.parseDouble(location2.get("lon"));
+            Map<String, String> location1 = CityUtil.getLocationByCity(SecurityUtil.getLoginUser().getAddress());
+            double userLat = Double.parseDouble(location1.get("lat"));
+            double userLon = Double.parseDouble(location1.get("lon"));
+            double distance = recommendUtil.calculateDistance(userLat, userLon, postLat, postLon);
+            newPost.setDistance(distance);
+        }
+        Collections.sort(postList11, Comparator.comparing(ReturnPosts::getDistance));
         return ResponseResult.success(ResultCode.SUCCESS, postList11);
     }
 }

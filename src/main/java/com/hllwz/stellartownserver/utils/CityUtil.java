@@ -98,6 +98,12 @@ public class CityUtil {
 
         return locationList.get(0).getId();
     }
+
+    /**
+     * 根据城市名获取经纬度
+     * @param city
+     * @return Map<String, Object>
+     */
     public static Map<String, String> getLocationByCity(String city) {
         String url = CITY_API_URL + city;
         Map<String, Object> map = null;
@@ -125,6 +131,40 @@ public class CityUtil {
 
         return locationMap;
     }
+
+    /**
+     * 根据经纬度获取城市名
+     * @param longitude
+     * @param latitude
+     * @return String
+     */
+    public static String getCityByLocation(String longitude, String latitude) {
+        String url = CITY_API_URL + longitude + "," + latitude;
+        Map<String, Object> map = null;
+        try {
+            map = sendGetRequest(url);
+        } catch (IOException e) {
+            log.error("通过经纬度获取城市名请求失败");
+        }
+        if (map == null) {
+            return null;
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Location location = null;
+        try {
+            location = objectMapper.readValue(objectMapper.writeValueAsString(map.get("location")), new TypeReference<>() {});
+        } catch (JsonProcessingException e) {
+            log.error("JSON转换失败");
+        }
+
+        if (location != null) {
+            return location.getName();
+        }
+
+        return null;
+    }
+
 
     /**
      * http get请求
