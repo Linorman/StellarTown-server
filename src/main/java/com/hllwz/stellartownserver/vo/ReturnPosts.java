@@ -10,7 +10,11 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * 返回帖子响应类
+ * @author Lyh
+ * @version 1.0.0
+ */
 @Data
 @RequiredArgsConstructor
 public class ReturnPosts implements Serializable {
