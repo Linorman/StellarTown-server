@@ -79,7 +79,7 @@ public class AstronomyUtil {
         try {
             map = sendGetRequest(url);
         } catch (IOException e) {
-            log.error("获取蓝调时间、黄金时间请求失败");
+            log.error("获取蓝调时间、黄金时间请求失败,{}", e.getMessage());
         }
         if (map == null) {
             log.error("获取蓝调时间、黄金时间为空");

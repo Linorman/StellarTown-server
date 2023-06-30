@@ -59,7 +59,9 @@ public class CityUtil {
 
         Gson gson = new Gson();
         Location[] locations = gson.fromJson(location, Location[].class);
-
+        if (locations == null) {
+            return null;
+        }
         Collections.addAll(locationList, locations);
 
         return locationList.get(0).getId();
@@ -94,8 +96,10 @@ public class CityUtil {
         Gson gson = new Gson();
         Location[] locations = gson.fromJson(location, Location[].class);
 
+        if (locations == null) {
+            return null;
+        }
         Collections.addAll(locationList, locations);
-
         return locationList.get(0).getId();
     }
 
@@ -126,8 +130,13 @@ public class CityUtil {
             log.error("JSON转换失败");
         }
         List<Location> locationList = new ArrayList<>();
+
         Gson gson = new Gson();
         Location[] locations = gson.fromJson(location, Location[].class);
+
+        if (locations == null) {
+            return null;
+        }
 
         Collections.addAll(locationList, locations);
         lat = locationList.get(0).getLat();
@@ -166,7 +175,9 @@ public class CityUtil {
 
         Gson gson = new Gson();
         Location[] locations = gson.fromJson(location, Location[].class);
-
+        if (locations == null) {
+            return null;
+        }
         Collections.addAll(locationList, locations);
 
         return locationList.get(0).getName();
