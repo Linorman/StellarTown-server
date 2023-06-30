@@ -126,7 +126,6 @@ public class CityUtil {
             log.error("JSON转换失败");
         }
         List<Location> locationList = new ArrayList<>();
-
         Gson gson = new Gson();
         Location[] locations = gson.fromJson(location, Location[].class);
 
