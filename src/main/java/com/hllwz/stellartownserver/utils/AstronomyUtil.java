@@ -88,7 +88,7 @@ public class AstronomyUtil {
         ObjectMapper objectMapper = new ObjectMapper();
         String specialTime = "";
         try {
-            specialTime = objectMapper.writeValueAsString(map.get("data"));
+            specialTime = objectMapper.writeValueAsString(map);
         } catch (Exception e) {
             log.error("JSON转换失败");
             return null;
