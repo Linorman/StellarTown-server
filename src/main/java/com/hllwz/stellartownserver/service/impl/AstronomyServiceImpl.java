@@ -104,4 +104,20 @@ public class AstronomyServiceImpl implements AstronomyService {
             return ResponseResult.success(ResultCode.ASTRONOMY_GET_SUCCESS, twilightData);
         }
     }
+
+    @Override
+    public ResponseResult getTwilightTimeByCityName(String cityName) {
+        TwilightData twilightData = null;
+        try {
+            twilightData = AstronomyUtil.getTwilightTime(cityName);
+        } catch (Exception e) {
+            log.error("获取天文信息失败");
+            return ResponseResult.error(ResultCode.ASTRONOMY_GET_ERROR, null);
+        }
+        if (twilightData == null) {
+            return ResponseResult.error(ResultCode.ASTRONOMY_GET_ERROR, null);
+        } else {
+            return ResponseResult.success(ResultCode.ASTRONOMY_GET_SUCCESS, twilightData);
+        }
+    }
 }

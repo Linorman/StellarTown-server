@@ -10,6 +10,7 @@ import com.hllwz.stellartownserver.utils.WeatherUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 天气Service实现类
@@ -58,5 +59,23 @@ public class WeatherServiceImpl implements WeatherService {
             return ResponseResult.error(ResultCode.WEATHER_GET_ERROR, null);
         }
         return ResponseResult.success(ResultCode.WEATHER_GET_SUCCESS, dailyDataList);
+    }
+
+    @Override
+    public ResponseResult getLocationByCityName(String cityName) {
+        Map<String, String> location = CityUtil.getLocationByCity(cityName);
+        if (location == null) {
+            return ResponseResult.error(ResultCode.LOCATION_GET_ERROR, null);
+        }
+        return ResponseResult.success(ResultCode.LOCATION_GET_SUCCESS, location);
+    }
+
+    @Override
+    public ResponseResult getCityNameByLonLat(String lon, String lat) {
+        String cityName = CityUtil.getCityByLocation(lon, lat);
+        if (cityName == null) {
+            return ResponseResult.error(ResultCode.CITY_NAME_GET_ERROR, null);
+        }
+        return ResponseResult.success(ResultCode.CITY_NAME_GET_SUCCESS, cityName);
     }
 }

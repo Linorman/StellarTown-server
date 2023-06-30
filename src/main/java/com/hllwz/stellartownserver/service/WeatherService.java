@@ -38,4 +38,19 @@ public interface WeatherService {
      * @return ResponseResult
      */
     public ResponseResult getWeather7dByLonLat(String lon, String lat);
+
+    /**
+     * 根据城市名获取经纬度
+     * @param cityName
+     * @return
+     */
+    ResponseResult getLocationByCityName(String cityName);
+
+    /**
+     * 根据经纬度获取城市名
+     * @param lon
+     * @param lat
+     * @return
+     */
+    ResponseResult getCityNameByLonLat(String lon, String lat);
 }
