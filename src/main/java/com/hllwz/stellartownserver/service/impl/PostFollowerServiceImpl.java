@@ -18,7 +18,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 点赞帖子Service实现类
+ *
+ * @author Lyh
+ * @version 1.0.0
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

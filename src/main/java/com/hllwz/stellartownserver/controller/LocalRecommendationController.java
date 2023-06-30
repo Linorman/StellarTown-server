@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 推荐帖子控制器
+ * 同城推荐帖子控制器
  *
  * @author Lyh
  * @version 1.0.0
@@ -27,7 +27,7 @@ public class LocalRecommendationController {
     private final LocalRecommendationService localRecommendationService;
 
     /**
-     * 推荐帖子
+     * 推荐同城帖子
      *
      * @return ResponseResult
      */
