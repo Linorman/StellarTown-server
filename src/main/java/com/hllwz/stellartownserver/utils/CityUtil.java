@@ -113,16 +113,19 @@ public class CityUtil {
         ObjectMapper objectMapper = new ObjectMapper();
         String lat = "";
         String lon = "";
+        Location location = null;
         try {
-            lat = objectMapper.writeValueAsString(map.get("lat"));
-            lon = objectMapper.writeValueAsString(map.get("lon"));
+            location = objectMapper.readValue(objectMapper.writeValueAsString(map.get("location")), new TypeReference<>() {});
+            lat = location.getLat();
+            lon = location.getLon();
         } catch (JsonProcessingException e) {
             log.error("JSON转换失败");
         }
-        Map<String, String> location = Map.of("lat", lat, "lon", lon);
+        Map<String, String> locationMap = Map.of("lat", lat, "lon", lon);
 
-        return location;
+        return locationMap;
     }
+
     /**
      * http get请求
      * @param url
