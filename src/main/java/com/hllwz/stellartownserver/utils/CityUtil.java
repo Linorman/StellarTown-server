@@ -119,14 +119,20 @@ public class CityUtil {
         ObjectMapper objectMapper = new ObjectMapper();
         String lat = "";
         String lon = "";
-        Location location = null;
+        String location = "";
         try {
-            location = objectMapper.readValue(objectMapper.writeValueAsString(map.get("location")), new TypeReference<>() {});
-            lat = location.getLat();
-            lon = location.getLon();
+            location = objectMapper.writeValueAsString(map.get("location"));
         } catch (JsonProcessingException e) {
             log.error("JSON转换失败");
         }
+        List<Location> locationList = new ArrayList<>();
+
+        Gson gson = new Gson();
+        Location[] locations = gson.fromJson(location, Location[].class);
+
+        Collections.addAll(locationList, locations);
+        lat = locationList.get(0).getLat();
+        lon = locationList.get(0).getLon();
         Map<String, String> locationMap = Map.of("lat", lat, "lon", lon);
 
         return locationMap;
@@ -151,18 +157,20 @@ public class CityUtil {
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
-        Location location = null;
+        String location = "";
         try {
-            location = objectMapper.readValue(objectMapper.writeValueAsString(map.get("location")), new TypeReference<>() {});
+            location = objectMapper.writeValueAsString(map.get("location"));
         } catch (JsonProcessingException e) {
             log.error("JSON转换失败");
         }
+        List<Location> locationList = new ArrayList<>();
 
-        if (location != null) {
-            return location.getName();
-        }
+        Gson gson = new Gson();
+        Location[] locations = gson.fromJson(location, Location[].class);
 
-        return null;
+        Collections.addAll(locationList, locations);
+
+        return locationList.get(0).getName();
     }
 
 
