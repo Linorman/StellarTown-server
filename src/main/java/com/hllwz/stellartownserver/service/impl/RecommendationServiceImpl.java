@@ -6,9 +6,11 @@ import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
 import com.hllwz.stellartownserver.entity.UserInfo;
+import com.hllwz.stellartownserver.entity.weatherApi.Location;
 import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.mapper.UserInfoMapper;
 import com.hllwz.stellartownserver.service.RecommendationService;
+import com.hllwz.stellartownserver.utils.CityUtil;
 import com.hllwz.stellartownserver.utils.RecommendUtil;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
 import com.hllwz.stellartownserver.vo.ReturnPosts;
@@ -16,9 +18,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -50,16 +50,18 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
             if (postId != null) {
                 postList11.add(posts1);
             }
-//依据地点远近进行排序
-//        for(ReturnPosts newPost : postList11){
-//           double userLat =
-//           double userLon =
-//           double postLat =
-//           double postLon =
-//           double distance = recommendUtil.calculateDistance(userLat,userLon,postLat,postLon)
-//           newPost.setDistance(distance);
-//        }
-//        Collections.sort(postList11, Comparator.comparing(ReturnPosts::getDistance));
+//        依据地点远近进行排序
+            for (ReturnPosts newPost : postList11) {
+                String cityCode1 = CityUtil.getCityCodeByCity(SecurityUtil.getLoginUser().getAddress());
+                double userLat =
+                double userLon =
+                String cityCode2 = CityUtil.getCityCodeByCity(newPost.getAddress());
+                double postLat = newPost.getAddress().
+                double postLon =
+                double distance = recommendUtil.calculateDistance(userLat, userLon, postLat, postLon)
+                newPost.setDistance(distance);
+            }
+            Collections.sort(postList11, Comparator.comparing(ReturnPosts::getDistance));
         }
         return ResponseResult.success(ResultCode.SUCCESS, postList11);
     }

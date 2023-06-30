@@ -24,5 +24,6 @@ public class ReturnPosts implements Serializable {
     private String tag;
     private String shotTime;
     private Date postTime;
+    private Double distance;
 
 }
