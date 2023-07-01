@@ -68,12 +68,10 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
 
         String title = postInfo.getTitle();
         String content = postInfo.getContent();
-        String image = postInfo.getImage();
-        if (title == null && content == null && image == null) {
+        if (title == null && content == null ) {
             return ResponseResult.error(ResultCode.POST_ADD_ERROR, null);
         }
         PostInfo post = new PostInfo();
-        post.setImage(postInfo.getImage());
         post.setContent(postInfo.getContent());
         post.setTitle(postInfo.getTitle());
         post.setAddress(postInfo.getAddress());
