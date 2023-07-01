@@ -1,6 +1,5 @@
 package com.hllwz.stellartownserver.service.impl;
 
-
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hllwz.stellartownserver.common.ResponseResult;
@@ -9,6 +8,7 @@ import com.hllwz.stellartownserver.entity.AttractionInfo;
 import com.hllwz.stellartownserver.mapper.AttractionInfoMapper;
 import com.hllwz.stellartownserver.service.AttractionInfoService;
 import com.hllwz.stellartownserver.utils.CityUtil;
+import com.hllwz.stellartownserver.utils.PinYinUtil;
 import com.hllwz.stellartownserver.utils.RecommendUtil;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
 import com.hllwz.stellartownserver.vo.ReturnAttraction;
@@ -56,7 +56,7 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
         for (ReturnAttraction attractionInfo11 : attractionInfo3) {
             double longitude = Double.parseDouble(attractionInfo11.getLongitude());
             double latitude = Double.parseDouble(attractionInfo11.getLatitude());
-            Map<String, String> location1 = CityUtil.getLocationByCity(SecurityUtil.getLoginUser().getAddress());
+            Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(SecurityUtil.getLoginUser().getAddress()));
             double userLat = Double.parseDouble(location1.get("lat"));
             double userLon = Double.parseDouble(location1.get("lon"));
             double distance = recommendUtil.calculateDistance(userLat, userLon, latitude,longitude);

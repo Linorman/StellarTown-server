@@ -59,6 +59,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         posts.setLikeCount(postInfo1.getLikeCount());
         posts.setUserId(postInfo1.getUserId());
         posts.setShotTime(postInfo1.getShotTime());
+        posts.setTag(postInfo1.getTag());
 
         return ResponseResult.success(ResultCode.POST_GET_SUCCESS, posts);
     }
