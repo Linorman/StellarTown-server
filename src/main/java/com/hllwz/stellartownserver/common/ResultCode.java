@@ -110,6 +110,7 @@ public enum ResultCode {
     FOLLOWER_NUM_GET_ERROR(424,"关注数获取失败"),
     FOLLOWER_NUM_NULL(425,"关注数为空"),
     USER_LIST_EMPTY(426,"用户列表为空"),
+    ATTRACTION_GET_SUCCESS(299,"景点获取成功"),
 
     /**
      * 天气API

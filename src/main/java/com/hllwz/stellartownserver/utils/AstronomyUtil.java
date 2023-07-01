@@ -79,7 +79,7 @@ public class AstronomyUtil {
         try {
             map = sendGetRequest(url);
         } catch (IOException e) {
-            log.error("获取蓝调时间、黄金时间请求失败");
+            log.error("获取蓝调时间、黄金时间请求失败,{}", e.getMessage());
         }
         if (map == null) {
             log.error("获取蓝调时间、黄金时间为空");
@@ -88,7 +88,7 @@ public class AstronomyUtil {
         ObjectMapper objectMapper = new ObjectMapper();
         String specialTime = "";
         try {
-            specialTime = objectMapper.writeValueAsString(map.get("data"));
+            specialTime = objectMapper.writeValueAsString(map);
         } catch (Exception e) {
             log.error("JSON转换失败");
             return null;

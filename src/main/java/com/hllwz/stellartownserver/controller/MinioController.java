@@ -70,8 +70,8 @@ public class MinioController {
      * @param fileName
      * @return
      */
-    @GetMapping("/download/{fileName}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName) {
+    @GetMapping("/download")
+    public ResponseEntity<Resource> downloadFile(String fileName) {
         try {
             String bucketName = "stellar-town-app";
             InputStream inputStream = minioService.downloadFile(bucketName, fileName);
