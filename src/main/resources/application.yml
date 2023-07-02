@@ -62,6 +62,6 @@ application:
           expiration: 604800000 # 7 days
 minio:
   endpoint: http://127.0.0.1:9999
-  accessKey: admin
+  accessKey: adminminio
   secretKey: adminminio
   bucketName: stellar-town
