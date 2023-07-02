@@ -10,6 +10,7 @@ import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.mapper.UserInfoMapper;
 import com.hllwz.stellartownserver.service.RecommendationService;
 import com.hllwz.stellartownserver.utils.CityUtil;
+import com.hllwz.stellartownserver.utils.PinYinUtil;
 import com.hllwz.stellartownserver.utils.RecommendUtil;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
 import com.hllwz.stellartownserver.vo.ReturnPost;
@@ -56,11 +57,11 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
         }
 //        依据地点远近进行排序
         for (ReturnPost newPost : postList11) {
-            String address=newPost.getAddress();
-            Map<String, String> location2 = CityUtil.getLocationByCity(address);
+            Map<String, String> location2 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(newPost.getAddress()));
+
             double postLat = Double.parseDouble(location2.get("lat"));
             double postLon = Double.parseDouble(location2.get("lon"));
-            Map<String, String> location1 = CityUtil.getLocationByCity(SecurityUtil.getLoginUser().getAddress());
+            Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(SecurityUtil.getLoginUser().getAddress()));
             double userLat = Double.parseDouble(location1.get("lat"));
             double userLon = Double.parseDouble(location1.get("lon"));
             double distance = recommendUtil.calculateDistance(userLat, userLon, postLat, postLon);

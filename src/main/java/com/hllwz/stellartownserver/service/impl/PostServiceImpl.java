@@ -59,6 +59,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         posts.setLikeCount(postInfo1.getLikeCount());
         posts.setUserId(postInfo1.getUserId());
         posts.setShotTime(postInfo1.getShotTime());
+        posts.setTag(postInfo1.getTag());
 
         return ResponseResult.success(ResultCode.POST_GET_SUCCESS, posts);
     }
@@ -68,11 +69,11 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
 
         String title = postInfo.getTitle();
         String content = postInfo.getContent();
-        String image = postInfo.getImage();
-        if (title == null && content == null && image == null) {
+        if (title == null && content == null ) {
             return ResponseResult.error(ResultCode.POST_ADD_ERROR, null);
         }
         PostInfo post = new PostInfo();
+
         // post.setImage(postInfo.getImage());
         post.setContent(postInfo.getContent());
         post.setTitle(postInfo.getTitle());
