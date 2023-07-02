@@ -6,7 +6,7 @@ create table user_info (
     password varchar(1023) not null,
     username varchar(255) binary not null,
     phone_number varchar(20),
-    avatar varchar(255),
+    avatar varchar(1023),
     address varchar(255),
     gender int not null comment '0:男,1:女,2:保密',
     age int,
