@@ -35,18 +35,19 @@ public class MinioServiceImpl implements MinioService {
     private final UserInfoMapper userInfoMapper;
     @Override
     public ResponseResult uploadAvatar(String objectName, InputStream inputStream) {
-        boolean flag = minioClient.upload("avatar" + objectName, inputStream);
+        String fileName = "avatar-"+ "userId-" + SecurityUtil.getUserId() + "-" + objectName;
+        boolean flag = minioClient.upload(fileName, inputStream);
         if (flag) {
             Integer userId = SecurityUtil.getUserId();
             LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
             queryWrapper.eq(UserInfo::getId, userId);
             UserInfo userInfo = userInfoMapper.selectOne(queryWrapper);
 
-            String avatarUrl = minioClient.preview("avatar" + objectName);
-            userInfo.setAvatar(avatarUrl);
+            String newUrl = "http://omks3oamocpy.xiaomiqiu.com/" + fileName;
+            userInfo.setAvatar(newUrl);
             userInfoMapper.updateById(userInfo);
 
-            return ResponseResult.success(ResultCode.AVATAR_UPLOAD_SUCCESS, avatarUrl);
+            return ResponseResult.success(ResultCode.AVATAR_UPLOAD_SUCCESS, newUrl);
         } else {
             return ResponseResult.error(ResultCode.AVATAR_UPLOAD_ERROR, null);
         }
@@ -55,12 +56,14 @@ public class MinioServiceImpl implements MinioService {
 
     @Override
     public ResponseResult uploadPost(String objectName, InputStream inputStream, Integer postId) {
+        String fileName = "post-" + "postId-" + postId + "-" + objectName;
         boolean flag = minioClient.upload("post" + objectName, inputStream);
         if (flag) {
             LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
             queryWrapper.eq(PostInfo::getId, postId);
             PostInfo postInfo = postInfoMapper.selectOne(queryWrapper);
-            String postUrl = minioClient.preview("post" + objectName);
+            // String postUrl = minioClient.preview("post" + objectName);
+            String postUrl = "http://omks3oamocpy.xiaomiqiu.com/" + fileName;
             postInfo.setImage(postUrl);
             return ResponseResult.success(ResultCode.POST_UPLOAD_SUCCESS, postUrl);
         } else {

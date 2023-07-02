@@ -11,7 +11,7 @@ import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.service.PostFollowerService;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
-import com.hllwz.stellartownserver.vo.ReturnPosts;
+import com.hllwz.stellartownserver.vo.ReturnPost;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -59,11 +59,11 @@ public class PostFollowerServiceImpl extends ServiceImpl<PostFollowerInfoMapper,
         }
         List<PostFollowerInfo> postList = postFollowerInfoMapper.selectList(queryWrapper);
 
-        List<ReturnPosts> postInfoList = new ArrayList<>();
+        List<ReturnPost> postInfoList = new ArrayList<>();
         for (PostFollowerInfo postfollowerInfo : postList) {
             // 根据 postId 查询对应的 PostInfo 对象
             PostInfo postInfo = postInfoMapper.selectById(postfollowerInfo.getPostId());
-            ReturnPosts posts = new ReturnPosts();
+            ReturnPost posts = new ReturnPost();
             posts.setId(postInfo.getId());
             posts.setPostTime(postInfo.getPostTime());
             posts.setImage(postInfo.getImage());

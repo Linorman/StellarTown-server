@@ -73,7 +73,7 @@ public class FileUtil extends MinioClient {
                     .build();
             this.putObject(objectArgs);
         } catch (Exception e) {
-            log.error("文件上传失败");
+            log.error("文件上传失败,错误信息:{}", e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -95,6 +95,7 @@ public class FileUtil extends MinioClient {
         }
         return null;
     }
+
 
     /**
      * 初始化方法
