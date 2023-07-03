@@ -68,9 +68,14 @@ public class WeatherController {
     public ResponseResult getLocationByCityName(String cityName) {
         return weatherService.getLocationByCityName(cityName);
     }
-
+    /**
+     * 根据经纬度获取城市名
+     * @param longitude
+     * @param  latitude
+     * @return ResponseResult
+     */
     @GetMapping("/cityName/location")
-    public ResponseResult getLocationByCityName(String longitude, String latitude) {
+    public ResponseResult getCityNameByLonLat(String longitude, String latitude) {
         return weatherService.getCityNameByLonLat(longitude, latitude);
     }
 }

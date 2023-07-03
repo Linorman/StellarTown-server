@@ -1,10 +1,5 @@
 package com.hllwz.stellartownserver.vo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @RequiredArgsConstructor
-public class ReturnPosts implements Serializable {
+public class ReturnPost implements Serializable {
     private int id;
     private int userId;
     private Integer likeCount;
@@ -29,5 +24,4 @@ public class ReturnPosts implements Serializable {
     private String shotTime;
     private Date postTime;
     private Double distance;
-
 }

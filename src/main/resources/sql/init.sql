@@ -6,7 +6,7 @@ create table user_info (
     password varchar(1023) not null,
     username varchar(255) binary not null,
     phone_number varchar(20),
-    avatar varchar(255),
+    avatar varchar(1023),
     address varchar(255),
     gender int not null comment '0:男,1:女,2:保密',
     age int,
@@ -28,14 +28,15 @@ create index followerId_follower_index on user_follower_info(follower_id);
 
 INSERT INTO user_info (password, username, phone_number, avatar, address, gender, age, signature, role, create_time, del_flag)
 VALUES
-    ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm', 'lyh', '1234567890', 'alice_avatar.jpg', '123 Street', 1, 28, 'Nice to meet you!', 'USER', '2023-06-28 08:49:39', 0),
-    ('$2a$10$bRKsmGEz5KpJgr5itTTLyurWL.uk2cxqeMqlPPfV1heygrwLpk8OC', 'Bob', '9876543210', 'bob_avatar.jpg', '456 Avenue', 0, 32, 'Hello, I am Bob.', 'USER', '2023-06-28 08:49:39', 0),
-    ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm', 'Admin', '5555555555', 'admin_avatar.jpg', '789 Road', 2, NULL, 'Welcome to the admin panel.', 'ADMIN', '2023-06-28 08:49:39', 0);
+    ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm', 'lyh', '1234567890', 'alice_avatar.jpg', '北京', 1, 28, 'Nice to meet you!', 'USER', '2023-06-28 08:49:39', 0),
+    ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm', 'hzy', '9876543210', 'bob_avatar.jpg', '上海', 0, 32, 'Hello, I am Bob.', 'USER', '2023-06-28 08:49:39', 0),
+    ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm', 'Admin', '5555555555', 'admin_avatar.jpg', '武汉', 2, NULL, 'Welcome to the admin panel.', 'ADMIN', '2023-06-28 08:49:39', 0),
+    ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm','ww','1234567890','ww_avatar.jpg','江苏',2,NULL,'hhh','USER','2021-06-29 09:56:23',0);
 INSERT INTO user_follower_info (user_id, follower_id, follow_time, del_flag)
 VALUES
     (1, 2, '2023-06-28 10:00:00', 0),
     (1, 3, '2023-06-28 10:15:00', 0),
-    (2, 3, '2023-06-28 10:30:00', 0),
+    (3, 2, '2023-06-28 10:30:00', 0),
     (2, 1, '2023-06-28 10:45:00', 0);
 
 drop database if exists db_stellar_town_post;
@@ -65,16 +66,40 @@ create table post_follower_info (
 
 INSERT INTO post_info (user_id, image, title, content, post_time, shot_time, address, like_count, tag, del_flag)
 VALUES
-    (1, 'image1.jpg', '第一篇帖子', '这是第一篇帖子的内容。', '2023-06-28 10:00:00', NULL, '北京市', 0, '生活', 0),
-    (2, 'image2.jpg', 'Second Post', 'This is the second post content.', '2023-06-28 11:00:00', NULL, '上海市', 0, '新闻', 0),
-    (3, 'image3.jpg', 'Third Post', 'This is the third post content.', '2023-06-28 12:00:00', NULL, '广州市', 0, '娱乐', 0);
+    (1, 'image1.jpg', '第一篇帖子', '这是第一篇帖子的内容。', '2023-06-28 10:00:00', NULL, '北京', 0, '生活', 0),
+    (2, 'image2.jpg', 'Second Post', 'This is the second post content.', '2023-06-28 11:00:00', NULL, '上海', 0, '新闻', 0),
+    (3, 'image3.jpg', 'Third Post', 'This is the third post content.', '2023-06-28 12:00:00', NULL, '广州', 0, '娱乐', 0),
+    (4, 'image4.jpg', 'Fourth Post', 'This is the fourth post content.', '2023-06-28 12:00:01', NULL, '山东', 0, '娱乐', 0);
 
 INSERT INTO post_follower_info (post_id, liker_id, follow_time, del_flag)
 VALUES
     (1, 1, '2023-06-28 10:00:00', 0),
-    (1, 2, '2023-06-28 10:15:00', 0),
     (2, 1, '2023-06-28 10:30:00', 0),
-    (2, 2, '2023-06-28 10:45:00', 0);
+    (1, 2, '2023-06-28 10:15:00', 0),
+    (2, 2, '2023-06-28 10:45:00', 0),
+    (3, 2, '2023-06-28 10:45:00', 0),
+    (1, 3, '2023-06-28 10:45:00', 0),
+    (4, 3, '2023-06-28 10:30:00', 0);
+
+
+
+drop database if exists  db_stellar_town_attraction;
+create database db_stellar_town_attraction;
+use db_stellar_town_attraction;
+create table attraction_info(
+    id int not null auto_increment primary key,
+    introduction varchar(255),
+    address varchar(255),
+    image  varchar(255),
+    altitude varchar(255),
+    longitude varchar(255),
+    latitude varchar(255)
+)comment '景点信息表' charset=utf8;
+INSERT INTO attraction_info (introduction, address, image, altitude, longitude, latitude)
+VALUES ('颐和园', '北京', 'images/yiheyuan.jpg', '40m', '116.273', '39.990'),
+       ('黄山', '安徽', 'images/huangshan.jpg', '1864m', '118.161', '30.130'),
+       ('九寨沟', '四川', 'images/jiuzhaigou.jpg', '2066m', '103.918', '33.262')
+
 
 
 

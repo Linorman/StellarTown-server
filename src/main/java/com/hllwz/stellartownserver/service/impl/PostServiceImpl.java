@@ -9,7 +9,7 @@ import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.service.PostService;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
-import com.hllwz.stellartownserver.vo.ReturnPosts;
+import com.hllwz.stellartownserver.vo.ReturnPost;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
         // 根据 postId 查询对应的 PostInfo 对象
-        ReturnPosts posts = new ReturnPosts();
+        ReturnPost posts = new ReturnPost();
         posts.setId(postInfo1.getId());
         posts.setPostTime(postInfo1.getPostTime());
         posts.setImage(postInfo1.getImage());
@@ -59,6 +59,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         posts.setLikeCount(postInfo1.getLikeCount());
         posts.setUserId(postInfo1.getUserId());
         posts.setShotTime(postInfo1.getShotTime());
+        posts.setTag(postInfo1.getTag());
 
         return ResponseResult.success(ResultCode.POST_GET_SUCCESS, posts);
     }
@@ -68,12 +69,12 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
 
         String title = postInfo.getTitle();
         String content = postInfo.getContent();
-        String image = postInfo.getImage();
-        if (title == null && content == null && image == null) {
+        if (title == null && content == null ) {
             return ResponseResult.error(ResultCode.POST_ADD_ERROR, null);
         }
         PostInfo post = new PostInfo();
-        post.setImage(postInfo.getImage());
+
+        // post.setImage(postInfo.getImage());
         post.setContent(postInfo.getContent());
         post.setTitle(postInfo.getTitle());
         post.setAddress(postInfo.getAddress());
@@ -83,7 +84,6 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         postInfoMapper.insert(post);
         int id =post.getId();
         return ResponseResult.success(ResultCode.POST_ADD_SUCCESS, id);
-
     }
 
     @Override
@@ -113,10 +113,10 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_LIST_NULL, null);
         }
-        List<ReturnPosts> postInfoList = new ArrayList<>();
+        List<ReturnPost> postInfoList = new ArrayList<>();
         for (PostInfo postInfo : postInfoTemp) {
             // 根据 postId 查询对应的 PostInfo 对象
-            ReturnPosts posts = new ReturnPosts();
+            ReturnPost posts = new ReturnPost();
             posts.setId(postInfo.getId());
             posts.setPostTime(postInfo.getPostTime());
             posts.setImage(postInfo.getImage());
@@ -141,10 +141,10 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_LIST_NULL, null);
         }
-        List<ReturnPosts> postInfoList = new ArrayList<>();
+        List<ReturnPost> postInfoList = new ArrayList<>();
         for (PostInfo postInfo : postInfoTemp) {
             // 根据 postId 查询对应的 PostInfo 对象
-            ReturnPosts posts = new ReturnPosts();
+            ReturnPost posts = new ReturnPost();
             posts.setId(postInfo.getId());
             posts.setPostTime(postInfo.getPostTime());
             posts.setImage(postInfo.getImage());

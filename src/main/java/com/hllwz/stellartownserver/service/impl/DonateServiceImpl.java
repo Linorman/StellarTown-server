@@ -21,6 +21,7 @@ public class DonateServiceImpl implements DonateService {
     @Override
     public ResponseResult getDonateInfo() {
         String imagePath = minioClient.preview("donate/IMG_5831(20230627-155904).JPG");
-        return ResponseResult.success(GET_DONATE_INFO_SUCCESS, imagePath);
+        String newUrl = imagePath.replace("http://127.0.0.1:9999", "http://omks3oamocpy.xiaomiqiu.com");
+        return ResponseResult.success(GET_DONATE_INFO_SUCCESS, newUrl);
     }
 }
