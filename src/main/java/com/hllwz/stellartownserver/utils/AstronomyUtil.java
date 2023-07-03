@@ -7,6 +7,7 @@ import com.hllwz.stellartownserver.entity.astronomyApi.MoonPhase;
 import com.hllwz.stellartownserver.entity.astronomyApi.SpecialTime;
 import com.hllwz.stellartownserver.entity.astronomyApi.TwilightData;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -111,7 +112,7 @@ public class AstronomyUtil {
      * @return String
      */
     public static TwilightData getTwilightTime(String lon, String lat) {
-        String path = "src/main/resources/python/fetch.py";
+        String path = "/home/StellarTown-server/src/main/resources/python/fetch.py";
         String[] args = new String[]{"python", path, lon, lat};
         String result = PythonUtil.execPython(path, args);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -140,7 +141,7 @@ public class AstronomyUtil {
         double formattedLatitude = Double.parseDouble(decimalFormat.format(Double.parseDouble(cityMap.get("lat"))));
         double formattedLongitude = Double.parseDouble(decimalFormat.format(Double.parseDouble(cityMap.get("lon"))));
 
-        String path = "src/main/resources/python/fetch.py";
+        String path = "/home/StellarTown-server/src/main/resources/python/fetch.py";
         String[] args = new String[]{"python", path, String.valueOf(formattedLongitude), String.valueOf(formattedLatitude)};
         String result = PythonUtil.execPython(path, args);
         ObjectMapper objectMapper = new ObjectMapper();
