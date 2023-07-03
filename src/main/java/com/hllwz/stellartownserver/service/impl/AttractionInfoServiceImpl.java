@@ -44,7 +44,6 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
             attractionInfo2.setAddress(attractionInfo1.getAddress());
             attractionInfo2.setId(attractionInfo1.getId());
             attractionInfo2.setImage(attractionInfo1.getImage());
-            attractionInfo2.setAltitude(attractionInfo1.getAltitude());
             attractionInfo2.setIntroduction(attractionInfo1.getIntroduction());
             attractionInfo2.setLatitude(attractionInfo1.getLatitude());
             attractionInfo2.setLongitude(attractionInfo1.getLongitude());

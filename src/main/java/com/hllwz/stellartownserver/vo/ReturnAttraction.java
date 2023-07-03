@@ -19,6 +19,5 @@ public class ReturnAttraction implements Serializable {
     private String longitude;
     private String latitude;
     private String introduction;
-    private String altitude;
     private Double distance;
 }
