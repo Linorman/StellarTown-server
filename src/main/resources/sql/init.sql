@@ -97,8 +97,8 @@ create table attraction_info(
 )comment '景点信息表' charset=utf8;
 INSERT INTO attraction_info (introduction, address, image, altitude, longitude, latitude)
 VALUES ('颐和园', '北京', 'images/yiheyuan.jpg', '40m', '116.273', '39.990'),
-       ('黄山', '安徽', 'images/huangshan.jpg', '1864m', '118.161', '30.130'),
-       ('九寨沟', '四川', 'images/jiuzhaigou.jpg', '2066m', '103.918', '33.262')
+       ('黄山', '黄山', 'images/huangshan.jpg', '1864m', '118.161', '30.130'),
+       ('九寨沟', '阿坝藏族羌族自治州', 'images/jiuzhaigou.jpg', '2066m', '103.918', '33.262')
 
 
 
