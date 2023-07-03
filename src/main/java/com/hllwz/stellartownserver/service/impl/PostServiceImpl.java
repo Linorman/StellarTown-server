@@ -9,7 +9,7 @@ import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.service.PostService;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
-import com.hllwz.stellartownserver.vo.ReturnPosts;
+import com.hllwz.stellartownserver.vo.ReturnPost;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
         // 根据 postId 查询对应的 PostInfo 对象
-        ReturnPosts posts = new ReturnPosts();
+        ReturnPost posts = new ReturnPost();
         posts.setId(postInfo1.getId());
         posts.setPostTime(postInfo1.getPostTime());
         posts.setImage(postInfo1.getImage());
@@ -112,10 +112,10 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_LIST_NULL, null);
         }
-        List<ReturnPosts> postInfoList = new ArrayList<>();
+        List<ReturnPost> postInfoList = new ArrayList<>();
         for (PostInfo postInfo : postInfoTemp) {
             // 根据 postId 查询对应的 PostInfo 对象
-            ReturnPosts posts = new ReturnPosts();
+            ReturnPost posts = new ReturnPost();
             posts.setId(postInfo.getId());
             posts.setPostTime(postInfo.getPostTime());
             posts.setImage(postInfo.getImage());
@@ -140,10 +140,10 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_LIST_NULL, null);
         }
-        List<ReturnPosts> postInfoList = new ArrayList<>();
+        List<ReturnPost> postInfoList = new ArrayList<>();
         for (PostInfo postInfo : postInfoTemp) {
             // 根据 postId 查询对应的 PostInfo 对象
-            ReturnPosts posts = new ReturnPosts();
+            ReturnPost posts = new ReturnPost();
             posts.setId(postInfo.getId());
             posts.setPostTime(postInfo.getPostTime());
             posts.setImage(postInfo.getImage());
