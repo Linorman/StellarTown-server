@@ -2,13 +2,11 @@ package com.hllwz.stellartownserver.controller;
 
 
 import com.hllwz.stellartownserver.common.ResponseResult;
+import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.service.AttractionInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 景点控制器
@@ -26,8 +24,8 @@ public class AttractionInfoController {
     private final AttractionInfoService attractionInfoService;
 
     @GetMapping("/getAttraction")
-    public ResponseResult getAttraction() {
-        return attractionInfoService.getAttraction();
+    public ResponseResult getAttraction(@RequestBody UserInfo userInfo) {
+        return attractionInfoService.getAttraction(userInfo);
     }
 }
 

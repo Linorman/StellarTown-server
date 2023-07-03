@@ -61,7 +61,8 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
 
             double postLat = Double.parseDouble(location2.get("lat"));
             double postLon = Double.parseDouble(location2.get("lon"));
-            Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(SecurityUtil.getLoginUser().getAddress()));
+            UserInfo user = userInfoMapper.selectById(SecurityUtil.getUserId());
+            Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(user.getAddress()));
             double userLat = Double.parseDouble(location1.get("lat"));
             double userLon = Double.parseDouble(location1.get("lon"));
             double distance = recommendUtil.calculateDistance(userLat, userLon, postLat, postLon);

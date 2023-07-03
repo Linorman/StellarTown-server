@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.AttractionInfo;
+import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.mapper.AttractionInfoMapper;
 import com.hllwz.stellartownserver.service.AttractionInfoService;
 import com.hllwz.stellartownserver.utils.CityUtil;
@@ -36,7 +37,7 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
 
 
     @Override
-    public ResponseResult getAttraction() {
+    public ResponseResult getAttraction(UserInfo userInfo) {
         List<AttractionInfo> attractionInfo = attractionInfoMapper.selectList(null);
         List<ReturnAttraction> attractionInfo3 = new ArrayList<>();
         for (AttractionInfo attractionInfo1 : attractionInfo) {
@@ -56,7 +57,7 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
         for (ReturnAttraction attractionInfo11 : attractionInfo3) {
             double longitude = Double.parseDouble(attractionInfo11.getLongitude());
             double latitude = Double.parseDouble(attractionInfo11.getLatitude());
-            Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(SecurityUtil.getLoginUser().getAddress()));
+            Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(userInfo.getAddress()));
             double userLat = Double.parseDouble(location1.get("lat"));
             double userLon = Double.parseDouble(location1.get("lon"));
             double distance = recommendUtil.calculateDistance(userLat, userLon, latitude,longitude);
