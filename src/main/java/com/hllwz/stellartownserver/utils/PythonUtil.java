@@ -21,7 +21,7 @@ public class PythonUtil {
             Runtime runtime = Runtime.getRuntime();
             Process process = null;
             if (params.length == 0) {
-                process = runtime.exec("python " + scriptPath);
+                process = runtime.exec("python3 " + scriptPath);
             }
             else {
                 String param = "";
@@ -29,7 +29,7 @@ public class PythonUtil {
                     param += s;
                     param += " ";
                 }
-                process = runtime.exec("python " + scriptPath + " " + param);
+                process = runtime.exec("python3 " + scriptPath + " " + param);
             }
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
