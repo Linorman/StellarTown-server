@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostFollowerInfo;
+import com.hllwz.stellartownserver.entity.PostInfo;
 import com.hllwz.stellartownserver.entity.UserInfo;
 import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.mapper.UserInfoMapper;
@@ -38,7 +39,8 @@ public class LocalRecommendationServiceImpl extends ServiceImpl<PostFollowerInfo
     private final PostServiceImpl postService;
 
     public ResponseResult getLocalRecommendation() {
-        String address= SecurityUtil.getLoginUser().getAddress();
+       UserInfo userInfo = userInfoMapper.selectById(SecurityUtil.getUserId());
+        String address= userInfo.getAddress();
         List<Integer> userIds = new ArrayList<>();
         // 遍历PostFollowerInfo表，获取所有用户的ID，并加入userIds列表
         LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();

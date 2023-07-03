@@ -4,8 +4,7 @@ package com.hllwz.stellartownserver.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.entity.AttractionInfo;
-import com.hllwz.stellartownserver.entity.PostFollowerInfo;
-import com.hllwz.stellartownserver.entity.PostInfo;
+import com.hllwz.stellartownserver.entity.UserInfo;
 
 /**
  * 推荐景点Service接口
@@ -20,7 +19,7 @@ public interface AttractionInfoService extends IService<AttractionInfo> {
      *
      * @return ResponseResult
      */
-    ResponseResult getAttraction();
+    ResponseResult getAttraction(UserInfo userInfo);
 
 }
 
