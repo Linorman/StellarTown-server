@@ -55,6 +55,7 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
         for (ReturnAttraction attraction : attractionInfo3) {
             double longitude = Double.parseDouble(attraction.getLongitude());
             double latitude = Double.parseDouble(attraction.getLatitude());
+
             Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(userInfo.getAddress()));
             double userLat = Double.parseDouble(location1.get("lat"));
             double userLon = Double.parseDouble(location1.get("lon"));
