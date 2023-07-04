@@ -80,6 +80,7 @@ public class UserInfoController {
      * @return ResponseResult
      */
     @PutMapping("/updateUserInfo")
+    @Deprecated
     public ResponseResult updateUserInfo(@RequestBody UserInfo userInfo) {
         return userInfoService.updateUserInfo(userInfo);
     }
@@ -93,5 +94,25 @@ public class UserInfoController {
     @RequestMapping("/getUserInfoById")
     public ResponseResult getUserInfoById(@RequestBody UserInfo userInfo) {
         return userInfoService.getUserInfoById(userInfo.getId());
+    }
+
+    /**
+     * 更新用户地址
+     * @param address
+     * @return ResponseResult
+     */
+    @PutMapping("/updateUserAddress")
+    public ResponseResult updateUserAddress(@RequestParam String address) {
+        return userInfoService.updateUserAddress(address);
+    }
+
+    /**
+     * 更新用户个性签名
+     * @param signature
+     * @return ResponseResult
+     */
+    @PutMapping("/updateUserSignature")
+    public ResponseResult updateUserSignature(@RequestParam String signature) {
+        return userInfoService.updateUserSignature(signature);
     }
 }
