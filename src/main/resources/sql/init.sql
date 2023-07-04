@@ -31,7 +31,7 @@ VALUES
     ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm', 'lyh', '1234567890', 'alice_avatar.jpg', '北京', 1, 28, 'Nice to meet you!', 'USER', '2023-06-28 08:49:39', 0),
     ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm', 'hzy', '9876543210', 'bob_avatar.jpg', '上海', 0, 32, 'Hello, I am Bob.', 'USER', '2023-06-28 08:49:39', 0),
     ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm', 'Admin', '5555555555', 'admin_avatar.jpg', '武汉', 2, NULL, 'Welcome to the admin panel.', 'ADMIN', '2023-06-28 08:49:39', 0),
-    ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm','ww','1234567890','ww_avatar.jpg','江苏',2,NULL,'hhh','USER','2021-06-29 09:56:23',0);
+    ('$2a$10$qDsDERjBgAnI02TJSquZAed.sb7Ak7VLGWbWY5ixtXkWNm2qH5JNm','ww','1234567890','ww_avatar.jpg','苏州',2,NULL,'hhh','USER','2021-06-29 09:56:23',0);
 INSERT INTO user_follower_info (user_id, follower_id, follow_time, del_flag)
 VALUES
     (1, 2, '2023-06-28 10:00:00', 0),
@@ -69,7 +69,7 @@ VALUES
     (1, 'image1.jpg', '第一篇帖子', '这是第一篇帖子的内容。', '2023-06-28 10:00:00', NULL, '北京', 0, '生活', 0),
     (2, 'image2.jpg', 'Second Post', 'This is the second post content.', '2023-06-28 11:00:00', NULL, '上海', 0, '新闻', 0),
     (3, 'image3.jpg', 'Third Post', 'This is the third post content.', '2023-06-28 12:00:00', NULL, '广州', 0, '娱乐', 0),
-    (4, 'image4.jpg', 'Fourth Post', 'This is the fourth post content.', '2023-06-28 12:00:01', NULL, '山东', 0, '娱乐', 0);
+    (4, 'image4.jpg', 'Fourth Post', 'This is the fourth post content.', '2023-06-28 12:00:01', NULL, '日照', 0, '娱乐', 0);
 
 INSERT INTO post_follower_info (post_id, liker_id, follow_time, del_flag)
 VALUES
@@ -95,10 +95,10 @@ create table attraction_info(
     longitude varchar(255),
     latitude varchar(255)
 )comment '景点信息表' charset=utf8;
-INSERT INTO attraction_info (introduction, address, image, altitude, longitude, latitude)
-VALUES ('颐和园', '北京', 'images/yiheyuan.jpg', '40m', '116.273', '39.990'),
-       ('黄山', '安徽', 'images/huangshan.jpg', '1864m', '118.161', '30.130'),
-       ('九寨沟', '四川', 'images/jiuzhaigou.jpg', '2066m', '103.918', '33.262')
+INSERT INTO attraction_info (introduction, address, image, longitude, latitude)
+VALUES ('鸣沙山', '酒泉', 'images/mingshashan.jpg','90.6', '40'),
+       ('暗夜公园', '阿里地区', 'images/anyegongyuan.jpg','81.08', '30.24'),
+       ('峨眉山金顶', '乐山', 'images/emeishanjinding.jpg','103.07', '29.24');
 
 
 
