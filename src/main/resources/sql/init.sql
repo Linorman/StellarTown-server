@@ -95,10 +95,12 @@ create table attraction_info(
     longitude varchar(255),
     latitude varchar(255)
 )comment '景点信息表' charset=utf8;
-INSERT INTO attraction_info (introduction, address, image, altitude, longitude, latitude)
-VALUES ('颐和园', '北京', 'images/yiheyuan.jpg', '40m', '116.273', '39.990'),
-       ('黄山', '安徽', 'images/huangshan.jpg', '1864m', '118.161', '30.130'),
-       ('九寨沟', '四川', 'images/jiuzhaigou.jpg', '2066m', '103.918', '33.262');
+
+
+INSERT INTO attraction_info (introduction, address, image, longitude, latitude)
+VALUES ('鸣沙山', '酒泉', 'images/mingshashan.jpg','90.6', '40'),
+       ('暗夜公园', '阿里地区', 'images/anyegongyuan.jpg','81.08', '30.24'),
+       ('峨眉山金顶', '乐山', 'images/emeishanjinding.jpg','103.07', '29.24');
 
 
 

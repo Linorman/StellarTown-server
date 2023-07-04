@@ -145,6 +145,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
+    @Deprecated
     public ResponseResult updateUserInfo(UserInfo userInfo) {
         Integer userId = SecurityUtil.getUserId();
         LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
@@ -177,5 +178,31 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfoResponse.setSignature(userInfo.getSignature());
 
         return ResponseResult.success(ResultCode.GET_USER_INFO_SUCCESS, userInfoResponse);
+    }
+
+    @Override
+    public ResponseResult updateUserAddress(String address) {
+        Integer userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getId, userId);
+        UserInfo user = userInfoMapper.selectOne(wrapper);
+        if (user == null) {
+            return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
+        }
+        user.setAddress(address);
+        return ResponseResult.success(ResultCode.UPDATE_USER_INFO_SUCCESS, user);
+    }
+
+    @Override
+    public ResponseResult updateUserSignature(String signature) {
+        Integer userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getId, userId);
+        UserInfo user = userInfoMapper.selectOne(wrapper);
+        if (user == null) {
+            return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
+        }
+        user.setSignature(signature);
+        return ResponseResult.success(ResultCode.UPDATE_USER_INFO_SUCCESS, user);
     }
 }

@@ -11,7 +11,6 @@ import com.hllwz.stellartownserver.service.AttractionInfoService;
 import com.hllwz.stellartownserver.utils.CityUtil;
 import com.hllwz.stellartownserver.utils.PinYinUtil;
 import com.hllwz.stellartownserver.utils.RecommendUtil;
-import com.hllwz.stellartownserver.utils.SecurityUtil;
 import com.hllwz.stellartownserver.vo.ReturnAttraction;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +44,6 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
             attractionInfo2.setAddress(attractionInfo1.getAddress());
             attractionInfo2.setId(attractionInfo1.getId());
             attractionInfo2.setImage(attractionInfo1.getImage());
-            attractionInfo2.setAltitude(attractionInfo1.getAltitude());
             attractionInfo2.setIntroduction(attractionInfo1.getIntroduction());
             attractionInfo2.setLatitude(attractionInfo1.getLatitude());
             attractionInfo2.setLongitude(attractionInfo1.getLongitude());
@@ -54,14 +52,15 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
             }
         }//输出vo
 
-        for (ReturnAttraction attractionInfo11 : attractionInfo3) {
-            double longitude = Double.parseDouble(attractionInfo11.getLongitude());
-            double latitude = Double.parseDouble(attractionInfo11.getLatitude());
+        for (ReturnAttraction attraction : attractionInfo3) {
+            double longitude = Double.parseDouble(attraction.getLongitude());
+            double latitude = Double.parseDouble(attraction.getLatitude());
+
             Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(userInfo.getAddress()));
             double userLat = Double.parseDouble(location1.get("lat"));
             double userLon = Double.parseDouble(location1.get("lon"));
             double distance = recommendUtil.calculateDistance(userLat, userLon, latitude,longitude);
-            attractionInfo11.setDistance(distance);
+            attraction.setDistance(distance);
         }
         Collections.sort(attractionInfo3, Comparator.comparing(ReturnAttraction::getDistance));
         return ResponseResult.success(ResultCode.ATTRACTION_GET_SUCCESS, attractionInfo3);

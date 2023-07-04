@@ -49,7 +49,22 @@ public interface UserInfoService extends IService<UserInfo> {
      * @param userInfo
      * @return ResponseResult
      */
+    @Deprecated
     public ResponseResult updateUserInfo(UserInfo userInfo);
+
+    /**
+     * 更新用户地址
+     * @param address
+     * @return ResponseResult
+     */
+    public ResponseResult updateUserAddress(String address);
+
+    /**
+     * 更新用户个性签名
+     * @param signature
+     * @return ResponseResult
+     */
+    public ResponseResult updateUserSignature(String signature);
 
     /**
      * 根据id获取用户信息
