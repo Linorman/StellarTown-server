@@ -1,5 +1,6 @@
 package com.hllwz.stellartownserver.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
@@ -54,6 +55,7 @@ public class MinioServiceImpl implements MinioService {
 
     }
 
+    @DS("db_stellar_town_post")
     @Override
     public ResponseResult uploadPost(String objectName, InputStream inputStream, Integer postId) {
         String fileName = "post-" + "postId-" + postId + "-" + objectName;

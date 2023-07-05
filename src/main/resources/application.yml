@@ -73,7 +73,7 @@ minio:
   accessKey: adminminio
   secretKey: adminminio
   bucketName: stellar-town
-#  endpoint: http://omks3oamocpy.xiaomiqiu.com
+#  endpoint: http://101.37.252.1:9999
 #  accessKey: adminminio
 #  secretKey: adminminio
 #  bucketName: stellar-town

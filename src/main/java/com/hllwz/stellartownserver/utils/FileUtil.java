@@ -60,8 +60,8 @@ public class FileUtil extends MinioClient {
 
     /**
      * 文件上传
-     *
-     * @param file 文件
+     * @param filePath
+     * @param inputStream
      * @return Boolean
      */
     public Boolean upload(String filePath, InputStream inputStream) {
