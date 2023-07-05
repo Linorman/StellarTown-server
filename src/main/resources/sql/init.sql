@@ -88,6 +88,7 @@ create database db_stellar_town_attraction;
 use db_stellar_town_attraction;
 create table attraction_info(
     id int not null auto_increment primary key,
+    name varchar(255),
     introduction varchar(255),
     address varchar(255),
     image  varchar(255),
@@ -97,10 +98,10 @@ create table attraction_info(
 )comment '景点信息表' charset=utf8;
 
 
-INSERT INTO attraction_info (introduction, address, image, longitude, latitude)
-VALUES ('鸣沙山', '酒泉', 'images/mingshashan.jpg','90.6', '40'),
-       ('暗夜公园', '阿里地区', 'images/anyegongyuan.jpg','81.08', '30.24'),
-       ('峨眉山金顶', '乐山', 'images/emeishanjinding.jpg','103.07', '29.24');
+INSERT INTO attraction_info (introduction, name,address, image, longitude, latitude)
+VALUES ('鸣沙山', '鸣沙山','酒泉', 'images/mingshashan.jpg','90.6', '40'),
+       ('暗夜公园', '暗夜公园' , '阿里地区', 'images/anyegongyuan.jpg','81.08', '30.24'),
+       ('峨眉山金顶','峨眉山金顶' ,'乐山', 'images/emeishanjinding.jpg','103.07', '29.24');
 
 
 

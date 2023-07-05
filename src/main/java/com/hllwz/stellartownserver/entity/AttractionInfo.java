@@ -20,6 +20,7 @@ import java.io.Serializable;
 public class AttractionInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private int id;
+    private String name;
     private String image;
     private String address;
     private String longitude;
