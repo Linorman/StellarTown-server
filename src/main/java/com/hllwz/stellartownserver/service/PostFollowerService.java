@@ -30,13 +30,20 @@ public interface PostFollowerService extends IService<PostFollowerInfo> {
     ResponseResult getLikedPosts();
 
     /**
-     * 返回点赞帖子重写
+     * 返回点赞帖子重写(服务于util)
      *
      * @param id
      * @return ResponseResult
      */
     ResponseResult<List<Integer>> getLikedPosts(int id);
 
+
+    /**
+     * 返回点赞帖子
+     *
+     * @return ResponseResult
+     */
+ ResponseResult getOthersLikedPosts(Integer id);
     /**
      * 返回是否点赞
      *
