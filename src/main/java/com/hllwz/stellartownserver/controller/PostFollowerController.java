@@ -42,6 +42,13 @@ public class PostFollowerController {
     public ResponseResult getLikedPosts() {
         return postFollowerService.getLikedPosts();
     }
+    /**
+     * 返回他人点赞帖子
+     *
+     * @return ResponseResult
+     */
+@GetMapping("/getOthersLikedPosts")
+public  ResponseResult getOthersLikedPosts(Integer id){return  postFollowerService.getOthersLikedPosts(id);}
 
     /**
      * 返回是否点赞
