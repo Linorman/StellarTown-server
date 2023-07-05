@@ -38,6 +38,9 @@ public class LocalRecommendationServiceImpl extends ServiceImpl<PostFollowerInfo
     public ResponseResult getLocalRecommendation() {
        UserInfo userInfo = userInfoMapper.selectById(SecurityUtil.getUserId());
         String address= userInfo.getAddress();
+        if(address==null||address.equals("")){
+            return ResponseResult.error(ResultCode.POST_LIST_GET_ERROR,null);
+        }
         List<Integer> userIds = new ArrayList<>();
         // 遍历PostFollowerInfo表，获取所有用户的ID，并加入userIds列表
         LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();

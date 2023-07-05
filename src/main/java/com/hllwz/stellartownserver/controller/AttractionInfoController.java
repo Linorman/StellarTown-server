@@ -24,8 +24,8 @@ public class AttractionInfoController {
     private final AttractionInfoService attractionInfoService;
 
     @GetMapping("/getAttraction")
-    public ResponseResult getAttraction(@RequestBody UserInfo userInfo) {
-        return attractionInfoService.getAttraction(userInfo);
+    public ResponseResult getAttraction(String address) {
+        return attractionInfoService.getAttraction(address);
     }
 }
 

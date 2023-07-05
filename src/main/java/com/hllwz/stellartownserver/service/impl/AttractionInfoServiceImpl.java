@@ -36,7 +36,7 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
 
 
     @Override
-    public ResponseResult getAttraction(UserInfo userInfo) {
+    public ResponseResult getAttraction(String address) {
         List<AttractionInfo> attractionInfo = attractionInfoMapper.selectList(null);
         List<ReturnAttraction> attractionInfo3 = new ArrayList<>();
         for (AttractionInfo attractionInfo1 : attractionInfo) {
@@ -56,7 +56,7 @@ public class AttractionInfoServiceImpl extends ServiceImpl<AttractionInfoMapper,
             double longitude = Double.parseDouble(attraction.getLongitude());
             double latitude = Double.parseDouble(attraction.getLatitude());
 
-            Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(userInfo.getAddress()));
+            Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(address));
             double userLat = Double.parseDouble(location1.get("lat"));
             double userLon = Double.parseDouble(location1.get("lon"));
             double distance = recommendUtil.calculateDistance(userLat, userLon, latitude,longitude);

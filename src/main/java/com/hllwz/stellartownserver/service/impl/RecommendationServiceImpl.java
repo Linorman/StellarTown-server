@@ -55,6 +55,10 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
             if (postId != null) {
                 postList11.add(posts1);}
         }
+        UserInfo temp =userInfoMapper.selectById(SecurityUtil.getUserId());
+        if (temp.getAddress()==null||temp.getAddress().equals("")){
+            return ResponseResult.success(ResultCode.POST_LIST_GET_SUCCESS,postList11);
+        }else{
 //        依据地点远近进行排序
         for (ReturnPost newPost : postList11) {
             Map<String, String> location2 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(newPost.getAddress()));
@@ -63,6 +67,7 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
             double postLon = Double.parseDouble(location2.get("lon"));
             UserInfo user = userInfoMapper.selectById(SecurityUtil.getUserId());
             Map<String, String> location1 = CityUtil.getLocationByCity(PinYinUtil.toPinyin(user.getAddress()));
+
             double userLat = Double.parseDouble(location1.get("lat"));
             double userLon = Double.parseDouble(location1.get("lon"));
             double distance = recommendUtil.calculateDistance(userLat, userLon, postLat, postLon);
@@ -70,6 +75,7 @@ public class RecommendationServiceImpl extends ServiceImpl<PostFollowerInfoMappe
         }
         Collections.sort(postList11, Comparator.comparing(ReturnPost::getDistance));
         return ResponseResult.success(ResultCode.SUCCESS, postList11);
+    }
     }
 }
 
