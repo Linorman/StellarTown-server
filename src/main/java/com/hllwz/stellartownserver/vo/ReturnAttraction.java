@@ -14,6 +14,7 @@ import java.io.Serializable;
 @RequiredArgsConstructor
 public class ReturnAttraction implements Serializable {
     private int id;
+    private String name;
     private String image;
     private String address;
     private String longitude;
