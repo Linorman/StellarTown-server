@@ -43,7 +43,7 @@ public class MinioServiceImpl implements MinioService {
             queryWrapper.eq(UserInfo::getId, userId);
             UserInfo userInfo = userInfoMapper.selectOne(queryWrapper);
 
-            String newUrl = "http://omks3oamocpy.xiaomiqiu.com/" + "stellar-town/" + fileName;
+            String newUrl = "http://101.37.252.1:9999/" + "stellar-town/" + fileName;
             userInfo.setAvatar(newUrl);
             userInfoMapper.updateById(userInfo);
 
@@ -63,7 +63,7 @@ public class MinioServiceImpl implements MinioService {
             queryWrapper.eq(PostInfo::getId, postId);
             PostInfo postInfo = postInfoMapper.selectOne(queryWrapper);
             // String postUrl = minioClient.preview("post" + objectName);
-            String postUrl = "http://omks3oamocpy.xiaomiqiu.com/" + "stellar-town/" +fileName;
+            String postUrl = "http://101.37.252.1:9999/" + "stellar-town/" +fileName;
             postInfo.setImage(postUrl);
             return ResponseResult.success(ResultCode.POST_UPLOAD_SUCCESS, postUrl);
         } else {
