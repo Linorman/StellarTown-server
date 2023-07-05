@@ -19,7 +19,7 @@ public interface AttractionInfoService extends IService<AttractionInfo> {
      *
      * @return ResponseResult
      */
-    ResponseResult getAttraction(UserInfo userInfo);
+    ResponseResult getAttraction(String address);
 
 }
 
