@@ -57,7 +57,7 @@ public class MinioServiceImpl implements MinioService {
     @Override
     public ResponseResult uploadPost(String objectName, InputStream inputStream, Integer postId) {
         String fileName = "post-" + "postId-" + postId + "-" + objectName;
-        boolean flag = minioClient.upload("post" + objectName, inputStream);
+        boolean flag = minioClient.upload(fileName, inputStream);
         if (flag) {
             LambdaQueryWrapper<PostInfo> queryWrapper = new LambdaQueryWrapper<>();
             queryWrapper.eq(PostInfo::getId, postId);
@@ -65,6 +65,7 @@ public class MinioServiceImpl implements MinioService {
             // String postUrl = minioClient.preview("post" + objectName);
             String postUrl = "http://101.37.252.1:9999/" + "stellar-town/" +fileName;
             postInfo.setImage(postUrl);
+            postInfoMapper.updateById(postInfo);
             return ResponseResult.success(ResultCode.POST_UPLOAD_SUCCESS, postUrl);
         } else {
             return ResponseResult.error(ResultCode.POST_UPLOAD_ERROR, null);
