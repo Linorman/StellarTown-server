@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hllwz.stellartownserver.common.ResponseResult;
 import com.hllwz.stellartownserver.common.ResultCode;
 import com.hllwz.stellartownserver.entity.PostInfo;
+import com.hllwz.stellartownserver.mapper.PostFollowerInfoMapper;
 import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.service.PostService;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
@@ -30,6 +31,7 @@ import java.util.List;
 public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> implements PostService {
 
     private final PostInfoMapper postInfoMapper;
+    private final LikeServiceImpl likeService;
 
     @Override
     public ResponseResult getAllPosts() {
@@ -95,7 +97,7 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
-
+//        likeService.unLike(postInfoTemp);
         int result = postInfoMapper.delete(queryWrapper);
         if (result > 0) {
             return ResponseResult.success(ResultCode.POST_DELETE_SUCCESS, null);

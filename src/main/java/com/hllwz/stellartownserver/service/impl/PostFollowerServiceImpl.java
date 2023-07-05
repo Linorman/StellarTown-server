@@ -12,6 +12,7 @@ import com.hllwz.stellartownserver.mapper.PostInfoMapper;
 import com.hllwz.stellartownserver.service.PostFollowerService;
 import com.hllwz.stellartownserver.utils.SecurityUtil;
 import com.hllwz.stellartownserver.vo.ReturnPost;
+import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -95,6 +96,38 @@ public class PostFollowerServiceImpl extends ServiceImpl<PostFollowerInfoMapper,
         return ResponseResult.success(ResultCode.POST_LIST_GET_SUCCESS, postIdList);
 
     }
+    @Override
+    public  ResponseResult getOthersLikedPosts(Integer id){
+        LambdaQueryWrapper<PostFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(PostFollowerInfo::getLikerId, id);
+        List<PostFollowerInfo> temp = postFollowerInfoMapper.selectList(queryWrapper);
+        if (temp == null) {
+            return ResponseResult.error(ResultCode.POST_GET_ERROR, null);//修改”用户不存在或未点过赞“
+        }
+        List<PostFollowerInfo> postList = postFollowerInfoMapper.selectList(queryWrapper);
+
+        List<ReturnPost> postInfoList = new ArrayList<>();
+        for (PostFollowerInfo postfollowerInfo : postList) {
+            // 根据 postId 查询对应的 PostInfo 对象
+            PostInfo postInfo = postInfoMapper.selectById(postfollowerInfo.getPostId());
+            ReturnPost posts = new ReturnPost();
+            posts.setId(postInfo.getId());
+            posts.setPostTime(postInfo.getPostTime());
+            posts.setImage(postInfo.getImage());
+            posts.setAddress(postInfo.getAddress());
+            posts.setTitle(postInfo.getTitle());
+            posts.setContent(postInfo.getContent());
+            posts.setLikeCount(postInfo.getLikeCount());
+            posts.setUserId(postInfo.getUserId());
+            posts.setShotTime(postInfo.getShotTime());
+            if (postInfo != null) {
+                postInfoList.add(posts);
+            }
+        }
+        return ResponseResult.success(ResultCode.FOLLOWER_LIST_GET_SUCCESS, postInfoList);
+    }
+
+
 
     @Override
     public ResponseResult<Boolean> isLiked(Integer postId) {

@@ -62,6 +62,7 @@ public class LikeServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFol
         }
         LambdaQueryWrapper<PostFollowerInfo> queryWrapper2 = new LambdaQueryWrapper<>();
         queryWrapper2.eq(PostFollowerInfo::getPostId, postId);
+        queryWrapper2.eq(PostFollowerInfo::getLikerId,userId);
         PostFollowerInfo postFollowerInfoTemp = postFollowerInfoMapper.selectOne(queryWrapper2);
         if (postFollowerInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_CANCEL_LIKE_ERROR, null);
