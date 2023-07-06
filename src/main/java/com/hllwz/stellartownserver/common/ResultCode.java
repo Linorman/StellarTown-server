@@ -87,7 +87,7 @@ public enum ResultCode {
     POST_CANCEL_LIKE_ERROR(410, "帖子取消点赞失败"),
     POST_CANCEL_LIKE_SUCCESS(208, "帖子取消点赞成功"),
     POST_LIKEPOST_EXIST(209, "帖子已点赞"),
-    POST_LIKEPOST_NO(488, "帖子未点赞"),
+    POST_LIKEPOST_NO(288, "帖子未点赞"),
     POST_FOLLOWER_NUM_GET_SUCCESS(209, "帖子关注数获取成功"),
     POST_FOLLOWER_NUM_GET_ERROR(411, "帖子关注数获取失败"),
     POST_NUM_GET_SUCCESS(210, "帖子数获取成功"),
