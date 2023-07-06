@@ -67,6 +67,28 @@ public interface UserInfoService extends IService<UserInfo> {
     public ResponseResult updateUserSignature(String signature);
 
     /**
+     * 更新用户名
+     * @param username
+     * @return ResponseResult
+     */
+    public ResponseResult updateUsername(String username);
+
+    /**
+     * 更新用户性别
+     * @param gender
+     * @return ResponseResult
+     */
+    public ResponseResult updateGender(Integer gender);
+
+    /**
+     * 更新用户年龄
+     * @param age
+     * @return ResponseResult
+     */
+    public ResponseResult updateAge(Integer age);
+
+
+    /**
      * 根据id获取用户信息
      * @param id
      * @return ResponseResult

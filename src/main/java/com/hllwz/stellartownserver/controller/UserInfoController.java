@@ -115,4 +115,34 @@ public class UserInfoController {
     public ResponseResult updateUserSignature(@RequestParam String signature) {
         return userInfoService.updateUserSignature(signature);
     }
+
+    /**
+     * 更新用户名
+     * @param username
+     * @return ResponseResult
+     */
+    @PutMapping("/updateUsername")
+    public ResponseResult updateUsername(@RequestParam String username) {
+        return userInfoService.updateUsername(username);
+    }
+
+    /**
+     * 更新用户性别
+     * @param gender
+     * @return ResponseResult
+     */
+    @PutMapping("/updateGender")
+    public ResponseResult updateGender(@RequestParam Integer gender) {
+        return userInfoService.updateGender(gender);
+    }
+
+    /**
+     * 更新用户年龄
+     * @param age
+     * @return ResponseResult
+     */
+    @PutMapping("/updateAge")
+    public ResponseResult updateAge(@RequestParam Integer age) {
+        return userInfoService.updateAge(age);
+    }
 }

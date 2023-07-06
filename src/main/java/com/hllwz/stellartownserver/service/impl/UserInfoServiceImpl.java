@@ -205,4 +205,43 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         user.setSignature(signature);
         return ResponseResult.success(ResultCode.UPDATE_USER_INFO_SUCCESS, user);
     }
+
+    @Override
+    public ResponseResult updateUsername(String username) {
+        Integer userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getId, userId);
+        UserInfo user = userInfoMapper.selectOne(wrapper);
+        if (user == null) {
+            return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
+        }
+        user.setUsername(username);
+        return ResponseResult.success(ResultCode.UPDATE_USER_INFO_SUCCESS, username);
+    }
+
+    @Override
+    public ResponseResult updateGender(Integer gender) {
+        Integer userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getId, userId);
+        UserInfo user = userInfoMapper.selectOne(wrapper);
+        if (user == null) {
+            return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
+        }
+        user.setGender(gender);
+        return ResponseResult.success(ResultCode.UPDATE_USER_INFO_SUCCESS, gender);
+    }
+
+    @Override
+    public ResponseResult updateAge(Integer age) {
+        Integer userId = SecurityUtil.getUserId();
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getId, userId);
+        UserInfo user = userInfoMapper.selectOne(wrapper);
+        if (user == null) {
+            return ResponseResult.error(ResultCode.USER_NOT_EXIST, null);
+        }
+        user.setAge(age);
+        return ResponseResult.success(ResultCode.UPDATE_USER_INFO_SUCCESS, age);
+    }
 }
