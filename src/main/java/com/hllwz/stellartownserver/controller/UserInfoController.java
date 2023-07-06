@@ -91,9 +91,9 @@ public class UserInfoController {
      * @param userInfo 用户id
      * @return ResponseResult
      */
-    @RequestMapping("/getUserInfoById")
-    public ResponseResult getUserInfoById(@RequestBody UserInfo userInfo) {
-        return userInfoService.getUserInfoById(userInfo.getId());
+    @GetMapping("/getUserInfoById")
+    public ResponseResult getUserInfoById(Integer id) {
+        return userInfoService.getUserInfoById(id);
     }
 
     /**
