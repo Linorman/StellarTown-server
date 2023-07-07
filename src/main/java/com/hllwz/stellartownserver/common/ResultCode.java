@@ -76,6 +76,7 @@ public enum ResultCode {
     POST_GET_ERROR(404, "帖子获取失败"),
     POST_ADD_SUCCESS(203, "帖子发布成功"),
     POST_ADD_ERROR(405, "帖子添加失败"),
+    POST_CONTENT_TOO_LONG(476, "帖子内容过长"),
     POST_DELETE_SUCCESS(204, "帖子删除成功"),
     POST_DELETE_ERROR(406, "帖子删除失败"),
     POST_UPDATE_SUCCESS(205, "帖子更新成功"),

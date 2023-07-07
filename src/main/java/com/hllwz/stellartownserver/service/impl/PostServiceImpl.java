@@ -78,6 +78,9 @@ public class PostServiceImpl extends ServiceImpl<PostInfoMapper, PostInfo> imple
         PostInfo post = new PostInfo();
 
         // post.setImage(postInfo.getImage());
+        if (postInfo.getContent().length() >= 512) {
+            return ResponseResult.error(ResultCode.POST_CONTENT_TOO_LONG, null);
+        }
         post.setContent(postInfo.getContent());
         post.setTitle(postInfo.getTitle());
         post.setAddress(postInfo.getAddress());
