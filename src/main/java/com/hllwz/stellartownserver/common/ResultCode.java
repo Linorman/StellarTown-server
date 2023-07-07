@@ -101,7 +101,7 @@ public enum ResultCode {
     UNFOLLOW_USER_NOT_NULL(417,"取消关注用户不能为空"),
     UNFOLLOW_USER_NOT_SELF(418,"不能取消关注自己"),
     UNFOLLOW_USER_SUCCESS(219,"取消关注用户成功"),
-    UNFOLLOW_USER_ERROR(288,"取消关注用户失败"),
+    UNFOLLOW_USER_ERROR(280,"取消关注用户失败"),
     UNFOLLOW_USER_NOT_EXIST(297,"未关注该用户"),
     FOLLOWER_LIST_GET_SUCCESS(221,"关注列表获取成功"),
     FOLLOWER_LIST_GET_ERROR(422,"关注列表获取失败"),

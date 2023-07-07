@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 public class LikeServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFollowerInfo> implements LikeService {
 
     private final PostFollowerInfoMapper postFollowerInfoMapper;
-
+    private final PostFollowerServiceImpl postFollowerService;
     private final PostInfoMapper postInfoMapper;
 
     @Override
@@ -54,6 +54,9 @@ public class LikeServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFol
         postLike.setLikerId(userId);
         postLike.setPostId(postInfo.getId());
         postFollowerInfoMapper.insert(postLike);
+        PostInfo postInfo1 = postInfoMapper.selectById(postId);
+        postInfo1.setLikeCount(postInfo1.getLikeCount()+1);
+        postInfoMapper.updateById(postInfo1);
         return ResponseResult.success(ResultCode.POST_LIKE_SUCCESS, null);
     }
 
