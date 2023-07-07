@@ -1,6 +1,9 @@
 server:
   port: 8080
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
   application:
     name: StellarTown-server
   datasource:
@@ -69,11 +72,11 @@ application:
       refresh-token:
           expiration: 604800000 # 7 days
 minio:
-  endpoint: http://127.0.0.1:9999
-  accessKey: adminminio
-  secretKey: adminminio
-  bucketName: stellar-town
-#  endpoint: http://101.37.252.1:9999
+#  endpoint: http://127.0.0.1:9999
 #  accessKey: adminminio
 #  secretKey: adminminio
 #  bucketName: stellar-town
+  endpoint: http://101.37.252.1:9999
+  accessKey: adminminio
+  secretKey: adminminio
+  bucketName: stellar-town
