@@ -28,8 +28,8 @@ import java.util.zip.GZIPInputStream;
  */
 @Slf4j
 public class AstronomyUtil {
-    private final static String API_KEY = "d418896d9b2c4f8080f6683620520ec6";
-    private final static String MOON_PHASE_URL = "https://devapi.qweather.com/v7/astronomy/moon?key=" + API_KEY + "&location=";
+    private final static String API_KEY = "d93b08cf87774acc98177e687284428f";
+    private final static String MOON_PHASE_URL = "https://api.qweather.com/v7/astronomy/moon?key=" + API_KEY + "&location=";
     private final static String SPECIAL_TIME = "https://www.help.bj.cn/weather/api/nongli/moon/?id=";
 
     /**

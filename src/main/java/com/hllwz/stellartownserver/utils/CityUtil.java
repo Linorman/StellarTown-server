@@ -27,7 +27,7 @@ import java.util.zip.GZIPInputStream;
 @Slf4j
 public class CityUtil {
 
-    private final static String WEATHER_API_KEY = "d418896d9b2c4f8080f6683620520ec6";
+    private final static String WEATHER_API_KEY = "d93b08cf87774acc98177e687284428f";
     private final static String CITY_API_URL = "https://geoapi.qweather.com/v2/city/lookup?key=" + WEATHER_API_KEY + "&location=";
 
     /**
