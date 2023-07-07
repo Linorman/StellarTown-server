@@ -20,7 +20,7 @@ public class PostInfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private int id;
     private int userId;
-    private Integer likeCount;
+    private Integer likeCount ;
     private String title;
     private String image;
     private String address;
