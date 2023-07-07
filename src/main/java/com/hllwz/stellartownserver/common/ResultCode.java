@@ -97,7 +97,7 @@ public enum ResultCode {
     FOLLOW_USER_NOT_SELF(414,"不能关注自己"),
     FOLLOW_USER_SUCCESS(215,"关注用户成功"),
 
-    FOLLOW_USER_EXIST(416,"已关注该用户"),
+    FOLLOW_USER_EXIST(298,"已关注该用户"),
     UNFOLLOW_USER_NOT_NULL(417,"取消关注用户不能为空"),
     UNFOLLOW_USER_NOT_SELF(418,"不能取消关注自己"),
     UNFOLLOW_USER_SUCCESS(219,"取消关注用户成功"),

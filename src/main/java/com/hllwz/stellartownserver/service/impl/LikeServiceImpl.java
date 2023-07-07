@@ -42,6 +42,13 @@ public class LikeServiceImpl extends ServiceImpl<PostFollowerInfoMapper, PostFol
         if (postInfoTemp == null) {
             return ResponseResult.error(ResultCode.POST_NOT_FOUND, null);
         }
+        LambdaQueryWrapper<PostFollowerInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(PostFollowerInfo::getPostId, postId);
+        queryWrapper.eq(PostFollowerInfo::getLikerId,userId);
+        PostFollowerInfo temp = postFollowerInfoMapper.selectOne(queryWrapper);
+        if (temp!=null){
+            return ResponseResult.error(ResultCode.POST_LIKEPOST_EXIST,null);
+        }
 
         PostFollowerInfo postLike = new PostFollowerInfo();
         postLike.setLikerId(userId);
